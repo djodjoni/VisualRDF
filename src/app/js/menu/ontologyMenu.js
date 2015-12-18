@@ -6,7 +6,7 @@
 module.exports = function (loadOntologyFromText) {
 
 	var ontologyMenu = {},
-		defaultJsonName = "foaf", // This file is loaded by default
+		defaultJsonName = "test", // This file is loaded by default
 	// Selections for the app
 		loadingError = d3.select("#loading-error"),
 		loadingProgress = d3.select("#loading-progress"),
