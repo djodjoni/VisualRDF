@@ -64,13 +64,27 @@ module.exports = function (grunt) {
 		copy: {
 			dependencies: {
 				files: [
-					{expand: true, cwd: "node_modules/d3/", src: ["d3.min.js"], dest: deployPath + "/js/"}
+					{
+                        expand: true,
+                        cwd: "node_modules/d3/",
+                        src: ["d3.min.js"],
+                        dest: deployPath + "/js/"
+                    }
 				]
 			},
 			static: {
 				files: [
-					{expand: true, cwd: "src/", src: ["favicon.ico"], dest: deployPath},
-					{expand: true, src: ["license.txt"], dest: deployPath}
+					{
+                        expand: true,
+                        cwd: "src/",
+                        src: ["favicon.ico"],
+                        dest: deployPath
+                    },
+					{
+                        expand: true,
+                        src: ["license.txt"],
+                        dest: deployPath
+                    }
 				]
 			}
 		},
@@ -84,7 +98,8 @@ module.exports = function (grunt) {
 				}
 			},
 			dev: {
-				src: "src/index.html",
+				//src: "src/index.html",
+				src: "src/*.html",
 				dest: deployPath
 			},
 			release: {
@@ -145,7 +160,7 @@ module.exports = function (grunt) {
 				}
 			},
 			js: {
-				files: ["src/app/**/*", "src/webvowl/**/*"],
+				files: ["src/app/**/*","src/turtled/**/*", "src/webvowl/**/*"],
 				tasks: ["webpack:build-dev", "post-js"],
 				options: {
 					livereload: true,

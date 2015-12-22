@@ -6,7 +6,8 @@ module.exports = {
 	cache: true,
 	entry: {
 		webvowl: "./src/webvowl/js/entry.js",
-		"webvowl.app": "./src/app/js/entry.js"
+		"webvowl.app": "./src/app/js/entry.js",
+		"turtled": "./src/turtled/js/entry.js"
 	},
 	output: {
 		path: path.join(__dirname, "deploy/"),
@@ -19,7 +20,8 @@ module.exports = {
 	module: {
 		loaders: [
 			{test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
-			{test: /\.json$/, loader: "file?name=data/[name].[ext]?[hash]"}
+			{test: /\.json$/, loader: "file?name=data/[name].[ext]?[hash]"},
+			{test: /\.ttl$/, loader: "file?name=data/[name].[ext]?[hash]"}
 		]
 	},
 	plugins: [
