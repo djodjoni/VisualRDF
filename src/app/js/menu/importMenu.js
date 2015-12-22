@@ -3,7 +3,7 @@
  *
  * @returns {{}}
  */
-module.exports = function (loadOntologyFromText) {
+module.exports = function (loadWvoJson) {
 
 	var ontologyMenu = {},
 		defaultJsonName = "test", // This file is loaded by default
@@ -85,12 +85,12 @@ module.exports = function (loadOntologyFromText) {
 			loadOntologyFromFile(filename);
 		} else if (hashParameter.substr(0, iriKey.length) === iriKey) {
 			var iri = decodeURIComponent(hashParameter.slice(iriKey.length));
-			loadOntologyFromUri("converter.php?iri=" + encodeURIComponent(iri), iri);
+			loadFromUri("converter.php?iri=" + encodeURIComponent(iri), iri);
 
 			d3.select("#converter-option").classed("selected-ontology", true);
 		} else {
 			// id of an existing ontology as parameter
-			loadOntologyFromUri(require("../../data/" + hashParameter + ".json"), hashParameter);
+			loadFromUri(require("../../data/" + hashParameter + ".json"), hashParameter);
 
 			ontologyOptions.each(function () {
 				var ontologyOption = d3.select(this);
@@ -104,14 +104,17 @@ module.exports = function (loadOntologyFromText) {
 		}
 	}
 
-	function loadOntologyFromUri(relativePath, requestedUri) {
+	function loadFromUri(relativePath, requestedUri) {
+		console.log(relativePath);
+		console.log(requestedUri);
+
 		var cachedOntology = cachedConversions[relativePath];
 		var trimmedRequestedUri = requestedUri.replace(/\/$/g, "");
 		var filename = trimmedRequestedUri.slice(trimmedRequestedUri.lastIndexOf("/") + 1);
 
 
 		if (cachedOntology) {
-			loadOntologyFromText(cachedOntology, undefined, filename);
+			loadWvoJson(cachedOntology, undefined, filename);
 			setLoadingStatus(true);
 		} else {
 			displayLoadingIndicators();
@@ -125,11 +128,11 @@ module.exports = function (loadOntologyFromText) {
 					cachedConversions[relativePath] = jsonText;
 				} else {
 					if (error.status === 404) {
-						errorInfo = "Connection to the OWL2VOWL interface could not be established.";
+						errorInfo = "Cannot retrieve ."+relativePath;
 					}
 				}
 
-				loadOntologyFromText(jsonText, undefined, filename);
+				loadWvoJson(jsonText, undefined, filename);
 
 				setLoadingStatus(loadingSuccessful, error ? error.response : undefined, errorInfo);
 				hideLoadingInformations();
@@ -197,7 +200,7 @@ module.exports = function (loadOntologyFromText) {
 	function loadOntologyFromFile(filename) {
 		var cachedOntology = cachedConversions[filename];
 		if (cachedOntology) {
-			loadOntologyFromText(cachedOntology, filename);
+			loadWvoJson(cachedOntology, filename);
 			setLoadingStatus(true);
 			return;
 		}
@@ -205,7 +208,7 @@ module.exports = function (loadOntologyFromText) {
 		var selectedFile = d3.select("#file-converter-input").property("files")[0];
 		// No selection -> this was triggered by the iri. Unequal names -> reuploading another file
 		if (!selectedFile || (filename && (filename !== selectedFile.name))) {
-			loadOntologyFromText(undefined, undefined);
+			loadWvoJson(undefined, undefined);
 			setLoadingStatus(false, undefined, "No cached version of \"" + filename + "\" was found. Please reupload the file.");
 			return;
 		} else {
@@ -215,7 +218,7 @@ module.exports = function (loadOntologyFromText) {
 		if (filename.match(/\.json$/)) {
 			loadFromJson(selectedFile, filename);
 		} else {
-			loadFromOntology(selectedFile, filename);
+			loadFromFile(selectedFile, filename);
 		}
 	}
 
@@ -228,7 +231,7 @@ module.exports = function (loadOntologyFromText) {
 		};
 	}
 
-	function loadFromOntology(selectedFile, filename) {
+	function loadFromFile(selectedFile, filename) {
 		var uploadButton = d3.select("#file-converter-button");
 
 		displayLoadingIndicators();
@@ -247,7 +250,7 @@ module.exports = function (loadOntologyFromText) {
 				loadOntologyFromTextAndTrimFilename(xhr.responseText, filename);
 				cachedConversions[filename] = xhr.responseText;
 			} else {
-				loadOntologyFromText(undefined, undefined);
+				loadWvoJson(undefined, undefined);
 				setLoadingStatus(false, xhr.responseText);
 			}
 			hideLoadingInformations();
@@ -258,7 +261,7 @@ module.exports = function (loadOntologyFromText) {
 
 	function loadOntologyFromTextAndTrimFilename(text, filename) {
 		var trimmedFilename = filename.split(".")[0];
-		loadOntologyFromText(text, trimmedFilename);
+		loadWvoJson(text, trimmedFilename);
 	}
 
 	function keepOntologySelectionOpenShortly() {

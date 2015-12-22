@@ -47,8 +47,7 @@ module.exports = function (graphSelector) {
 			.node().parentNode.innerHTML;
 
 		// Insert the reference to VOWL
-		graphSvgCode = "<!-- Created with WebVOWL (version " + webvowl.version + ")" +
-		", http://vowl.visualdataweb.org -->\n" + graphSvgCode;
+		graphSvgCode = "<!-- href:" + dataURI + " -->\n" + graphSvgCode;
 
 		escapedGraphSvgCode = escapeUnicodeCharacters(graphSvgCode);
 		//btoa(); Creates a base-64 encoded ASCII string from a "string" of binary data.

@@ -6,7 +6,7 @@ module.exports = function () {
 		languageTools = webvowl.util.languageTools(),
 		graphSelector = "#graph",
 	// Modules for the webvowl app
-		ontologyMenu,
+		importMenu,
 		exportMenu,
 		gravityMenu,
 		filterMenu,
@@ -49,12 +49,12 @@ module.exports = function () {
 		pauseMenu = require("./menu/pauseMenu")(graph);
 		resetMenu = require("./menu/resetMenu")(graph, [gravityMenu, filterMenu, modeMenu,
 			focuser, selectionDetailDisplayer, pauseMenu]);
-		ontologyMenu = require("./menu/ontologyMenu")(loadOntologyFromText);
+		importMenu = require("./menu/importMenu")(loadWvoJson);
 
 		d3.select(window).on("resize", adjustSize);
 
 		// setup all bottom bar modules
-		setupableMenues = [exportMenu, gravityMenu, filterMenu, modeMenu, resetMenu, pauseMenu, sidebar, ontologyMenu];
+		setupableMenues = [exportMenu, gravityMenu, filterMenu, modeMenu, resetMenu, pauseMenu, sidebar, importMenu];
 		setupableMenues.forEach(function (menu) {
 			menu.setup();
 		});
@@ -63,12 +63,13 @@ module.exports = function () {
 		adjustSize();
 	};
 
-	function loadOntologyFromText(jsonText, filename, alternativeFilename) {
+	function loadWvoJson(wvoJsonFile, filename, alternativeFilename) {
+
 		pauseMenu.reset();
 
 		var data;
-		if (jsonText) {
-			data = JSON.parse(jsonText);
+		if (wvoJsonFile) {
+			data = JSON.parse(wvoJsonFile);
 
 			if (!filename) {
 				// First look if an ontology title exists, otherwise take the alternative filename
@@ -83,7 +84,7 @@ module.exports = function () {
 			}
 		}
 
-		exportMenu.setJsonText(jsonText);
+		exportMenu.setJsonText(wvoJsonFile);
 
 		options.data(data);
 		graph.reload();
