@@ -3,20 +3,16 @@
  *
  * @returns {{}}
  */
-module.exports = function (loadWvoJson) {
+module.exports = function (loadWvoJson, transformTriplesToWvoJson) {
 
 	var ontologyMenu = {},
-		defaultJsonName = "test", // This file is loaded by default
 	// Selections for the app
 		loadingError = d3.select("#loading-error"),
 		loadingProgress = d3.select("#loading-progress"),
-		ontologyMenuTimeout,
-		cachedConversions = {};
+		ontologyMenuTimeout;
 
 	ontologyMenu.setup = function () {
 		setupConverterButtons();
-		setupUploadButton();
-
 		var descriptionButton = d3.select("#error-description-button").datum({open: false});
 		descriptionButton.on("click", function (data) {
 			var errorContainer = d3.select("#error-description-container");
@@ -39,7 +35,7 @@ module.exports = function (loadWvoJson) {
 
 	function setupUriListener() {
 		// parse the url initially
-		parseUrlAndLoadOntology();
+		parseLocationURLAndLoad();
 
 		// reload ontology when hash parameter gets changed manually
 		d3.select(window).on("hashchange", function () {
@@ -52,7 +48,7 @@ module.exports = function (loadWvoJson) {
 				}
 
 				updateNavigationHrefs();
-				parseUrlAndLoadOntology();
+				parseLocationURLAndLoad();
 			}
 		});
 
@@ -67,77 +63,57 @@ module.exports = function (loadWvoJson) {
 		d3.selectAll("#optionsMenu > li > a").attr("href", location.hash || "#");
 	}
 
-	function parseUrlAndLoadOntology() {
-		// slice the "#" character
-		var hashParameter = location.hash.slice(1);
 
-		if (!hashParameter) {
-			hashParameter = defaultJsonName;
+    function getSearchParameters() {
+        var prmstr = location.search.substr(1);
+        return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+    }
+
+    function transformToAssocArray( prmstr ) {
+        var params = {};
+        var prmarr = prmstr.split("&");
+        for ( var i = 0; i < prmarr.length; i++) {
+            var tmparr = prmarr[i].split("=");
+            params[tmparr[0]] = tmparr[1];
+        }
+        return params;
+    }
+
+	function parseLocationURLAndLoad() {
+
+        var uri = getSearchParameters().uri;
+
+		if (!uri) {
+            uri = "https://raw.githubusercontent.com/cristianvasquez/WebVOWL/master/src/app/data/test.json";
 		}
 
-		var ontologyOptions = d3.selectAll(".select li").classed("selected-ontology", false);
-
 		// IRI parameter
-		var iriKey = "iri=";
-		var fileKey = "file=";
-		if (hashParameter.substr(0, fileKey.length) === fileKey) {
-			var filename = decodeURIComponent(hashParameter.slice(fileKey.length));
-			loadOntologyFromFile(filename);
-		} else if (hashParameter.substr(0, iriKey.length) === iriKey) {
-			var iri = decodeURIComponent(hashParameter.slice(iriKey.length));
-			loadFromUri("converter.php?iri=" + encodeURIComponent(iri), iri);
-
+        if (uri) {
+            //var iri = decodeURIComponent(hashParameter.slice(iriKey.length));
+            loadFromUri(uri);
 			d3.select("#converter-option").classed("selected-ontology", true);
-		} else {
-			// id of an existing ontology as parameter
-			loadFromUri(require("../../data/" + hashParameter + ".json"), hashParameter);
-
-			ontologyOptions.each(function () {
-				var ontologyOption = d3.select(this);
-				if (ontologyOption.select("a").size() > 0) {
-
-					if (ontologyOption.select("a").attr("href") === "#" + hashParameter) {
-						ontologyOption.classed("selected-ontology", true);
-					}
-				}
-			});
 		}
 	}
 
-	function loadFromUri(relativePath, requestedUri) {
-		console.log(relativePath);
-		console.log(requestedUri);
+	function loadFromUri(requestedUri) {
+        displayLoadingIndicators();
+        d3.xhr(requestedUri, "application/json", function (error, request) {
+            var loadingSuccessful = !error;
+            var errorInfo;
 
-		var cachedOntology = cachedConversions[relativePath];
-		var trimmedRequestedUri = requestedUri.replace(/\/$/g, "");
-		var filename = trimmedRequestedUri.slice(trimmedRequestedUri.lastIndexOf("/") + 1);
+            var jsonText;
+            if (loadingSuccessful) {
+                jsonText = request.responseText;
+            } else {
+                if (error.status === 404) {
+                    errorInfo = "Cannot retrieve ."+requestedUri;
+                }
+            }
 
-
-		if (cachedOntology) {
-			loadWvoJson(cachedOntology, undefined, filename);
-			setLoadingStatus(true);
-		} else {
-			displayLoadingIndicators();
-			d3.xhr(relativePath, "application/json", function (error, request) {
-				var loadingSuccessful = !error;
-				var errorInfo;
-
-				var jsonText;
-				if (loadingSuccessful) {
-					jsonText = request.responseText;
-					cachedConversions[relativePath] = jsonText;
-				} else {
-					if (error.status === 404) {
-						errorInfo = "Cannot retrieve ."+relativePath;
-					}
-				}
-
-				loadWvoJson(jsonText, undefined, filename);
-
-				setLoadingStatus(loadingSuccessful, error ? error.response : undefined, errorInfo);
-				hideLoadingInformations();
-			});
-		}
+            loadWvoJson(jsonText);
+            setLoadingStatus(loadingSuccessful, error ? error.response : undefined, errorInfo);
+            hideLoadingInformations();
+        });
 	}
 
 	function setupConverterButtons() {
@@ -162,106 +138,6 @@ module.exports = function (loadWvoJson) {
 			d3.event.preventDefault();
 			return false;
 		});
-	}
-
-	function setupUploadButton() {
-		var input = d3.select("#file-converter-input"),
-			inputLabel = d3.select("#file-converter-label"),
-			uploadButton = d3.select("#file-converter-button");
-
-		input.on("change", function () {
-			var selectedFiles = input.property("files");
-			if (selectedFiles.length <= 0) {
-				inputLabel.text("Please select a file");
-				uploadButton.property("disabled", true);
-			} else {
-				inputLabel.text(selectedFiles[0].name);
-				uploadButton.property("disabled", false);
-
-				keepOntologySelectionOpenShortly();
-			}
-		});
-
-		uploadButton.on("click", function () {
-			var selectedFile = input.property("files")[0];
-			if (!selectedFile) {
-				return false;
-			}
-			var newHashParameter = "file=" + selectedFile.name;
-			// Trigger the reupload manually, because the iri is not changing
-			if (location.hash === "#" + newHashParameter) {
-				loadOntologyFromFile();
-			} else {
-				location.hash = newHashParameter;
-			}
-		});
-	}
-
-	function loadOntologyFromFile(filename) {
-		var cachedOntology = cachedConversions[filename];
-		if (cachedOntology) {
-			loadWvoJson(cachedOntology, filename);
-			setLoadingStatus(true);
-			return;
-		}
-
-		var selectedFile = d3.select("#file-converter-input").property("files")[0];
-		// No selection -> this was triggered by the iri. Unequal names -> reuploading another file
-		if (!selectedFile || (filename && (filename !== selectedFile.name))) {
-			loadWvoJson(undefined, undefined);
-			setLoadingStatus(false, undefined, "No cached version of \"" + filename + "\" was found. Please reupload the file.");
-			return;
-		} else {
-			filename = selectedFile.name;
-		}
-
-		if (filename.match(/\.json$/)) {
-			loadFromJson(selectedFile, filename);
-		} else {
-			loadFromFile(selectedFile, filename);
-		}
-	}
-
-	function loadFromJson(file, filename) {
-		var reader = new FileReader();
-		reader.readAsText(file);
-		reader.onload = function () {
-			loadOntologyFromTextAndTrimFilename(reader.result, filename);
-			setLoadingStatus(true);
-		};
-	}
-
-	function loadFromFile(selectedFile, filename) {
-		var uploadButton = d3.select("#file-converter-button");
-
-		displayLoadingIndicators();
-		uploadButton.property("disabled", true);
-
-		var formData = new FormData();
-		formData.append("ontology", selectedFile);
-
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "converter.php", true);
-
-		xhr.onload = function () {
-			uploadButton.property("disabled", false);
-
-			if (xhr.status === 200) {
-				loadOntologyFromTextAndTrimFilename(xhr.responseText, filename);
-				cachedConversions[filename] = xhr.responseText;
-			} else {
-				loadWvoJson(undefined, undefined);
-				setLoadingStatus(false, xhr.responseText);
-			}
-			hideLoadingInformations();
-		};
-
-		xhr.send(formData);
-	}
-
-	function loadOntologyFromTextAndTrimFilename(text, filename) {
-		var trimmedFilename = filename.split(".")[0];
-		loadWvoJson(text, trimmedFilename);
 	}
 
 	function keepOntologySelectionOpenShortly() {
@@ -314,8 +190,7 @@ module.exports = function (loadWvoJson) {
 		if (information) {
 			errorInfo.text(information);
 		} else {
-			errorInfo.html("Ontology could not be loaded.<br>Is it a valid OWL ontology? Please check with <a target=\"_blank\"" +
-			"href=\"http://mowl-power.cs.man.ac.uk:8080/validator/\">OWL Validator</a>.");
+			errorInfo.html("An error occurred loading the resource");
 		}
 
 		var descriptionMissing = !description;

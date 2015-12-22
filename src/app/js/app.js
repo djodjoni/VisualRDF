@@ -63,28 +63,29 @@ module.exports = function () {
 		adjustSize();
 	};
 
-	function loadWvoJson(wvoJsonFile, filename, alternativeFilename) {
+	function loadWvoJson(wvoJsonContents) {
 
 		pauseMenu.reset();
+		var filename;
 
 		var data;
-		if (wvoJsonFile) {
-			data = JSON.parse(wvoJsonFile);
+		if (wvoJsonContents) {
+			data = JSON.parse(wvoJsonContents);
 
 			if (!filename) {
-				// First look if an ontology title exists, otherwise take the alternative filename
-				var ontologyNames = data.header ? data.header.title : undefined;
-				var ontologyName = languageTools.textInLanguage(ontologyNames);
+				// First look if a name exists, otherwise take the alternative filename
+				var names = data.header ? data.header.title : undefined;
+				var name = languageTools.textInLanguage(names);
 
-				if (ontologyName) {
-					filename = ontologyName;
+				if (name) {
+					filename = name;
 				} else {
-					filename = alternativeFilename;
+					filename =  "triples";
 				}
 			}
 		}
 
-		exportMenu.setJsonText(wvoJsonFile);
+		exportMenu.setJsonText(wvoJsonContents);
 
 		options.data(data);
 		graph.reload();
