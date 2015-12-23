@@ -3,7 +3,7 @@
  *
  * @returns {{}}
  */
-module.exports = function (loadWvoJson, transformTriplesToWvoJson) {
+module.exports = function (loadWvoJson) {
 
 	var ontologyMenu = {},
 	// Selections for the app
@@ -101,16 +101,16 @@ module.exports = function (loadWvoJson, transformTriplesToWvoJson) {
             var loadingSuccessful = !error;
             var errorInfo;
 
-            var jsonText;
+            var turtleText;
             if (loadingSuccessful) {
-                jsonText = request.responseText;
+                turtleText = request.responseText;
             } else {
                 if (error.status === 404) {
                     errorInfo = "Cannot retrieve ."+requestedUri;
                 }
             }
 
-            loadWvoJson(jsonText);
+            loadWvoJson(turtleText);
             setLoadingStatus(loadingSuccessful, error ? error.response : undefined, errorInfo);
             hideLoadingInformations();
         });

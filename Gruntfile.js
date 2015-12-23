@@ -69,6 +69,12 @@ module.exports = function (grunt) {
                         cwd: "node_modules/d3/",
                         src: ["d3.min.js"],
                         dest: deployPath + "/js/"
+                    },
+                    {
+                        expand: true,
+                        cwd: "src/lib/",
+                        src: ["n3-browser.min.js"],
+                        dest: deployPath + "/js/"
                     }
 				]
 			},
