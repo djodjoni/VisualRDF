@@ -84,7 +84,7 @@ module.exports = function (loadWvoJson) {
         var uri = getSearchParameters().uri;
 
 		if (!uri) {
-            uri = "https://raw.githubusercontent.com/cristianvasquez/WebVOWL/master/src/app/data/test.json";
+            uri = "https://raw.githubusercontent.com/cristianvasquez/BeliefTaggerData/master/examples/cartoon.ttl";
 		}
 
 		// IRI parameter
@@ -110,7 +110,7 @@ module.exports = function (loadWvoJson) {
                 }
             }
 
-            loadWvoJson(turtleText);
+            loadWvoJson(turtleText,requestedUri);
             setLoadingStatus(loadingSuccessful, error ? error.response : undefined, errorInfo);
             hideLoadingInformations();
         });

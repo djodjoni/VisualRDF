@@ -80,9 +80,14 @@ module.exports = function () {
         return ""+(counter++)+"";
     }
 
+    function isblankNode (string) {
+        var prefix = "_:";
+        return string.slice(0, prefix.length) == prefix;
+    }
+
     function addNode(template, s){
 
-        if (N3Util.isIRI(s)){
+        if (N3Util.isIRI(s) || isblankNode(s)){
             var sId;
             if (graphIds[s]===undefined){
                 sId = newId();
@@ -166,34 +171,37 @@ module.exports = function () {
     }
 
     function shrinkLabel(label, prefixes) {
-        var index = label.indexOf('#');
-        if (index) {
-            var prefix = label.substr(0, index);
-            var postfix = label.substr(index + 1);
-            var key = Object.keys(prefixes).filter(function (key) {
-                    return prefixes[key] === prefix
+        if (prefixes){
+            var index = label.indexOf('#');
+            if (index) {
+                var prefix = label.substr(0, index);
+                var postfix = label.substr(index + 1);
+                var key = Object.keys(prefixes).filter(function (key) {
+                        return prefixes[key] === prefix
+                    }
+                )[0];
+                if (key) {
+                    label = key + ":" + postfix;
+                } else {
+                    label = postfix;
                 }
-            )[0];
-            if (key) {
-                label = key + ":" + postfix;
-            } else {
-                label = postfix;
             }
+
         }
         return label;
     }
 
-	function loadWvoJson(turtleInput){
+	function loadWvoJson(rdfInput, url){
 
         var template = {
-            "_comment": "Created by hand",
+            "_comment": "Created from: "+url,
             "namespace": [],
             "header": {
                 "title": {
-                    "undefined": "The title"
+                    "undefined": url.substring(url.lastIndexOf('/') + 1)
                 },
-                "iri": "http://rdfFiles.org/1.ttl",
-                "version": "0.99",
+                "iri": url,
+                "version": "unknown, could be the github revision",
                 "author": ["Bob", "Alice"]
             },
             "class" : [],
@@ -204,13 +212,7 @@ module.exports = function () {
             "propertyAttribute" : []
         };
 
-        var turtle = '@prefix c: <http://example.org/cartoons#>.\n' +
-            ' c:Tom a c:Cat.\n' +
-            ' c:Jerry a c:Mouse;\n' +
-            ' c:hasLiteral "literal"; ' +
-            ' c:smarterThan c:Tom.'
-            ;
-		parser.parse(turtle,
+		parser.parse(rdfInput,
 			function (error, triple, prefixes) {
 				if (triple){
 
@@ -219,8 +221,6 @@ module.exports = function () {
                     addPredicate(template,sId, triple.predicate, oId);
 
                 } else {
-//                    console.log("# That's all, folks!", prefixes);
-
                     postProcess(template,prefixes);
 
                     pauseMenu.reset();
