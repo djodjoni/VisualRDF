@@ -20,7 +20,7 @@ Development setup
 4. Edit the code
 5. Run `npm run-script release` to (re-)build all necessary files into the deploy directory
 
-### Advanced ###
+### Advanced ### 
 Instead of the last step of the simple setup, install the npm package `grunt-cli` globally with
 `npm install grunt-cli -g`. Now you can execute a few more advanced commands in the terminal:
 
