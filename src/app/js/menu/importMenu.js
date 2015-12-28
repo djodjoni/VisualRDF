@@ -84,7 +84,7 @@ module.exports = function (loadWvoJson) {
         var uri = getSearchParameters().uri;
 
 		if (!uri) {
-            uri = "https://raw.githubusercontent.com/cristianvasquez/BeliefTaggerData/master/examples/cartoon.ttl";
+            uri = "https://raw.githubusercontent.com/cristianvasquez/BeliefTaggerData/master/examples/prince.ttl";
 		}
 
 		// IRI parameter

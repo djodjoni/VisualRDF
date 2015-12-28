@@ -103,6 +103,7 @@ module.exports = function (graph) {
 						.description(element.description)
 						.equivalents(element.equivalent)
 						.id(element.id)
+						.imgUrl(element.imgUrl)
 						.intersection(element.intersection)
 						.label(element.label)
 						// .type(element.type) Ignore, because we predefined it
