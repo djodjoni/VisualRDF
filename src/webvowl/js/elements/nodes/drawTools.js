@@ -5,6 +5,25 @@ module.exports = (function () {
 
 	var tools = {};
 
+
+	/**
+	 * Append a an image node with the passed attributes.
+	 */
+	tools.appendImage = function (parent, radius, cssClasses, tooltip, imageURL) {
+		var circle = parent.append("image")
+			.classed("class", true)
+			.attr("xlink:href", imageURL)
+			.attr("x", -radius/2)
+			.attr("y", -radius/2)
+			.attr("width", radius)
+			.attr("height", radius);
+
+		addCssClasses(circle, cssClasses);
+		addToolTip(circle, tooltip);
+
+		return circle;
+	};
+
 	/**
 	 * Append a circular class node with the passed attributes.
 	 * @param parent the parent element to which the circle will be appended
@@ -23,6 +42,8 @@ module.exports = (function () {
 
 		return circle;
 	};
+
+
 
 	function addCssClasses(element, cssClasses) {
 		if (cssClasses instanceof Array) {

@@ -53,7 +53,6 @@ module.exports = function () {
 		importMenu = require("./menu/importMenu")(loadWvoJson);
 
 
-		console.log(turtledVersion);
 		d3.select(window).on("resize", adjustSize);
 
 		// setup all bottom bar modules
@@ -85,16 +84,27 @@ module.exports = function () {
         return string.slice(0, prefix.length) == prefix;
     }
 
+
     function addNode(template, s){
 
         if (N3Util.isIRI(s) || isblankNode(s)){
             var sId;
             if (graphIds[s]===undefined){
                 sId = newId();
-                template.class.push( {
-                    "id" : sId,
-                    "type" : "rdfs:Resource"
-                });
+
+                if (isImage(s)){
+                    template.class.push( {
+                        "id" : sId,
+                        "imgUrl" :s,
+                        "type": "foaf:depiction"
+                    });
+                } else {
+                    template.class.push( {
+                        "id" : sId,
+                        "type" : "rdfs:Resource"
+                    });
+                }
+
                 template.classAttribute.push(                 {
                     "id" : sId,
                     "label" : {
@@ -134,7 +144,6 @@ module.exports = function () {
         From turtle, there is always a new predicate created
      */
     function addPredicate(template, sId, p, oId){
-        //console.log(sId,oId);
 
         var id = newId();
         template.property.push(
@@ -170,24 +179,30 @@ module.exports = function () {
         });
     }
 
+    function isImage(url) {
+        return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+    }
+
+
     function shrinkLabel(label, prefixes) {
-        if (prefixes){
-            var index = label.indexOf('#');
-            if (index) {
-                var prefix = label.substr(0, index);
-                var postfix = label.substr(index + 1);
-                var key = Object.keys(prefixes).filter(function (key) {
-                        return prefixes[key] === prefix
+
+            if (prefixes){
+                var index = label.indexOf('#');
+                if (index) {
+                    var key = Object.keys(prefixes).filter(function (key) {
+                            return prefixes[key] === prefix
                     }
-                )[0];
-                if (key) {
-                    label = key + ":" + postfix;
-                } else {
-                    label = postfix;
+                    )[0];
+                    var prefix = label.substr(0, index);
+                    var postfix = label.substr(index + 1);
+                    if (key) {
+                        label = key + ":" + postfix;
+                    } else {
+                        label = postfix;
+                    }
                 }
             }
 
-        }
         return label;
     }
 
@@ -224,7 +239,6 @@ module.exports = function () {
                     postProcess(template,prefixes);
 
                     pauseMenu.reset();
- //                   var name = languageTools.textInLanguage(names);
                     exportMenu.setJsonText(JSON.stringify(template));
                     options.data(template);
                     graph.reload();

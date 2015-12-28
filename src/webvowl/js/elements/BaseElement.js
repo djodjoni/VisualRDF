@@ -12,6 +12,7 @@ module.exports = (function () {
 			label,
 			type,
 			iri,
+			imgUrl,
 			links,
 		// Additional attributes
 			annotations,
@@ -88,6 +89,12 @@ module.exports = (function () {
 		this.iri = function (p) {
 			if (!arguments.length) return iri;
 			iri = p;
+			return this;
+		};
+
+		this.imgUrl = function (p) {
+			if (!arguments.length) return imgUrl;
+			imgUrl = p;
 			return this;
 		};
 
