@@ -1,2 +1,5712 @@
-webvowl=function(t){function n(r){if(e[r])return e[r].exports;var i=e[r]={exports:{},id:r,loaded:!1};return t[r].call(i.exports,i,i.exports,n),i.loaded=!0,i.exports}var e={};return n.m=t,n.c=e,n.p="",n(0)}([function(t,n,e){function r(t,n){var e=n.key.replace(":","").toLowerCase();t[e]=n.value}e(6);var i=e(8)(),a=e(36)(),o={};o.graph=e(50),o.options=e(58),o.version="0.5.2",o.util={},o.util.constants=e(15),o.util.languageTools=e(14),o.util.elementTools=e(57),o.modules={},o.modules.compactNotationSwitch=e(61),o.modules.datatypeFilter=e(62),o.modules.disjointFilter=e(64),o.modules.focuser=e(65),o.modules.nodeDegreeFilter=e(66),o.modules.nodeScalingSwitch=e(67),o.modules.pickAndPin=e(68),o.modules.selectionDetailsDisplayer=e(69),o.modules.setOperatorFilter=e(70),o.modules.statistics=e(71),o.modules.subclassFilter=e(72),o.nodes={},i.entries().forEach(function(t){r(o.nodes,t)}),o.properties={},a.entries().forEach(function(t){r(o.properties,t)}),t.exports=o},,,,,,function(t,n){},,function(t,n,e){(function(n){var r=[];r.push(e(10)),r.push(e(20)),r.push(e(21)),r.push(e(23)),r.push(e(24)),r.push(e(25)),r.push(e(26)),r.push(e(27)),r.push(e(28)),r.push(e(29)),r.push(e(30)),r.push(e(34)),r.push(e(35));var i=n.map(r,function(t){return(new t).type()});t.exports=function(){return i}}).call(n,e(9))},function(t,n){t.exports=d3},function(t,n,e){var r=e(11);t.exports=function(){var t=function(t){r.apply(this,arguments),this.attributes(["external"]).type("ExternalClass")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){(function(n){var r=e(12),i=e(17)();t.exports=function(){var t=function(t){r.apply(this,arguments);var a,o,s,u=this,c=!1,l=50;this.collapsible=function(t){return arguments.length?(c=t,this):c},this.textBlock=function(t){return arguments.length?(s=t,this):s},this.radius=function(t){return arguments.length?(l=t,this):l},this.setHoverHighlighting=function(t){u.nodeElement().selectAll("circle").classed("hovered",t)},this.textWidth=function(){return 2*this.actualRadius()},this.toggleFocus=function(){u.focused(!u.focused()),u.nodeElement().select("circle").classed("focused",u.focused())},this.actualRadius=function(){if(!t.options().scaleNodesByIndividuals()||u.individuals().length<=0)return u.radius();var n=8,e=Math.log(u.individuals().length+1)*n+5;return u.radius()+e},this.distanceToBorder=function(){return u.actualRadius()},this.drawPin=function(){u.pinned(!0),o=u.nodeElement().append("g").classed("hidden-in-export",!0).attr("transform",function(){var t=.4*u.actualRadius(),n=-0.7*u.actualRadius();return"translate("+t+","+n+")"}),o.append("circle").classed("class pin feature",!0).attr("r",12).on("click",function(){u.removePin(),n.event.stopPropagation()}),o.append("line").attr("x1",0).attr("x2",0).attr("y1",12).attr("y2",16)},this.removePin=function(){u.pinned(!1),o&&o.remove(),t.updateStyle()},this.drawCollapsingButton=function(){a=u.nodeElement().append("g").classed("hidden-in-export",!0).attr("transform",function(){var t=-0.4*u.actualRadius(),n=.5*u.actualRadius();return"translate("+t+","+n+")"}),a.append("rect").classed("class pin feature",!0).attr("x",0).attr("y",0).attr("width",40).attr("height",24),a.append("line").attr("x1",13).attr("y1",12).attr("x2",27).attr("y2",12),a.append("line").attr("x1",20).attr("y1",6).attr("x2",20).attr("y2",18)},this.draw=function(t,n){var e=u.collectCssClasses();u.nodeElement(t),n instanceof Array&&(e=e.concat(n)),i.appendCircularClass(t,u.actualRadius(),e,u.labelForCurrentLanguage()),u.postDrawActions(t)},this.postDrawActions=function(){var n=e(18)(u.nodeElement());n.addText(u.labelForCurrentLanguage()),t.options().compactNotation()||n.addSubText(u.indicationString()),n.addInstanceCount(u.individuals().length),u.textBlock(n),u.addMouseListeners(),u.pinned()&&u.drawPin(),u.collapsible()&&u.drawCollapsingButton()}};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()}).call(n,e(9))},function(t,n,e){var r=e(13),i=e(16)();t.exports=function(){var t=function(t){function n(){if(!p.mouseEntered()){var t=p.nodeElement().node(),n=t.parentNode;n.appendChild(t),p.setHoverHighlighting(!0),p.mouseEntered(!0)}}function e(){p.setHoverHighlighting(!1),p.mouseEntered(!1)}r.apply(this,arguments);var a,o,s,u,c,l,p=this,f=[];this.complement=function(t){return arguments.length?(a=t,this):a},this.disjointWith=function(t){return arguments.length?(o=t,this):o},this.individuals=function(t){return arguments.length?(f=t||[],this):f},this.intersection=function(t){return arguments.length?(s=t,this):s},this.maxIndividualCount=function(t){return arguments.length?(c=t,this):c},this.nodeElement=function(t){return arguments.length?(l=t,this):l},this.union=function(t){return arguments.length?(u=t,this):u},p.collectCssClasses=function(){var t=[];return"string"==typeof p.styleClass()&&t.push(p.styleClass()),"string"==typeof p.visualAttribute()&&t.push(p.visualAttribute()),t},this.addMouseListeners=function(){return p.nodeElement()?void p.nodeElement().selectAll("*").on("mouseover",n).on("mouseout",e):void console.warn(this)},i.addTo(this)};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){t.exports=function(){var t="DEFAULT_LABEL",n=function(n){var r,i,a,o,s,u,c,l,p,f,d,h=[],g=[],v=!1,y=[],m=!1,b=!0,x=e(14)();this.attributes=function(t){return arguments.length?(g=t,this):g},this.annotations=function(t){return arguments.length?(u=t,this):u},this.comment=function(t){return arguments.length?(l=t,this):l},this.description=function(t){return arguments.length?(p=t,this):p},this.equivalents=function(t){return arguments.length?(h=t||[],this):h},this.equivalentBase=function(t){return arguments.length?(f=t,this):f},this.focused=function(t){return arguments.length?(v=t,this):v},this.id=function(t){return arguments.length?(r=t,this):r},this.indications=function(t){return arguments.length?(y=t,this):y},this.iri=function(t){return arguments.length?(o=t,this):o},this.label=function(n){return arguments.length?(i=n||t,this):i},this.links=function(t){return arguments.length?(s=t,this):s},this.mouseEntered=function(t){return arguments.length?(m=t,this):m},this.styleClass=function(t){return arguments.length?(d=t,this):d},this.type=function(t){return arguments.length?(a=t,this):a},this.visible=function(t){return arguments.length?(b=t,this):b},this.visualAttribute=function(t){return arguments.length?(c=t,this):c},this.commentForCurrentLanguage=function(){return x.textInLanguage(this.comment(),n.language())},this.cssClassOfNode=function(){return"node"+this.id()},this.descriptionForCurrentLanguage=function(){return x.textInLanguage(this.description(),n.language())},this.defaultLabel=function(){return x.textInLanguage(this.label(),"default")},this.indicationString=function(){return this.indications().join(", ")},this.labelForCurrentLanguage=function(){return x.textInLanguage(this.label(),n.language())}};return n.prototype.constructor=n,n.prototype.equals=function(t){return t instanceof n&&this.id()===t.id()},n}()},function(t,n,e){var r=e(15)();t.exports=function(){function t(t,n){for(var e in t)if(e===n&&t.hasOwnProperty(e))return t[e]}var n={};return n.textInLanguage=function(n,e){if("undefined"!=typeof n){if("string"==typeof n)return n;if(e&&n.hasOwnProperty(e))return n[e];var i=t(n,"en");return i?i:(i=t(n,r.LANG_UNDEFINED),i?i:n[r.LANG_IRIBASED])}},function(){return n}}()},function(t,n){t.exports=function(){var t={};return t.LANG_IRIBASED="IRI-based",t.LANG_UNDEFINED="undefined",function(){return t}}()},function(t,n){function e(t){function n(){t.locked()||t.frozen()||t.pinned()?t.fixed=!0:t.fixed=!1}var e=!1,r=!1,i=!1;t.locked=function(r){return arguments.length?(e=r,n(),t):e},t.frozen=function(e){return arguments.length?(r=e,n(),t):r},t.pinned=function(e){return arguments.length?(i=e,n(),t):i}}var r={};t.exports=function(){return r},r.addTo=function(t){e(t)}},function(t,n){t.exports=function(){function t(t,n){n instanceof Array&&n.forEach(function(n){t.classed(n,!0)})}function n(t,n){n&&t.append("title").text(n)}var e={};return e.appendCircularClass=function(e,r,i,a){var o=e.append("circle").classed("class",!0).attr("r",r);return t(o,i),n(o,a),o},e.appendRectangularClass=function(e,r,i,a,o){var s=e.append("rect").classed("class",!0).attr("x",-r/2).attr("y",-i/2).attr("width",r).attr("height",i);return t(s,a),n(s,o),s},function(){return e}}()},function(t,n,e){(function(n){var r=e(19)();t.exports=function(t){function e(){var t=i();if(1>t)return void f.attr("y",0);var n=u(f);f.attr("y",.6*-n+"px")}function i(){return f.property("childElementCount")-f.selectAll(".instance-count").size()}function a(a,u,c,p){if(a){var d,h;u=u||"text",d=r.truncate(a,t.datum().textWidth(),u),h=f.append("tspan").classed("text",!0).classed(u,!0).text(o(d,c,p)).attr("x",0).attr("dy",function(){var t=s(n.select(this)),e=i()-1,r=e>0?l:0;return t+r+"px"}),e()}}function o(t,n,e){return n&&(t=n+t),e&&(t+=e),t}function s(t){return t.classed("subtext")?10:14}function u(t){var e=t.selectAll("*"),r=e.size();if(0===r)return 0;var i=r*l;return e.each(function(){i+=s(n.select(this))}),i}var c={},l=1,p="subtext",f=t.append("text").classed("text",!0).attr("text-anchor","middle");return c.addText=function(t){a(t)},c.addSubText=function(t){a(t,p,"(",")")},c.addEquivalents=function(t){a(t,p,"[","]")},c.addInstanceCount=function(t){t&&a(t.toString(),"instance-count")},c.setTranslation=function(t,n){f.attr("transform","translate("+t+", "+n+")")},c.clear=function(){f.selectAll("*").remove()},c}}).call(n,e(9))},function(t,n,e){(function(n){function e(t,e){e||(e="text");var r=n.select("body").append("div").attr("class",e).attr("id","width-test").attr("style","position:absolute; float:left; white-space:nowrap; visibility:hidden;").text(t),i=document.getElementById("width-test").offsetWidth;return r.remove(),i}var r=4,i={};i.truncate=function(t,n,i,a){if(n-=isNaN(a)?r:a,isNaN(n)||0>=n)return t;for(var o,s,u,c=t;;){if(s=e(c,i),n>=s)break;if(u=s/n,o=Math.floor(c.length/u),c.length===o)break;c=c.substring(0,o)}return t.length>c.length?t.substring(0,c.length-3)+"...":t},t.exports=function(){return i}}).call(n,e(9))},function(t,n,e){var r=e(11);t.exports=function(){var t=function(t){r.apply(this,arguments),this.type("owl:Class")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(22);t.exports=function(){var t=function(t){r.apply(this,arguments);var n=this;this.styleClass("complementof").type("owl:complementOf"),this.draw=function(t){n.nodeElement(t),t.append("circle").attr("class",n.type()).classed("class",!0).classed("special",!0).attr("r",n.actualRadius());var e=t.append("g").classed("embedded",!0);e.append("circle").attr("class","symbol").classed("fineline",!0).attr("r",n.radius()-15),e.append("path").attr("class","nofill").attr("d","m -7,-1.5 12,0 0,6"),e.attr("transform","translate(-"+(n.radius()-15)/100+",-"+(n.radius()-15)/100+")"),n.postDrawActions()}};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){(function(n){var r=e(11);t.exports=function(){var t=40,e=function(e){r.apply(this,arguments);var i=this,a=this.setHoverHighlighting,o=this.postDrawActions;this.radius(t),this.setHoverHighlighting=function(t){a(t),n.selectAll(".special."+i.cssClassOfNode()).classed("hovered",t)},this.postDrawActions=function(){o(),i.textBlock().clear(),i.textBlock().addInstanceCount(i.individuals().length),i.textBlock().setTranslation(0,i.radius()-15)}};return e.prototype=Object.create(r.prototype),e.prototype.constructor=e,e}()}).call(n,e(9))},function(t,n,e){var r=e(11);t.exports=function(){var t=function(t){r.apply(this,arguments),this.attributes(["deprecated"]).type("owl:DeprecatedClass")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(11),i=e(17)();t.exports=function(){var t=function(t){function n(t,n){if("undefined"!=typeof n){var e,r;e=n.map(function(t){return t.labelForCurrentLanguage()}),r=e.join(", "),t.addEquivalents(r)}}r.apply(this,arguments);var e=4,a=this,o=a.actualRadius;this.styleClass("equivalentclass").type("owl:equivalentClass"),this.actualRadius=function(){return o()+e},this.draw=function(t){var r=a.collectCssClasses();a.nodeElement(t),i.appendCircularClass(t,a.actualRadius(),["white","embedded"]),i.appendCircularClass(t,a.actualRadius()-e,r,a.labelForCurrentLanguage()),a.postDrawActions(),n(a.textBlock(),a.equivalents())},a.setHoverHighlighting=function(t){a.nodeElement().selectAll("circle:last-of-type").classed("hovered",t)}};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(22);t.exports=function(){var t=function(t){r.apply(this,arguments);var n=this;this.styleClass("intersectionof").type("owl:intersectionOf"),this.draw=function(t){n.nodeElement(t),t.append("circle").attr("class",n.type()).classed("class",!0).classed("special",!0).attr("r",n.actualRadius());var e=t.append("g").classed("embedded",!0);e.append("path").attr("class","nostroke").classed("symbol",!0).attr("d","m 24.777,0.771 c0,16.387-13.607,23.435-19.191,23.832S-15.467,14.526-15.467,0.424S-1.216-24.4,5.437-24.4 C12.09-24.4,24.777-15.616,24.777,0.771z"),e.append("circle").attr("class","nofill").classed("fineline",!0).attr("r",n.radius()-15),e.append("circle").attr("cx",10).attr("class","nofill").classed("fineline",!0).attr("r",n.radius()-15),e.append("path").attr("class","nofill").attr("d","m 9,5 c 0,-2 0,-4 0,-6 0,0 0,0 0,0 0,0 0,-1.8 -1,-2.3 -0.7,-0.6 -1.7,-0.8 -2.9,-0.8 -1.2,0 -2,0 -3,0.8 -0.7,0.5 -1,1.4 -1,2.3 0,2 0,4 0,6"),e.attr("transform","translate(-"+(n.radius()-15)/5+",-"+(n.radius()-15)/100+")"),n.postDrawActions()}};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(27);t.exports=function(){var t=function(t){r.apply(this,arguments),this.label("Nothing").type("owl:Nothing").iri("http://www.w3.org/2002/07/owl#Nothing")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(11);t.exports=function(){var t=function(t){r.apply(this,arguments);var n=this.draw;this.label("Thing").type("owl:Thing").iri("http://www.w3.org/2002/07/owl#Thing").radius(30),this.draw=function(t){n(t,["white","special"])}};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(22);t.exports=function(){var t=function(t){r.apply(this,arguments);var n=this;this.styleClass("unionof").type("owl:unionOf"),this.draw=function(t){n.nodeElement(t),t.append("circle").attr("class",n.type()).classed("class",!0).classed("special",!0).attr("r",n.actualRadius());var e=t.append("g").classed("embedded",!0);e.append("circle").attr("class","symbol").attr("r",n.radius()-15),e.append("circle").attr("cx",10).attr("class","symbol").classed("fineline",!0).attr("r",n.radius()-15),e.append("circle").attr("class","nofill").classed("fineline",!0).attr("r",n.radius()-15),e.append("path").attr("class","link").attr("d","m 1,-3 c 0,2 0,4 0,6 0,0 0,0 0,0 0,2 2,3 4,3 2,0 4,-1 4,-3 0,-2 0,-4 0,-6"),e.attr("transform","translate(-"+(n.radius()-15)/5+",-"+(n.radius()-15)/100+")"),n.postDrawActions()}};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(11);t.exports=function(){var t=function(t){r.apply(this,arguments),this.attributes(["rdf"]).type("rdfs:Class")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(31);t.exports=function(){var t=function(t){r.apply(this,arguments),this.attributes(["datatype"]).type("rdfs:Datatype")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(32);t.exports=function(){var t=function(t){r.apply(this,arguments)};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(12),i=e(17)(),a=e(33)();t.exports=function(){var t=function(t){r.apply(this,arguments);var n=this,o=20,s=60,u=o/2;this.height=function(t){return arguments.length?(o=t,this):o},this.width=function(t){return arguments.length?(s=t,this):s},this.actualRadius=function(){return u},this.distanceToBorder=function(t,e){return a.distanceToBorder(n,t,e)},this.setHoverHighlighting=function(t){n.nodeElement().selectAll("rect").classed("hovered",t)},this.textWidth=function(){return this.width()},this.toggleFocus=function(){n.focused(!n.focused()),n.nodeElement().select("rect").classed("focused",n.focused())},this.draw=function(t,r){var a,o=n.collectCssClasses();n.nodeElement(t),r instanceof Array&&(o=o.concat(r)),i.appendRectangularClass(t,n.width(),n.height(),o,n.labelForCurrentLanguage()),a=e(18)(t),a.addText(n.labelForCurrentLanguage()),n.addMouseListeners()}};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n){var e={};t.exports=function(){return e},e.distanceToBorder=function(t,n,e){var r,i=t.width(),a=t.height(),o=Math.abs(e/n),s=a/i;if(s>=o){var u=n/(i/2),c=e/u;r=Math.sqrt(Math.pow(i/2,2)+Math.pow(c,2))}else{var l=e/(a/2),p=n/l;r=Math.sqrt(Math.pow(a/2,2)+Math.pow(p,2))}return r}},function(t,n,e){var r=e(31);t.exports=function(){var t=function(t){r.apply(this,arguments);var n=this.draw,e=this.label;this.attributes(["datatype"]).label("Literal").styleClass("literal").type("rdfs:Literal").iri("http://www.w3.org/2000/01/rdf-schema#Literal"),this.draw=function(t){n(t,["special"])},this.label=function(t){return arguments.length?this:e()}};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(11);t.exports=function(){var t=function(t){r.apply(this,arguments);var n=this.draw;this.attributes(["rdf"]).label("Resource").radius(30).styleClass("rdfsresource").type("rdfs:Resource"),this.draw=function(t){n(t,["rdf","special"])}};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){(function(n){var r=[];r.push(e(37)),r.push(e(40)),r.push(e(39)),r.push(e(41)),r.push(e(42)),r.push(e(43)),r.push(e(44)),r.push(e(45)),r.push(e(46)),r.push(e(47)),r.push(e(48)),r.push(e(49));var i=n.map(r,function(t){return(new t).type()});t.exports=function(){return i}}).call(n,e(9))},function(t,n,e){var r=e(38);t.exports=function(){var t=function(t){r.apply(this,arguments),this.attributes(["datatype"]).styleClass("datatypeproperty").type("owl:DatatypeProperty")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(13),i=e(33)();t.exports=function(){var t=28,n=80,a=t/2,o=function(t){function n(){C.mouseEntered()||(C.mouseEntered(!0),a(!0),C.foreground(),s())}function a(t){C.labelElement().select("rect").classed("hovered",t),C.linkGroup().selectAll("path, text").classed("hovered",t),C.markerElement().select("path").classed("hovered",t),C.cardinalityElement()&&C.cardinalityElement().classed("hovered",t);var n=o();n.forEach(function(n){n.labelElement().select("rect").classed("indirectHighlighting",t)})}function o(){var t=[];return C.subproperties()&&(t=t.concat(C.subproperties())),C.superproperties()&&(t=t.concat(C.superproperties())),t}function s(){var t=o();t.forEach(function(t){t.foreground()})}function u(){C.mouseEntered(!1),a(!1)}r.apply(this,arguments);var c,l,p,f,d,h,g,v,y,m,b,x,w,C=this,E="normal",k="normal",O=!0,N=[];this.cardinality=function(t){return arguments.length?(c=t,this):c},this.cardinalityElement=function(t){return arguments.length?(m=t,this):m},this.domain=function(t){return arguments.length?(l=t,this):l},this.inverse=function(t){return arguments.length?(p=t,this):p},this.labelElement=function(t){return arguments.length?(b=t,this):b},this.labelVisible=function(t){return arguments.length?(O=t,this):O},this.link=function(t){return arguments.length?(f=t,this):f},this.linkGroup=function(t){return arguments.length?(x=t,this):x},this.linkType=function(t){return arguments.length?(E=t,this):E},this.markerElement=function(t){return arguments.length?(w=t,this):w},this.markerType=function(t){return arguments.length?(k=t,this):k},this.maxCardinality=function(t){return arguments.length?(h=t,this):h},this.minCardinality=function(t){return arguments.length?(d=t,this):d},this.range=function(t){return arguments.length?(g=t,this):g},this.redundantProperties=function(t){return arguments.length?(N=t,this):N},this.subproperties=function(t){return arguments.length?(v=t,this):v},this.superproperties=function(t){return arguments.length?(y=t,this):y},this.distanceToBorder=function(t,n){return i.distanceToBorder(C,t,n)},this.isSpecialLink=function(){return"special"===E},this.markerId=function(){return"marker"+C.id()},this.toggleFocus=function(){C.focused(!C.focused()),b.select("rect").classed("focused",C.focused())},this.draw=function(t){function n(n){var r=t.append("g").datum(n).classed("label",!0).attr("id",n.id());n.addRect(r);var i=e(18)(r);return n instanceof e(39)?(n.addDisjointLabel(t,i),r):(i.addText(n.labelForCurrentLanguage()),i.addSubText(n.indicationString()),n.addEquivalentsToLabel(i),r)}if(C.labelVisible()){if(C.labelElement(n(C)),C.inverse()){var r=C.height()/2+1;C.inverse().labelElement(n(C.inverse())),C.labelElement().attr("transform","translate(0,-"+r+")"),C.inverse().labelElement().attr("transform","translate(0,"+r+")")}return C.labelElement()}},this.addRect=function(t){var e=t.append("rect").classed(C.styleClass(),!0).classed("property",!0).attr("x",-C.width()/2).attr("y",-C.height()/2).attr("width",C.width()).attr("height",C.height()).on("mouseover",function(){n()}).on("mouseout",function(){u()});e.append("title").text(C.labelForCurrentLanguage()),C.visualAttribute()&&e.classed(C.visualAttribute(),!0)},this.addDisjointLabel=function(n,e){n.append("circle").classed("symbol",!0).classed("fineline",!0).classed("embedded",!0).attr("cx",-12.5).attr("r",10),n.append("circle").classed("symbol",!0).classed("fineline",!0).classed("embedded",!0).attr("cx",12.5).attr("r",10),t.options().compactNotation()||e.addSubText("disjoint"),e.setTranslation(0,20)},this.addEquivalentsToLabel=function(t){if(C.equivalents()){var n,e;n=C.equivalents().map(function(t){return t.labelForCurrentLanguage()}),e=n.join(", "),t.addEquivalents(e)}},this.drawCardinality=function(t){if(void 0!==C.minCardinality()||void 0!==C.maxCardinality()||void 0!==C.cardinality()){C.cardinalityElement(t.classed("cardinality",!0));var n=t.append("text").classed("cardinality",!0).attr("text-anchor","middle").attr("dy","0.5ex");if(void 0!==C.minCardinality()){var e=C.minCardinality()+"..";e+=void 0!==C.maxCardinality()?C.maxCardinality():"*",n.text(e)}else void 0!==C.maxCardinality()?n.text("*.."+C.maxCardinality()):void 0!==C.cardinality()&&n.text(C.cardinality());return C.cardinalityElement()}},this.foreground=function(){var t=C.labelElement().node().parentNode,n=t.parentNode,e=C.linkGroup().node(),r=C.linkGroup().node().parentNode;n.appendChild(t),r.appendChild(e)}};return o.prototype=Object.create(r.prototype),o.prototype.constructor=o,o.prototype.height=function(){return t},o.prototype.width=function(){return n},o.prototype.actualRadius=function(){return a},o.prototype.textWidth=o.prototype.width,o}()},function(t,n,e){var r=e(38);t.exports=function(){var t=function(t){r.apply(this,arguments);var n="Disjoint With";this.label=function(t){return arguments.length?this:n},this.markerType("special").linkType("special").styleClass("disjointwith").type("owl:disjointWith")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(38);t.exports=function(){var t=function(t){r.apply(this,arguments),this.attributes(["deprecated"]).styleClass("deprecatedproperty").type("owl:DeprecatedProperty")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(38);t.exports=function(){var t=function(t){r.apply(this,arguments),this.styleClass("equivalentproperty").type("owl:equivalentProperty")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(38);t.exports=function(){var t=function(t){r.apply(this,arguments),this.attributes(["functional"]).styleClass("functionalproperty").type("owl:FunctionalProperty")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(38);t.exports=function(){var t=function(t){r.apply(this,arguments),this.attributes(["inverse functional"]).styleClass("inversefunctionalproperty").type("owl:InverseFunctionalProperty")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(38);t.exports=function(){var t=function(t){r.apply(this,arguments),this.attributes(["object"]).styleClass("objectproperty").type("owl:ObjectProperty")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(38);t.exports=function(){var t=function(t){r.apply(this,arguments),this.attributes(["symmetric"]).styleClass("symmetricproperty").type("owl:SymmetricProperty")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(38);t.exports=function(){var t=function(t){r.apply(this,arguments),this.attributes(["transitive"]).styleClass("transitiveproperty").type("owl:TransitiveProperty")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(38);t.exports=function(){var t=function(t){r.apply(this,arguments),this.attributes(["rdf"]).styleClass("rdfproperty").type("rdf:Property")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(38);t.exports=function(){var t=function(t){r.apply(this,arguments);var n=this,e=n.draw,i="Subclass of";this.draw=function(r){return n.labelVisible(!t.options().compactNotation()),e(r)},this.label=function(t){return arguments.length?this:i},this.linkType("dotted").markerType("dotted").styleClass("subclass").type("rdfs:subClassOf")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){var r=e(38);t.exports=function(){var t=function(t){r.apply(this,arguments),this.markerType("special").labelVisible(!1).linkType("special").styleClass("setoperatorproperty").type("setOperatorProperty")};return t.prototype=Object.create(r.prototype),t.prototype.constructor=t,t}()},function(t,n,e){(function(n){var r=e(51)(),i=e(52)(),a=e(57)();t.exports=function(t){function o(){N.attr("transform",function(t){return"translate("+t.x+","+t.y+")"}),L.attr("transform",function(t){var n,e=t.link();if(1!==e.layers().length||e.loops())n=t;else{var i=r.calculateIntersection(e.range(),e.domain(),0),a=r.calculateIntersection(e.domain(),e.range(),0);n=r.calculateCenter(i,a),t.x=n.x,t.y=n.y}return"translate("+n.x+","+n.y+")"}),P.attr("d",function(t){if(t.isLoop())return r.calculateLoopPath(t);var n=t.label(),e=r.calculateIntersection(n,t.domain(),1),i=r.calculateIntersection(n,t.range(),1);return z([e,n,i])}),j.attr("transform",function(t){var n=t.link().label(),e=r.calculateIntersection(n,t.range(),G),i=r.calculateNormalVector(n,t.domain(),H);return"translate("+(e.x+i.x)+","+(e.y+i.y)+")"})}function s(){w.attr("transform","translate("+n.event.translate+")scale("+n.event.scale+")")}function u(){U.graphContainerSelector(t),S=n.layout.force().on("tick",o),B=n.behavior.drag().origin(function(t){return t}).on("dragstart",function(t){n.event.sourceEvent.stopPropagation(),t.locked(!0)}).on("drag",function(t){t.px=n.event.x,t.py=n.event.y,S.resume()}).on("dragend",function(t){t.locked(!1)}),F=n.behavior.zoom().duration(150).scaleExtent([U.minMagnification(),U.maxMagnification()]).on("zoom",s)}function c(t){var n=t.link();if(n.isLoop())return U.loopDistance();var e=l(n);return e+=n.domain().actualRadius(),e+=n.range().actualRadius(),e/2}function l(t){return a.isDatatype(t.domain())||a.isDatatype(t.range())?U.datatypeDistance():U.classDistance()}function p(){x(),w=n.selectAll(U.graphContainerSelector()).append("svg").classed("vowlGraph",!0).attr("width",U.width()).attr("height",U.height()).call(F).append("g")}function f(){var t;w&&(w.selectAll("*").remove(),O=w.append("g").classed("linkContainer",!0),k=w.append("g").classed("cardinalityContainer",!0),E=w.append("g").classed("labelContainer",!0),C=w.append("g").classed("nodeContainer",!0),t=O.append("defs"),N=C.selectAll(".node").data(T).enter().append("g").classed("node",!0).attr("id",function(t){return t.id()}).call(B),N.each(function(t){t.draw(n.select(this))}),L=E.selectAll(".labelGroup").data(D).enter().append("g").classed("labelGroup",!0).call(B),L.each(function(t){var e=t.draw(n.select(this));e||n.select(this).remove()}),L.each(function(t){if(this.parentNode&&a.isRdfsSubClassOf(t.property())){var n=this.parentNode;n.insertBefore(this,n.firstChild)}}),j=k.selectAll(".cardinality").data(R).enter().append("g").classed("cardinality",!0),j.each(function(t){var e=t.drawCardinality(n.select(this));e||n.select(this).remove()}),A=O.selectAll(".link").data(I).enter().append("g").classed("link",!0),A.each(function(e){e.draw(n.select(this),t)}),P=A.selectAll("path"),d())}function d(){function t(t){U.selectionModules().forEach(function(n){n.handle(t)})}N.on("click",function(n){t(n)}),L.selectAll(".label").on("click",function(n){t(n)})}function h(){V.parse(U.data()),M=V.nodes(),q=V.properties()}function g(){var t=M,n=q;U.filterModules().forEach(function(e){I=i.createLinks(n),v(t,I),e.filter(t,n),t=e.filteredNodes(),n=e.filteredProperties()}),T=t,R=n,I=i.createLinks(R),D=I.map(function(t){return t.label()}),v(T,I),y(T,D,I)}function v(t,n){for(var e=0,r=t.length;r>e;e++){for(var i=t[e],a=[],o=0,s=n.length;s>o;o++){var u=n[o];(u.domain()===i||u.range()===i)&&a.push(u)}i.links(a)}}function y(t,n,e){var r=[];e.forEach(function(t){r=r.concat(t.linkParts())});var i=[].concat(t).concat(n);m(S.nodes(),n),S.nodes(i).links(r)}function m(t,n){n.forEach(function(n){for(var e=0;e<t.length;e++){var r=t[e];if(r.equals(n)){n.x=r.x,n.y=r.y;break}}})}function b(){F=F.scaleExtent([U.minMagnification(),U.maxMagnification()]),w&&F.event(w),S.charge(function(t){var n=U.charge();return a.isLabel(t)&&(n*=.8),n}).size([U.width(),U.height()]).linkDistance(c).gravity(U.gravity()).linkStrength(U.linkStrength())}function x(){w&&n.select(w.node().parentNode).remove()}var w,C,E,k,O,N,L,A,P,j,T,D,I,R,M,q,S,B,F,W={},G=20,H=10,z=n.svg.line().x(function(t){return t.x}).y(function(t){return t.y}).interpolate("cardinal"),U=e(58)(),V=e(59)(W),_="default";return u(),W.graphOptions=function(){return U},W.start=function(){S.stop(),h(),p(),W.update()},W.updateStyle=function(){b(),S.start()},W.reload=function(){h(),this.update()},W.update=function(){g(),b(),S.start(),f()},W.freeze=function(){S.nodes().forEach(function(t){t.frozen(!0)})},W.unfreeze=function(){S.nodes().forEach(function(t){t.frozen(!1)}),S.resume()},W.reset=function(){F.translate([0,0]).scale(1)},W.options=function(){return U},W.language=function(t){return arguments.length?(_!==t&&(_=t||"default",f(),o()),W):_},W}}).call(n,e(9))},function(t,n,e){(function(n){t.exports=function(){function t(t){return t%=360,0>t&&(t+=360),Math.PI*t/180}function e(t){return t*(180/Math.PI)}var r={},i=n.svg.line().x(function(t){return t.x}).y(function(t){return t.y}).interpolate("cardinal").tension(-1);return r.calculateNormalVector=function(t,n,e){var r=n.x-t.x,i=n.y-t.y,a=-i,o=r,s=Math.sqrt(a*a+o*o),u=0!==s?e/s:0;return{x:a*u,y:o*u}},r.calculateLoopPath=function(n){var r=n.domain(),a=n.label(),o=360/n.loops().length,s=.8*o,u=Math.min(60,s),c=a.x-r.x,l=a.y-r.y,p=Math.atan2(l,c),f=e(p),d=f-u/2,h=f+u/2,g=t(d),v=t(h),y=Math.cos(g)*r.actualRadius(),m=Math.sin(g)*r.actualRadius(),b=Math.cos(v)*r.actualRadius(),x=Math.sin(v)*r.actualRadius(),w={x:r.x+y,y:r.y+m},C={x:r.x+b,y:r.y+x};return i([w,n.label(),C])},r.calculateIntersection=function(t,n,e){var r=n.x-t.x,i=n.y-t.y,a=Math.sqrt(r*r+i*i);if(0===a)return{x:t.x,y:t.y};var o=n.distanceToBorder(r,i),s=(a-(o+e))/a,u=r*s+t.x,c=i*s+t.y;return{x:u,y:c}},r.calculateCenter=function(t,n){return{x:(t.x+n.x)/2,y:(t.y+n.y)/2
-}},function(){return r}}()}).call(n,e(9))},function(t,n,e){t.exports=function(){function t(t){for(var n,r=[],i=e(53)(),a=0,o=t.length;o>a;a++)if(n=t[a],!i.has(n)){var s=e(54)(n.domain(),n.range(),n);n.link(s),n.inverse()&&n.inverse().link(s),r.push(s),i.add(n),n.inverse()&&i.add(n.inverse())}return r}function n(t,n){var e,r,i,a;if("undefined"==typeof t.layers()){for(r=[],i=0,a=n.length;a>i;i++){var o=n[i];(t.domain()===o.domain()&&t.range()===o.range()||t.domain()===o.range()&&t.range()===o.domain())&&r.push(o)}for(i=0,a=r.length;a>i;++i)e=r[i],e.layerIndex(i),e.layers(r)}}function r(t,n){var e,r,i,a;if("undefined"==typeof t.loops()){for(r=[],i=0,a=n.length;a>i;i++){var o=n[i];t.domain()===o.domain()&&t.domain()===o.range()&&r.push(o)}for(i=0,a=r.length;a>i;++i)e=r[i],e.loopIndex(i),e.loops(r)}}var i={};return i.createLinks=function(e){for(var i=t(e),a=0,o=i.length;o>a;a++){var s=i[a];n(s,i),r(s,i)}return i},function(){return i}}()},function(t,n,e){(function(n){t.exports=function(t){var e={},r=n.set(t);return e.has=function(t){return r.has(t.id())},e.add=function(t){return r.add(t.id())},e.remove=function(t){return r.remove(t.id())},e.empty=function(){return r.empty()},e.size=function(){return r.size()},e}}).call(n,e(9))},function(t,n,e){var r=e(55);t.exports=function(t,n,i){var a,o,s,u,c={},l=t,p=new r(i,c),f=n,d=e(56)(l,p,c),h=e(56)(p,f,c);return c.layers=function(t){return arguments.length?(a=t,c):a},c.layerIndex=function(t){return arguments.length?(o=t,c):o},c.loops=function(t){return arguments.length?(s=t,c):s},c.loopIndex=function(t){return arguments.length?(u=t,c):u},c.domain=function(){return l},c.inverse=function(){return p.inverse()},c.isLoop=function(){return l===f},c.label=function(){return p},c.linkParts=function(){return[h,d]},c.property=function(){return p.property()},c.range=function(){return f},c.draw=function(t,n){var e=p.property(),r=p.inverse();e.linkGroup(t),r&&r.linkGroup(t),e.markerElement(n.append("marker").datum(e).attr("id",e.markerId()).attr("viewBox","0 -8 14 16").attr("refX",12).attr("refY",0).attr("markerWidth",12).attr("markerHeight",12).attr("markerUnits","userSpaceOnUse").attr("orient","auto").attr("class",e.markerType()+"Marker")),e.markerElement().append("path").attr("d","M0,-8L12,0L0,8Z"),r&&(r.markerElement(n.append("marker").datum(r).attr("id",r.markerId()).attr("viewBox","0 -8 14 16").attr("refX",0).attr("refY",0).attr("markerWidth",12).attr("markerHeight",12).attr("markerUnits","userSpaceOnUse").attr("orient","auto").attr("class",r.markerType()+"Marker")),r.markerElement().append("path").attr("d","M12,-8L0,0L12,8Z")),t.append("path").classed("link-path",!0).classed(l.cssClassOfNode(),!0).classed(f.cssClassOfNode(),!0).classed(e.linkType(),!0).attr("marker-end",function(t){return t.label().property().isSpecialLink()?"":"url(#"+t.label().property().markerId()+")"}).attr("marker-start",function(t){var n=t.label().inverse();return n&&!n.isSpecialLink()?"url(#"+n.markerId()+")":""})},c}},function(t,n,e){function r(t,n){i.addTo(this),this.link=function(){return n},this.property=function(){return t}}var i=e(16)();t.exports=r,r.prototype.actualRadius=function(){return this.property().actualRadius()},r.prototype.draw=function(t){return this.property().draw(t)},r.prototype.inverse=function(){return this.property().inverse()},r.prototype.equals=function(t){if(!t)return!1;var n=t instanceof r,e=this.property().equals(t.property()),i=!1;return this.inverse()?i=this.inverse().equals(t.inverse()):t.inverse()||(i=!0),n&&e&&i}},function(t,n){t.exports=function(t,n,e){var r={},i=t,a=e,o=n;return Object.defineProperties(r,{source:{value:i,writable:!0},target:{value:o,writable:!0}}),r.domain=function(){return i},r.link=function(){return a},r.range=function(){return o},r}},function(t,n,e){var r=e(38),i=e(12),a=e(31),o=e(44),s=e(37),u=e(48),c=e(55);t.exports=function(){var t={};return t.isLabel=function(t){return t instanceof c},t.isNode=function(t){return t instanceof i},t.isDatatype=function(t){return t instanceof a},t.isProperty=function(t){return t instanceof r},t.isObjectProperty=function(t){return t instanceof o},t.isDatatypeProperty=function(t){return t instanceof s},t.isRdfsSubClassOf=function(t){return t instanceof u},function(){return t}}()},function(t,n){t.exports=function(){var t,n,e={},r=200,i=120,a=100,o=-500,s=.025,u=1,c=600,l=800,p=[],f=[],d=.1,h=4,g=!1,v=!1;return e.charge=function(t){return arguments.length?(o=+t,e):o},e.classDistance=function(t){return arguments.length?(r=+t,e):r},e.compactNotation=function(t){return arguments.length?(g=t,e):g},e.data=function(n){return arguments.length?(t=n,e):t},e.datatypeDistance=function(t){return arguments.length?(i=+t,e):i},e.filterModules=function(t){return arguments.length?(f=t,e):f},e.graphContainerSelector=function(t){return arguments.length?(n=t,e):n},e.gravity=function(t){return arguments.length?(s=+t,e):s},e.height=function(t){return arguments.length?(c=+t,e):c},e.linkStrength=function(t){return arguments.length?(u=+t,e):u},e.loopDistance=function(t){return arguments.length?(a=t,e):a},e.minMagnification=function(t){return arguments.length?(d=+t,e):d},e.maxMagnification=function(t){return arguments.length?(h=+t,e):h},e.scaleNodesByIndividuals=function(t){return arguments.length?(v=t,e):v},e.selectionModules=function(t){return arguments.length?(p=t,e):p},e.width=function(t){return arguments.length?(l=+t,e):l},e}},function(t,n,e){(function(n){var r=e(27),i=e(34),a=e(39),o=e(60)(),s=e(57)(),u=e(8)(),c=e(36)();t.exports=function(t){function e(e,r){var i=[],a=p(u);return e&&e.forEach(function(e){var o;if(r){for(var s=0;s<r.length;s++){var u=r[s];if(e.id===u.id){o=u;break}}k(e,o)}var c=a.get(e.type.toLowerCase());if(c){k(e,c);var l=new c(t);if(l.annotations(e.annotations).comment(e.comment).complement(e.complement).description(e.description).equivalents(e.equivalent).id(e.id).intersection(e.intersection).label(e.label).union(e.union).iri(e.iri),e.individuals&&e.individuals.forEach(function(n){var e=new c(t);e.label(n.labels).iri(n.iri),l.individuals().push(e)}),e.attributes){var p=n.set(e.attributes.concat(l.attributes()));l.attributes(p.values())}i.push(l)}else console.error("Unknown element type: "+e.type)}),i}function l(e,r){var i=[],a=p(c);return e&&e.forEach(function(e){var o;if(r){for(var s=0;s<r.length;s++){var u=r[s];if(e.id===u.id){o=u;break}}k(e,o)}var c=a.get(e.type.toLowerCase());if(c){var l=new c(t);if(l.annotations(e.annotations).cardinality(e.cardinality).comment(e.comment).domain(e.domain).description(e.description).equivalents(e.equivalent).id(e.id).inverse(e.inverse).label(e.label).minCardinality(e.minCardinality).maxCardinality(e.maxCardinality).range(e.range).subproperties(e.subproperty).superproperties(e.superproperty).iri(e.iri),e.attributes){var p=n.set(e.attributes.concat(l.attributes()));l.attributes(p.values())}i.push(l)}else console.error("Unknown element type: "+e.type)}),i}function p(t){return n.map(t.values(),function(t){return(new t).type().toLowerCase()})}function f(e,a){var o,u,c,l,p=a.slice(),f=n.set(),h="GENERATED-MERGED_RANGE-";for(a.length=0,o=0,u=e.length;u>o;o++){var g=e[o],v=g.equivalents();if(0!==v.length&&0!==g.range().indexOf(h)){var y;y=s.isDatatypeProperty(g)?new i(t):new r(t),y.id(h+g.id()),a.push(y);var m=g.range();for(g.range(y.id()),c=0,l=v.length;l>c;c++){var b=v[c],x=j[b],w=x.range();x.range(y.id()),d(w,e)||f.add(w)}d(m,e)||f.add(m)}}for(o=0,u=p.length;u>o;o++){var C=p[o];f.has(C.id())||a.push(C)}P=E(a)}function d(t,n){var e,r;for(e=0,r=n.length;r>e;e++){var i=n[e];if(i.domain()===t||i.range()===t)return!0}return!1}function h(t,n){var e=[],r=0;return t.forEach(function(t){r=Math.max(r,t.individuals().length),t.visible(!0)}),t.forEach(function(t){w(t,n),o.parseClassAttributes(t),t.maxIndividualCount(r)}),t.forEach(function(t){t.visible()&&e.push(t)}),e}function g(t){if(t instanceof a!=!1){var n=t.domain(),e=t.range();n.disjointWith()||n.disjointWith([]),e.disjointWith()||e.disjointWith([]),n.disjointWith().push(t.range()),e.disjointWith().push(t.domain())}}function v(t,n,e){var r=[];return t.forEach(function(t){t.visible(!0)}),t.forEach(function(t){var r,i,a,o,s;if(t.domain()&&t.range()||t.inverse()){var u=N(t.inverse());u&&(s=e[u],s||console.warn("No inverse property was found for id: "+u)),"undefined"!=typeof t.domain()&&"undefined"!=typeof t.range()?(r=N(t.domain()),i=N(t.range()),a=n[r],o=n[i]):s?(r=N(s.range()),i=N(s.domain()),a=n[r],o=n[i]):console.warn("Domain and range not found for property: "+t.id()),t.domain(a),t.range(o),s&&(t.inverse(s),s.inverse(t),s.domain(o),s.range(a))}y(t.subproperties()),y(t.superproperties())}),t.forEach(function(t){w(t,e),g(t),o.parsePropertyAttributes(t)}),t.forEach(function(n){var e=!1;m(n.domain())&&(n.domain(n.domain().equivalentBase()),e=!0),m(n.range())&&(n.range(n.range().equivalentBase()),e=!0);var i=b(t,n);e&&i&&(n.visible(!1),i.redundantProperties().push(n)),n.domain().visible()&&n.range().visible()||n.visible(!1),n.visible()&&r.push(n)}),r}function y(t){var n,e;if(t)for(n=0,e=t.length;e>n;++n){var r=N(t[n]),i=j[r];i?t[n]=i:console.warn("No sub-/superproperty was found for id: "+r)}}function m(t){return!t.visible()&&t.equivalentBase()}function b(t,n){var e,r,i;for(e=0,r=t.length;r>e;e++)if(i=t[e],n!==i&&n.domain()===i.domain()&&n.range()===i.range())if(n.iri()&&i.iri()){if(n.iri()===i.iri())return i}else if(n.type()===i.type()&&n.defaultLabel()===i.defaultLabel())return i}function x(t,n){function e(t,e,r){e&&e.forEach(function(e,i){var a={id:"GENERATED-"+r+"-"+t+"-"+e+"-"+i,type:"setOperatorProperty",domain:t,range:e};n.push(a)})}t.forEach(function(t){e(t.id(),t.complement(),"COMPLEMENT"),e(t.id(),t.intersection(),"INTERSECTION"),e(t.id(),t.union(),"UNION")})}function w(t,n){var e=t.equivalents();if(e&&!t.equivalentBase())for(var r=0,i=e.length;i>r;++r){var a=N(e[r]),o=n[a];o?(o.equivalents(o.equivalents()),o.equivalents().push(t),o.equivalentBase(t),e[r]=o,o.visible(!1)):console.warn("No class/property was found for equivalent id: "+a)}}function C(t,n){t.forEach(function(t){"string"==typeof t.iri()&&t.iri(O(t.iri(),n))})}function E(t){for(var n={},e=0,r=t.length;r>e;e++){var i=t[e];n[i.id()]=i}return n}function k(t,n){n=n||{};for(var e in n)e in t||!n.hasOwnProperty(e)||(t[e]=n[e]);return t}function O(t,n){var e=t.indexOf(":");if(-1===e)return t;for(var r=t.substring(0,e),i=0,a=n.length;a>i;++i){var o=n[i];if(r===o.name)return o.iri+t.substring(e+1)}return t}function N(t){return t?"string"==typeof t?t:"id"in t?t.id():void console.warn("No Id was found for this object: "+t):void 0}var L,A,P,j,T={};return T.parse=function(t){if(!t)return L=[],void(A=[]);var n,r=e(t["class"],t.classAttribute),i=e(t.datatype,t.datatypeAttribute),a=r.concat(i);x(a,t.property),n=l(t.property,t.propertyAttribute),P=E(a),j=E(n),f(n,a),C(a,t.namespace),C(n,t.namespace),L=h(a,P),A=v(n,P,j)},T.nodes=function(){return L},T.properties=function(){return A},T}}).call(n,e(9))},function(t,n){t.exports=function(){function t(t){var n,e,r,c=[i,a,o,s,u];for(n=0,e=c.length;e>n;n++)if(r=c[n],t.attributes().indexOf(r)>=0){t.visualAttribute(r);break}}function n(t){var n,e,r,o=[i,a];for(n=0,e=o.length;e>n;n++)r=o[n],t.attributes().indexOf(r)>=0&&t.indications().push(r)}function e(t){var n,e,r,i=[c,l,f,p];for(n=0,e=i.length;e>n;n++)r=i[n],t.attributes().indexOf(r)>=0&&t.indications().push(r)}var r={},i="deprecated",a="external",o="datatype",s="object",u="rdf",c="functional",l="inverse functional",p="transitive",f="symmetric";return r.parseClassAttributes=function(e){e.attributes()instanceof Array&&(t(e),n(e))},r.parsePropertyAttributes=function(n){n.attributes()instanceof Array&&(t(n),e(n))},function(){return r}}()},function(t,n){t.exports=function(t){var n,e,r,i,a=!1,o={},s=a;return o.filter=function(a,o){n=a,e=o,t.options().compactNotation(s),r=n,i=e},o.enabled=function(t){return arguments.length?(s=t,o):s},o.reset=function(){s=a},o.filteredNodes=function(){return r},o.filteredProperties=function(){return i},o}},function(t,n,e){var r=e(57)(),i=e(63)();t.exports=function(){function t(){var t=i.filterNodesAndTidy(e,a,n);e=t.nodes,a=t.properties}function n(t){return!r.isDatatype(t)}var e,a,o,s,u={},c=!1;return u.filter=function(n,r){e=n,a=r,this.enabled()&&t(),o=e,s=a},u.enabled=function(t){return arguments.length?(c=t,u):c},u.filteredNodes=function(){return o},u.filteredProperties=function(){return s},u}},function(t,n,e){var r=e(57)();t.exports=function(){function t(t,n){return!t.has(n.domain())&&!t.has(n.range())}var n={};return n.filterNodesAndTidy=function(n,i,a){var o=e(53)(),s=[],u=[];return n.forEach(function(t){a(t)?s.push(t):o.add(t)}),i.forEach(function(n){if(t(o,n))u.push(n);else if(r.isDatatypeProperty(n)){var e=s.indexOf(n.range());e>=0&&s.splice(e,1)}}),{nodes:s,properties:u}},function(){return n}}()},function(t,n,e){var r=e(39);t.exports=function(){function t(){var t,n,i,a=[];for(t=0,n=e.length;n>t;t++)i=e[t],i instanceof r||a.push(i);e=a}var n,e,i,a,o={},s=!0;return o.filter=function(r,o){n=r,e=o,this.enabled()&&t(),i=n,a=e},o.enabled=function(t){return arguments.length?(s=t,o):s},o.filteredNodes=function(){return i},o.filteredProperties=function(){return a},o}},function(t,n,e){(function(n){t.exports=function(){var t,e={};return e.handle=function(e){n.event.defaultPrevented||(void 0!==t&&t.toggleFocus(),t!==e?(e.toggleFocus(),t=e):t=void 0)},e.reset=function(){t&&(t.toggleFocus(),t=void 0)},e}}).call(n,e(9))},function(t,n,e){var r=e(57)(),i=e(63)();t.exports=function(){function t(){for(var t=0,e=0,r=o.length;r>e;e++){var i=n(o[e].links());t=Math.max(t,i.length)}l instanceof Function&&l(t)}function n(t){return t.filter(function(t){return!r.isDatatypeProperty(t.property())})}function e(t){var n=i.filterNodesAndTidy(o,s,a(t));o=n.nodes,s=n.properties}function a(t){return function(e){return n(e.links()).length>=t}}var o,s,u,c,l,p,f={},d=!0;return f.filter=function(n,r){o=n,s=r,t(),this.enabled()&&(p instanceof Function?e(p()):console.error("No degree query function set.")),u=o,c=s},f.setMaxDegreeSetter=function(t){l=t},f.setDegreeQueryFunction=function(t){p=t},f.enabled=function(t){return arguments.length?(d=t,f):d},f.filteredNodes=function(){return u},f.filteredProperties=function(){return c},f}},function(t,n){t.exports=function(t){var n,e,r,i,a=!0,o={},s=a;return o.filter=function(a,o){n=a,e=o,t.options().scaleNodesByIndividuals(s),r=n,i=e},o.enabled=function(t){return arguments.length?(s=t,o):s},o.reset=function(){s=a},o.filteredNodes=function(){return r},o.filteredProperties=function(){return i},o}},function(t,n,e){var r=e(57)();t.exports=function(){var t={},n=!1,e=[];return t.handle=function(t){n&&(r.isDatatype(t)||t.pinned()||(t.drawPin(),e.push(t)))},t.enabled=function(e){return arguments.length?(n=e,t):n},t.reset=function(){for(var t=0,n=e.length;n>t;t++)e[t].removePin();e.length=0},t}},function(t,n,e){(function(n){t.exports=function(t){var e,r={};return r.handle=function(r){if(!n.event.defaultPrevented){var i=!0;e===r&&(i=!1),t instanceof Function&&t(i?r:void 0),e=i?r:void 0}},r.reset=function(){e&&(t(void 0),e=void 0)},r}}).call(n,e(9))},function(t,n,e){var r=e(22);t.exports=function(){function t(){var t=l.filterNodesAndTidy(i,a,n);i=t.nodes,a=t.properties}function n(t){return!(t instanceof r)}var i,a,o,s,u={},c=!1,l=e(63)();return u.filter=function(n,e){i=n,a=e,this.enabled()&&t(),o=i,s=a},u.enabled=function(t){return arguments.length?(c=t,u):c},u.filteredNodes=function(){return o},u.filteredProperties=function(){return s},u}},function(t,n,e){(function(n){var r=e(22),i=e(27),a=e(26),o=e(57)();t.exports=function(){function t(){h=0,g=0,v=0,y=0,m=0,b=0,x=0,w=0}function s(t,n){h=t.length;var r,i,a,o=e(53)();for(r=0,i=n.length;i>r;r++)a=n[r],o.has(a)||(g+=1),o.add(a),a.inverse()&&o.add(a.inverse())}function u(t){var e=n.set(),s=!1,u=!1;t.forEach(function(t){o.isDatatype(t)?e.add(t.defaultLabel()):t instanceof r||(t instanceof i?s=!0:t instanceof a?u=!0:(v+=1,v+=p(t.equivalents())))}),v+=s?1:0,v+=u?1:0,y=e.size()}function c(t){for(var n=0,e=t.length;e>n;n++){var r=t[n];o.isObjectProperty(r)?b+=l(r):o.isDatatypeProperty(t)&&(m+=l(r))}x=b+m}function l(t){var n=1;return n+=p(t.equivalents()),n+=p(t.redundantProperties())}function p(t){return t?t.length:0}function f(t,n){t.forEach(function(t){var e=t.type(),r=n[e];"undefined"==typeof r?r=0:r+=1,n[e]=r})}function d(t){for(var n=0,e=0,r=t.length;r>e;e++)n+=t[e].individuals().length||0;w=n}var h,g,v,y,m,b,x,w,C,E,k={},O={},N={};return k.filter=function(n,e){t(),s(n,e),u(n),c(e),f(n,O),f(e,N),d(n),C=n,E=e},k.nodeCount=function(){return h},k.occurencesOfClassAndDatatypeTypes=function(){return O},k.edgeCount=function(){return g},k.occurencesOfPropertyTypes=function(){return N},k.classCount=function(){return v},k.datatypeCount=function(){return y},k.datatypePropertyCount=function(){return m},k.objectPropertyCount=function(){return b},k.propertyCount=function(){return x},k.totalIndividualCount=function(){return w},k.filteredNodes=function(){return C},k.filteredProperties=function(){return E},k}}).call(n,e(9))},function(t,n,e){var r=e(57)();t.exports=function(){function t(){var t,e,c,l,p,f=[],d=[],h=[];for(l=0,p=u.length;p>l;l++)c=u[l],r.isRdfsSubClassOf(c)&&h.push(c.domain());for(l=0,p=h.length;p>l;l++)e=h[l],t=n(e,u),i(t)&&a(e,t)&&(f=f.concat(t),d.push(e));s=o(s,d),u=o(u,f)}function n(t,i,a){var o,s,u,c=[];for(s=0,u=i.length;u>s;s++)if(o=i[s],(o.domain()===t||o.range()===t)&&(c.push(o),r.isRdfsSubClassOf(o))){var l=o.domain();if(a=a||e(53)(),t===o.range()&&!a.has(l)){a.add(l);var p=n(l,i,a);c=c.concat(p)}}return c}function i(t){var n,e,i,a=!0;for(e=0,i=t.length;i>e;e++)if(n=t[e],!r.isRdfsSubClassOf(n)){a=!1;break}return a}function a(t,n){for(var e=0,r=0,i=n.length;i>r;r++){var a=n[r];if(a.domain()===t&&(e+=1),e>1)return!1}return!0}function o(t,n){var e,r,i,a=[];for(r=0,i=t.length;i>r;r++)e=t[r],-1===n.indexOf(e)&&a.push(e);return a}var s,u,c,l,p={},f=!1;return p.filter=function(n,e){s=n,u=e,this.enabled()&&t(),c=s,l=u},p.enabled=function(t){return arguments.length?(f=t,p):f},p.filteredNodes=function(){return c},p.filteredProperties=function(){return l},p}}]);
+webvowl =
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(6);
+	
+	var nodeMap = __webpack_require__(8)();
+	var propertyMap = __webpack_require__(38)();
+	
+	
+	var webvowl = {};
+	webvowl.graph = __webpack_require__(52);
+	webvowl.options = __webpack_require__(60);
+	webvowl.version = "0.5.2";
+	
+	webvowl.util = {};
+	webvowl.util.constants = __webpack_require__(15);
+	webvowl.util.languageTools = __webpack_require__(14);
+	webvowl.util.elementTools = __webpack_require__(59);
+	
+	webvowl.modules = {};
+	webvowl.modules.compactNotationSwitch = __webpack_require__(63);
+	webvowl.modules.datatypeFilter = __webpack_require__(64);
+	webvowl.modules.disjointFilter = __webpack_require__(66);
+	webvowl.modules.focuser = __webpack_require__(67);
+	webvowl.modules.nodeDegreeFilter = __webpack_require__(68);
+	webvowl.modules.nodeScalingSwitch = __webpack_require__(69);
+	webvowl.modules.pickAndPin = __webpack_require__(70);
+	webvowl.modules.selectionDetailsDisplayer = __webpack_require__(71);
+	webvowl.modules.setOperatorFilter = __webpack_require__(72);
+	webvowl.modules.statistics = __webpack_require__(73);
+	webvowl.modules.subclassFilter = __webpack_require__(74);
+	
+	
+	webvowl.nodes = {};
+	nodeMap.entries().forEach(function (entry) {
+		mapEntryToIdentifier(webvowl.nodes, entry);
+	});
+	
+	webvowl.properties = {};
+	propertyMap.entries().forEach(function (entry) {
+		mapEntryToIdentifier(webvowl.properties, entry);
+	});
+	
+	function mapEntryToIdentifier(map, entry) {
+		var identifier = entry.key.replace(":", "").toLowerCase();
+		map[identifier] = entry.value;
+	}
+	
+	
+	module.exports = webvowl;
+
+
+/***/ },
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 7 */,
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {var nodes = [];
+	nodes.push(__webpack_require__(10));
+	nodes.push(__webpack_require__(20));
+	nodes.push(__webpack_require__(21));
+	nodes.push(__webpack_require__(23));
+	nodes.push(__webpack_require__(24));
+	nodes.push(__webpack_require__(25));
+	nodes.push(__webpack_require__(26));
+	nodes.push(__webpack_require__(27));
+	nodes.push(__webpack_require__(28));
+	nodes.push(__webpack_require__(29));
+	nodes.push(__webpack_require__(30));
+	nodes.push(__webpack_require__(34));
+	nodes.push(__webpack_require__(35));
+	nodes.push(__webpack_require__(36));
+	
+	var map = d3.map(nodes, function (Prototype) {
+		return new Prototype().type();
+	});
+	
+	module.exports = function () {
+		return map;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = d3;
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var RoundNode = __webpack_require__(11);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			RoundNode.apply(this, arguments);
+	
+			this.attributes(["external"])
+				.type("ExternalClass");
+		};
+		o.prototype = Object.create(RoundNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {var BaseNode = __webpack_require__(12);
+	var drawTools = __webpack_require__(17)();
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseNode.apply(this, arguments);
+	
+			var that = this,
+				collapsible = false,
+				radius = 50,
+				collapsingGroupElement,
+				pinGroupElement,
+				textBlock;
+	
+	
+			// Properties
+			this.collapsible = function (p) {
+				if (!arguments.length) return collapsible;
+				collapsible = p;
+				return this;
+			};
+	
+			this.textBlock = function (p) {
+				if (!arguments.length) return textBlock;
+				textBlock = p;
+				return this;
+			};
+	
+			/**
+			 * This might not be equal to the actual radius, because the instance count is used for its calculation.
+			 * @param p
+			 * @returns {*}
+			 */
+			this.radius = function (p) {
+				if (!arguments.length) return radius;
+				radius = p;
+				return this;
+			};
+	
+	
+			// Functions
+			this.setHoverHighlighting = function (enable) {
+				that.nodeElement().selectAll("circle").classed("hovered", enable);
+			};
+	
+			this.textWidth = function () {
+				return this.actualRadius() * 2;
+			};
+	
+			this.toggleFocus = function () {
+				that.focused(!that.focused());
+				that.nodeElement().select("circle").classed("focused", that.focused());
+			};
+	
+			this.actualRadius = function () {
+				if (!graph.options().scaleNodesByIndividuals() || that.individuals().length <= 0) {
+					return that.radius();
+				} else {
+					// we could "listen" for radius and maxIndividualCount changes, but this is easier
+					var MULTIPLIER = 8,
+						additionalRadius = Math.log(that.individuals().length + 1) * MULTIPLIER + 5;
+	
+					return that.radius() + additionalRadius;
+				}
+			};
+	
+			this.distanceToBorder = function () {
+				return that.actualRadius();
+			};
+	
+			/**
+			 * Draws the pin on a round node on a position depending on its radius.
+			 */
+			this.drawPin = function () {
+				that.pinned(true);
+	
+				pinGroupElement = that.nodeElement()
+					.append("g")
+					.classed("hidden-in-export", true)
+					.attr("transform", function () {
+						var dx = (2 / 5) * that.actualRadius(),
+							dy = (-7 / 10) * that.actualRadius();
+						return "translate(" + dx + "," + dy + ")";
+					});
+	
+				pinGroupElement.append("circle")
+					.classed("class pin feature", true)
+					.attr("r", 12)
+					.on("click", function () {
+						that.removePin();
+						d3.event.stopPropagation();
+					});
+	
+				pinGroupElement.append("line")
+					.attr("x1", 0)
+					.attr("x2", 0)
+					.attr("y1", 12)
+					.attr("y2", 16);
+			};
+	
+			/**
+			 * Removes the pin and refreshs the graph to update the force layout.
+			 */
+			this.removePin = function () {
+				that.pinned(false);
+				if (pinGroupElement) {
+					pinGroupElement.remove();
+				}
+				graph.updateStyle();
+			};
+	
+			this.drawCollapsingButton = function () {
+	
+				collapsingGroupElement = that.nodeElement()
+					.append("g")
+					.classed("hidden-in-export", true)
+					.attr("transform", function () {
+						var dx = (-2 / 5) * that.actualRadius(),
+							dy = (1 / 2) * that.actualRadius();
+						return "translate(" + dx + "," + dy + ")";
+					});
+	
+				collapsingGroupElement.append("rect")
+					.classed("class pin feature", true)
+					.attr("x", 0)
+					.attr("y", 0)
+					.attr("width", 40)
+					.attr("height", 24);
+	
+				collapsingGroupElement.append("line")
+					.attr("x1", 13)
+					.attr("y1", 12)
+					.attr("x2", 27)
+					.attr("y2", 12);
+	
+				collapsingGroupElement.append("line")
+					.attr("x1", 20)
+					.attr("y1", 6)
+					.attr("x2", 20)
+					.attr("y2", 18);
+			};
+	
+			/**
+			 * Draws a circular node.
+			 * @param parentElement the element to which this node will be appended
+			 * @param [additionalCssClasses] additional css classes
+			 */
+			this.draw = function (parentElement, additionalCssClasses) {
+				var cssClasses = that.collectCssClasses();
+	
+				that.nodeElement(parentElement);
+	
+				if (additionalCssClasses instanceof Array) {
+					cssClasses = cssClasses.concat(additionalCssClasses);
+				}
+				drawTools.appendCircularClass(parentElement, that.actualRadius(), cssClasses, that.labelForCurrentLanguage());
+	
+				that.postDrawActions(parentElement);
+			};
+	
+			/**
+			 * Common actions that should be invoked after drawing a node.
+			 */
+			this.postDrawActions = function () {
+				var textBlock = __webpack_require__(18)(that.nodeElement());
+				textBlock.addText(that.labelForCurrentLanguage());
+				if (!graph.options().compactNotation()) {
+					textBlock.addSubText(that.indicationString());
+				}
+				textBlock.addInstanceCount(that.individuals().length);
+				that.textBlock(textBlock);
+	
+				that.addMouseListeners();
+				if (that.pinned()) {
+					that.drawPin();
+				}
+				if (that.collapsible()) {
+					that.drawCollapsingButton();
+				}
+			};
+		};
+		o.prototype = Object.create(BaseNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseElement = __webpack_require__(13);
+	var forceLayoutNodeFunctions = __webpack_require__(16)();
+	
+	module.exports = (function () {
+	
+		var Base = function (graph) {
+			BaseElement.apply(this, arguments);
+	
+			var that = this,
+			// Basic attributes
+				complement,
+				disjointWith,
+				individuals = [],
+				intersection,
+				union,
+			// Additional attributes
+				maxIndividualCount,
+			// Element containers
+				nodeElement;
+	
+	
+			// Properties
+			this.complement = function (p) {
+				if (!arguments.length) return complement;
+				complement = p;
+				return this;
+			};
+	
+			this.disjointWith = function (p) {
+				if (!arguments.length) return disjointWith;
+				disjointWith = p;
+				return this;
+			};
+	
+			this.individuals = function (p) {
+				if (!arguments.length) return individuals;
+				individuals = p || [];
+				return this;
+			};
+	
+			this.intersection = function (p) {
+				if (!arguments.length) return intersection;
+				intersection = p;
+				return this;
+			};
+	
+			this.maxIndividualCount = function (p) {
+				if (!arguments.length) return maxIndividualCount;
+				maxIndividualCount = p;
+				return this;
+			};
+	
+			this.nodeElement = function (p) {
+				if (!arguments.length) return nodeElement;
+				nodeElement = p;
+				return this;
+			};
+	
+			this.union = function (p) {
+				if (!arguments.length) return union;
+				union = p;
+				return this;
+			};
+	
+	
+			/**
+			 * Returns css classes generated from the data of this object.
+			 * @returns {Array}
+			 */
+			that.collectCssClasses = function () {
+				var cssClasses = [];
+	
+				if (typeof that.styleClass() === "string") {
+					cssClasses.push(that.styleClass());
+				}
+	
+				if (typeof that.visualAttribute() === "string") {
+					cssClasses.push(that.visualAttribute());
+				}
+	
+				return cssClasses;
+			};
+	
+	
+			// Reused functions TODO refactor
+			this.addMouseListeners = function () {
+				// Empty node
+				if (!that.nodeElement()) {
+					console.warn(this);
+					return;
+				}
+	
+				that.nodeElement().selectAll("*")
+					.on("mouseover", onMouseOver)
+					.on("mouseout", onMouseOut);
+			};
+	
+			function onMouseOver() {
+				if (that.mouseEntered()) {
+					return;
+				}
+	
+				var selectedNode = that.nodeElement().node(),
+					nodeContainer = selectedNode.parentNode;
+	
+				// Append hovered element as last child to the container list.
+				nodeContainer.appendChild(selectedNode);
+	
+				that.setHoverHighlighting(true);
+	
+				that.mouseEntered(true);
+			}
+	
+			function onMouseOut() {
+				that.setHoverHighlighting(false);
+	
+				that.mouseEntered(false);
+			}
+	
+	
+			forceLayoutNodeFunctions.addTo(this);
+		};
+	
+		Base.prototype = Object.create(BaseElement.prototype);
+		Base.prototype.constructor = Base;
+	
+	
+		return Base;
+	}());
+
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * The base element for all visual elements of webvowl.
+	 */
+	module.exports = (function () {
+	
+		var DEFAULT_LABEL = "DEFAULT_LABEL";
+	
+		var Base = function (graph) {
+			// Basic attributes
+			var equivalents = [],
+				id,
+				label,
+				type,
+				iri,
+				imgUrl,
+				links,
+			// Additional attributes
+				annotations,
+				attributes = [],
+				visualAttribute,
+				comment,
+				description,
+				equivalentBase,
+			// Style attributes
+				focused = false,
+				indications = [],
+				mouseEntered = false,
+				styleClass,
+				visible = true,
+			// Other
+				languageTools = __webpack_require__(14)();
+	
+	
+			// Properties
+			this.attributes = function (p) {
+				if (!arguments.length) return attributes;
+				attributes = p;
+				return this;
+			};
+	
+			this.annotations = function (p) {
+				if (!arguments.length) return annotations;
+				annotations = p;
+				return this;
+			};
+	
+			this.comment = function (p) {
+				if (!arguments.length) return comment;
+				comment = p;
+				return this;
+			};
+	
+			this.description = function (p) {
+				if (!arguments.length) return description;
+				description = p;
+				return this;
+			};
+	
+			this.equivalents = function (p) {
+				if (!arguments.length) return equivalents;
+				equivalents = p || [];
+				return this;
+			};
+	
+			this.equivalentBase = function (p) {
+				if (!arguments.length) return equivalentBase;
+				equivalentBase = p;
+				return this;
+			};
+	
+			this.focused = function (p) {
+				if (!arguments.length) return focused;
+				focused = p;
+				return this;
+			};
+	
+			this.id = function (p) {
+				if (!arguments.length) return id;
+				id = p;
+				return this;
+			};
+	
+			this.indications = function (p) {
+				if (!arguments.length) return indications;
+				indications = p;
+				return this;
+			};
+	
+			this.iri = function (p) {
+				if (!arguments.length) return iri;
+				iri = p;
+				return this;
+			};
+	
+			this.imgUrl = function (p) {
+				if (!arguments.length) return imgUrl;
+				imgUrl = p;
+				return this;
+			};
+	
+			this.label = function (p) {
+				if (!arguments.length) return label;
+				label = p || DEFAULT_LABEL;
+				return this;
+			};
+	
+			this.links = function (p) {
+				if (!arguments.length) return links;
+				links = p;
+				return this;
+			};
+	
+			this.mouseEntered = function (p) {
+				if (!arguments.length) return mouseEntered;
+				mouseEntered = p;
+				return this;
+			};
+	
+			this.styleClass = function (p) {
+				if (!arguments.length) return styleClass;
+				styleClass = p;
+				return this;
+			};
+	
+			this.type = function (p) {
+				if (!arguments.length) return type;
+				type = p;
+				return this;
+			};
+	
+			this.visible = function (p) {
+				if (!arguments.length) return visible;
+				visible = p;
+				return this;
+			};
+	
+			this.visualAttribute = function (p) {
+				if (!arguments.length) return visualAttribute;
+				visualAttribute = p;
+				return this;
+			};
+	
+	
+			this.commentForCurrentLanguage = function () {
+				return languageTools.textInLanguage(this.comment(), graph.language());
+			};
+	
+			/**
+			 * @returns {string} the css class of this node..
+			 */
+			this.cssClassOfNode = function () {
+				return "node" + this.id();
+			};
+	
+			this.descriptionForCurrentLanguage = function () {
+				return languageTools.textInLanguage(this.description(), graph.language());
+			};
+	
+			this.defaultLabel = function () {
+				return languageTools.textInLanguage(this.label(), "default");
+			};
+	
+			this.indicationString = function () {
+				return this.indications().join(", ");
+			};
+	
+			this.labelForCurrentLanguage = function () {
+				return languageTools.textInLanguage(this.label(), graph.language());
+			};
+		};
+	
+		Base.prototype.constructor = Base;
+	
+		Base.prototype.equals = function(other) {
+			return other instanceof Base && this.id() === other.id();
+		};
+	
+	
+		return Base;
+	}());
+
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var constants = __webpack_require__(15)();
+	
+	/**
+	 * Encapsulates methods which return a label in a specific language for a preferred language.
+	 */
+	module.exports = (function () {
+	
+		var languageTools = {};
+	
+	
+		languageTools.textInLanguage = function (textObject, preferredLanguage) {
+			if (typeof textObject === "undefined") {
+				return undefined;
+			}
+	
+			if (typeof textObject === "string") {
+				return textObject;
+			}
+	
+			if (preferredLanguage && textObject.hasOwnProperty(preferredLanguage)) {
+				return textObject[preferredLanguage];
+			}
+	
+			var textForLanguage = searchLanguage(textObject, "en");
+			if (textForLanguage) {
+				return textForLanguage;
+			}
+			textForLanguage = searchLanguage(textObject, constants.LANG_UNDEFINED);
+			if (textForLanguage) {
+				return textForLanguage;
+			}
+	
+			return textObject[constants.LANG_IRIBASED];
+		};
+	
+	
+		function searchLanguage(textObject, preferredLanguage) {
+			for (var language in textObject) {
+				if (language === preferredLanguage && textObject.hasOwnProperty(language)) {
+					return textObject[language];
+				}
+			}
+		}
+	
+		return function () {
+			/* Use a function here to keep a consistent style like webvowl.path.to.module()
+			 * despite having just a single languageTools object. */
+			return languageTools;
+		};
+	})();
+
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	module.exports = (function () {
+	
+		var constants = {};
+	
+		constants.LANG_IRIBASED = "IRI-based";
+		constants.LANG_UNDEFINED = "undefined";
+	
+		return function () {
+			/* Use a function here to keep a consistent style like webvowl.path.to.module()
+			 * despite having just a single object. */
+			return constants;
+		};
+	})();
+
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	/**
+	 * The functions for controlling attributes of nodes of the force layout can't be modelled to the element hierarchy,
+	 * which is used for inheriting visual and OWL-like attributes.
+	 *
+	 * To reduce code redundancy the common functions for controlling the force layout node attributes are excluded into this
+	 * module, which can add them to the node objects.
+	 *
+	 * @type {{}}
+	 */
+	var nodeFunctions = {};
+	module.exports = function () {
+		return nodeFunctions;
+	};
+	
+	
+	nodeFunctions.addTo = function (node) {
+		addFixedLocationFunctions(node);
+	};
+	
+	function addFixedLocationFunctions(node) {
+		var locked = false,
+			frozen = false,
+			pinned = false;
+	
+		node.locked = function (p) {
+			if (!arguments.length) {
+				return locked;
+			}
+			locked = p;
+			applyFixedLocationAttributes();
+			return node;
+		};
+	
+		node.frozen = function (p) {
+			if (!arguments.length) {
+				return frozen;
+			}
+			frozen = p;
+			applyFixedLocationAttributes();
+			return node;
+		};
+	
+		node.pinned = function (p) {
+			if (!arguments.length) {
+				return pinned;
+			}
+			pinned = p;
+			applyFixedLocationAttributes();
+			return node;
+		};
+	
+		function applyFixedLocationAttributes() {
+			if (node.locked() || node.frozen() || node.pinned()) {
+				node.fixed = true;
+			} else {
+				node.fixed = false;
+			}
+		}
+	}
+
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	/**
+	 * Contains reusable function for drawing nodes.
+	 */
+	module.exports = (function () {
+	
+		var tools = {};
+	
+	
+		/**
+		 * Append a an image node with the passed attributes.
+		 */
+		tools.appendImage = function (parent, radius, cssClasses, tooltip, imageURL) {
+			var circle = parent.append("image")
+				.classed("class", true)
+				.attr("xlink:href", imageURL)
+				.attr("x", -radius/2)
+				.attr("y", -radius/2)
+				.attr("width", radius)
+				.attr("height", radius);
+	
+			addCssClasses(circle, cssClasses);
+			addToolTip(circle, tooltip);
+	
+			return circle;
+		};
+	
+		/**
+		 * Append a circular class node with the passed attributes.
+		 * @param parent the parent element to which the circle will be appended
+		 * @param radius
+		 * @param cssClasses an array of additional css classes
+		 * @param [tooltip]
+		 * @returns {*}
+		 */
+		tools.appendCircularClass = function (parent, radius, cssClasses, tooltip) {
+			var circle = parent.append("circle")
+				.classed("class", true)
+				.attr("r", radius);
+	
+			addCssClasses(circle, cssClasses);
+			addToolTip(circle, tooltip);
+	
+			return circle;
+		};
+	
+	
+	
+		function addCssClasses(element, cssClasses) {
+			if (cssClasses instanceof Array) {
+				cssClasses.forEach(function (cssClass) {
+					element.classed(cssClass, true);
+				});
+			}
+		}
+	
+		function addToolTip(element, tooltip) {
+			if (tooltip) {
+				element.append("title").text(tooltip);
+			}
+		}
+	
+		/**
+		 * Appends a rectangular class node with the passed attributes.
+		 * @param parent the parent element to which the rectangle will be appended
+		 * @param width
+		 * @param height
+		 * @param cssClasses an array of additional css classes
+		 * @param [tooltip]
+		 * @returns {*}
+		 */
+		tools.appendRectangularClass = function (parent, width, height, cssClasses, tooltip) {
+			var rectangle = parent.append("rect")
+				.classed("class", true)
+				.attr("x", -width / 2)
+				.attr("y", -height / 2)
+				.attr("width", width)
+				.attr("height", height);
+	
+			addCssClasses(rectangle, cssClasses);
+			addToolTip(rectangle, tooltip);
+	
+			return rectangle;
+		};
+	
+	
+		return function () {
+			// Encapsulate into function to maintain default.module.path()
+			return tools;
+		};
+	})();
+
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {var textTools = __webpack_require__(19)();
+	
+	/**
+	 * Creates a new textblock in the specified element.
+	 * @param element The element/group where the text block should be appended.
+	 * @constructor New text block where additional <tspan>'s can be applied to.
+	 */
+	module.exports = function (element) {
+	
+		var textElement = {},
+			LINE_DISTANCE = 1,
+			SUBTEXT_CSS_CLASS = "subtext",
+			textBlock = element.append("text")
+				.classed("text", true)
+				.attr("text-anchor", "middle");
+	
+		/**
+		 * Repositions the textblock according to its own offsetHeight.
+		 */
+		function repositionTextBlock() {
+			// Nothing to do if no child elements exist
+			var lineCount = getLineCount();
+			if (lineCount < 1) {
+				textBlock.attr("y", 0);
+				return;
+			}
+	
+			var textBlockHeight = getTextBlockHeight(textBlock);
+			textBlock.attr("y", -textBlockHeight * 0.6 + "px");
+		}
+	
+		/**
+		 * Adds a new line of text to the element.
+		 * @param text
+		 */
+		textElement.addText = function (text) {
+			addTextline(text);
+		};
+	
+		/**
+		 * Adds a line of text in subproperty style.
+		 * @param text
+		 */
+		textElement.addSubText = function (text) {
+			addTextline(text, SUBTEXT_CSS_CLASS, "(", ")");
+		};
+	
+		/**
+		 * Adds a line of text in equivalent node listing style.
+		 * @param text
+		 */
+		textElement.addEquivalents = function (text) {
+			addTextline(text, SUBTEXT_CSS_CLASS, "[", "]");
+		};
+	
+		/**
+		 * Adds a label with the instance count.
+		 * @param instanceCount
+		 */
+		textElement.addInstanceCount = function (instanceCount) {
+			if (instanceCount) {
+				addTextline(instanceCount.toString(), "instance-count");
+			}
+		};
+	
+		function getLineCount() {
+			return textBlock.property("childElementCount") - textBlock.selectAll(".instance-count").size();
+		}
+	
+		function addTextline(text, subtextCssClass, prefix, postfix) {
+			if (!text) {
+				return;
+			}
+	
+			var truncatedText, tspan;
+	
+			subtextCssClass = subtextCssClass || "text";
+			truncatedText = textTools.truncate(text, element.datum().textWidth(), subtextCssClass);
+	
+			tspan = textBlock.append("tspan")
+				.classed("text", true)
+				.classed(subtextCssClass, true)
+				.text(applyPreAndPostFix(truncatedText, prefix, postfix))
+				.attr("x", 0)
+				.attr("dy", function () {
+					var heightInPixels = getPixelHeightOfTextLine(d3.select(this)),
+						siblingCount = getLineCount() - 1,
+						lineDistance = siblingCount > 0 ? LINE_DISTANCE : 0;
+					return heightInPixels + lineDistance + "px";
+				});
+	
+			repositionTextBlock();
+		}
+	
+		function applyPreAndPostFix(text, prefix, postfix) {
+			if (prefix) {
+				text = prefix + text;
+			}
+			if (postfix) {
+				text += postfix;
+			}
+			return text;
+		}
+	
+		function getPixelHeightOfTextLine(textElement) {
+			/* Due to browser incompatibilities this has to be hardcoded. This is because Firefox has no
+			 * "offsetHeight" attribute like Chrome to retrieve the absolute pixel height. */
+			if (textElement.classed("subtext")) {
+				return 10;
+			} else {
+				return 14;
+			}
+		}
+	
+		function getTextBlockHeight(textBlock) {
+			/* Hardcoded due to the same reasons like in the getPixelHeightOfTextLine function. */
+	
+			var children = textBlock.selectAll("*"),
+				childCount = children.size();
+			if (childCount === 0) {
+				return 0;
+			}
+	
+			// Values retrieved by testing
+			var pixelHeight = childCount * LINE_DISTANCE;
+			children.each(function () {
+				pixelHeight += getPixelHeightOfTextLine(d3.select(this));
+			});
+	
+			return pixelHeight;
+		}
+	
+		textElement.setTranslation = function (x, y) {
+			textBlock.attr("transform", "translate(" + x + ", " + y + ")");
+		};
+	
+		textElement.clear = function () {
+			textBlock.selectAll("*").remove();
+		};
+	
+		return textElement;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {var ADDITIONAL_TEXT_SPACE = 4;
+	
+	var tools = {};
+	
+	function measureTextWidth(text, textStyle) {
+		// Set a default value
+		if (!textStyle) {
+			textStyle = "text";
+		}
+		var d = d3.select("body")
+				.append("div")
+				.attr("class", textStyle)
+				.attr("id", "width-test") // tag this element to identify it
+				.attr("style", "position:absolute; float:left; white-space:nowrap; visibility:hidden;")
+				.text(text),
+			w = document.getElementById("width-test").offsetWidth;
+		d.remove();
+		return w;
+	}
+	
+	tools.truncate = function (text, maxWidth, textStyle, additionalTextSpace) {
+		maxWidth -= isNaN(additionalTextSpace) ? ADDITIONAL_TEXT_SPACE : additionalTextSpace;
+		if (isNaN(maxWidth) || maxWidth <= 0) {
+			return text;
+		}
+	
+		var truncatedText = text,
+			newTruncatedTextLength,
+			textWidth,
+			ratio;
+	
+		while (true) {
+			textWidth = measureTextWidth(truncatedText, textStyle);
+			if (textWidth <= maxWidth) {
+				break;
+			}
+	
+			ratio = textWidth / maxWidth;
+			newTruncatedTextLength = Math.floor(truncatedText.length / ratio);
+	
+			// detect if nothing changes
+			if (truncatedText.length === newTruncatedTextLength) {
+				break;
+			}
+	
+			truncatedText = truncatedText.substring(0, newTruncatedTextLength);
+		}
+	
+		if (text.length > truncatedText.length) {
+			return text.substring(0, truncatedText.length - 3) + "...";
+		}
+		return text;
+	};
+	
+	
+	module.exports = function () {
+		return tools;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var RoundNode = __webpack_require__(11);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			RoundNode.apply(this, arguments);
+	
+			this.type("owl:Class");
+		};
+		o.prototype = Object.create(RoundNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var SetOperatorNode = __webpack_require__(22);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			SetOperatorNode.apply(this, arguments);
+	
+			var that = this;
+	
+			this.styleClass("complementof")
+				.type("owl:complementOf");
+	
+			this.draw = function (element) {
+				that.nodeElement(element);
+	
+				element.append("circle")
+					.attr("class", that.type())
+					.classed("class", true)
+					.classed("special", true)
+					.attr("r", that.actualRadius());
+	
+				var symbol = element.append("g").classed("embedded", true);
+	
+				symbol.append("circle")
+					.attr("class", "symbol")
+					.classed("fineline", true)
+					.attr("r", (that.radius() - 15));
+				symbol.append("path")
+					.attr("class", "nofill")
+					.attr("d", "m -7,-1.5 12,0 0,6");
+	
+				symbol.attr("transform", "translate(-" + (that.radius() - 15) / 100 + ",-" + (that.radius() - 15) / 100 + ")");
+	
+				that.postDrawActions();
+			};
+		};
+		o.prototype = Object.create(SetOperatorNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {var RoundNode = __webpack_require__(11);
+	
+	module.exports = (function () {
+	
+		var radius = 40;
+	
+		var o = function (graph) {
+			RoundNode.apply(this, arguments);
+	
+			var that = this,
+				superHoverHighlightingFunction = this.setHoverHighlighting,
+				superPostDrawActions = this.postDrawActions;
+	
+			this.radius(radius);
+	
+			this.setHoverHighlighting = function (enable) {
+				superHoverHighlightingFunction(enable);
+	
+				d3.selectAll(".special." + that.cssClassOfNode()).classed("hovered", enable);
+			};
+	
+			this.postDrawActions = function () {
+				superPostDrawActions();
+	
+				that.textBlock().clear();
+				that.textBlock().addInstanceCount(that.individuals().length);
+				that.textBlock().setTranslation(0, that.radius() - 15);
+			};
+		};
+		o.prototype = Object.create(RoundNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var RoundNode = __webpack_require__(11);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			RoundNode.apply(this, arguments);
+	
+			this.attributes(["deprecated"])
+				.type("owl:DeprecatedClass");
+		};
+		o.prototype = Object.create(RoundNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var RoundNode = __webpack_require__(11);
+	var drawTools = __webpack_require__(17)();
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			RoundNode.apply(this, arguments);
+	
+			var CIRCLE_SIZE_DIFFERENCE = 4;
+	
+			var that = this,
+				superActualRadiusFunction = that.actualRadius;
+	
+			this.styleClass("equivalentclass")
+				.type("owl:equivalentClass");
+	
+			this.actualRadius = function () {
+				return superActualRadiusFunction() + CIRCLE_SIZE_DIFFERENCE;
+			};
+	
+	
+			this.draw = function (parentElement) {
+				var cssClasses = that.collectCssClasses();
+	
+				that.nodeElement(parentElement);
+	
+				// draw the outer circle at first and afterwards the inner circle
+				drawTools.appendCircularClass(parentElement, that.actualRadius(), ["white", "embedded"]);
+				drawTools.appendCircularClass(parentElement, that.actualRadius() - CIRCLE_SIZE_DIFFERENCE, cssClasses, that.labelForCurrentLanguage());
+	
+				that.postDrawActions();
+				appendEquivalentClasses(that.textBlock(), that.equivalents());
+			};
+	
+			function appendEquivalentClasses(textBlock, equivalentClasses) {
+				if (typeof equivalentClasses === "undefined") {
+					return;
+				}
+	
+				var equivalentNames,
+					equivalentNamesString;
+	
+				equivalentNames = equivalentClasses.map(function (node) {
+					return node.labelForCurrentLanguage();
+				});
+				equivalentNamesString = equivalentNames.join(", ");
+	
+				textBlock.addEquivalents(equivalentNamesString);
+			}
+	
+			/**
+			 * Sets the hover highlighting of this node.
+			 * @param enable
+			 */
+			that.setHoverHighlighting = function (enable) {
+				that.nodeElement().selectAll("circle:last-of-type").classed("hovered", enable);
+			};
+		};
+		o.prototype = Object.create(RoundNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var SetOperatorNode = __webpack_require__(22);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			SetOperatorNode.apply(this, arguments);
+	
+			var that = this;
+	
+			this.styleClass("intersectionof")
+				.type("owl:intersectionOf");
+	
+			this.draw = function (element) {
+				that.nodeElement(element);
+	
+				element.append("circle")
+					.attr("class", that.type())
+					.classed("class", true)
+					.classed("special", true)
+					.attr("r", that.actualRadius());
+	
+				var symbol = element.append("g").classed("embedded", true);
+	
+				symbol.append("path")
+					.attr("class", "nostroke")
+					.classed("symbol", true).attr("d", "m 24.777,0.771 c0,16.387-13.607,23.435-19.191,23.832S-15.467," +
+						"14.526-15.467,0.424S-1.216-24.4,5.437-24.4 C12.09-24.4,24.777-15.616,24.777,0.771z");
+				symbol.append("circle")
+					.attr("class", "nofill")
+					.classed("fineline", true)
+					.attr("r", (that.radius() - 15));
+				symbol.append("circle")
+					.attr("cx", 10)
+					.attr("class", "nofill")
+					.classed("fineline", true)
+					.attr("r", (that.radius() - 15));
+				symbol.append("path")
+					.attr("class", "nofill")
+					.attr("d", "m 9,5 c 0,-2 0,-4 0,-6 0,0 0,0 0,0 0,0 0,-1.8 -1,-2.3 -0.7,-0.6 -1.7,-0.8 -2.9," +
+							   "-0.8 -1.2,0 -2,0 -3,0.8 -0.7,0.5 -1,1.4 -1,2.3 0,2 0,4 0,6");
+	
+				symbol.attr("transform", "translate(-" + (that.radius() - 15) / 5 + ",-" + (that.radius() - 15) / 100 + ")");
+	
+				that.postDrawActions();
+			};
+		};
+		o.prototype = Object.create(SetOperatorNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var OwlThing = __webpack_require__(27);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			OwlThing.apply(this, arguments);
+	
+			this.label("Nothing")
+				.type("owl:Nothing")
+				.iri("http://www.w3.org/2002/07/owl#Nothing");
+		};
+		o.prototype = Object.create(OwlThing.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var RoundNode = __webpack_require__(11);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			RoundNode.apply(this, arguments);
+	
+			var superDrawFunction = this.draw;
+	
+			this.label("Thing")
+				.type("owl:Thing")
+				.iri("http://www.w3.org/2002/07/owl#Thing")
+				.radius(30);
+	
+			this.draw = function (element) {
+				superDrawFunction(element, ["white", "special"]);
+			};
+		};
+		o.prototype = Object.create(RoundNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var SetOperatorNode = __webpack_require__(22);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			SetOperatorNode.apply(this, arguments);
+	
+			var that = this;
+	
+			this.styleClass("unionof")
+				.type("owl:unionOf");
+	
+			this.draw = function (element) {
+				that.nodeElement(element);
+	
+				element.append("circle")
+					.attr("class", that.type())
+					.classed("class", true)
+					.classed("special", true)
+					.attr("r", that.actualRadius());
+	
+				var symbol = element.append("g").classed("embedded", true);
+	
+				symbol.append("circle")
+					.attr("class", "symbol")
+					.attr("r", (that.radius() - 15));
+				symbol.append("circle")
+					.attr("cx", 10)
+					.attr("class", "symbol")
+					.classed("fineline", true)
+					.attr("r", (that.radius() - 15));
+				symbol.append("circle")
+					.attr("class", "nofill")
+					.classed("fineline", true)
+					.attr("r", (that.radius() - 15));
+				symbol.append("path")
+					.attr("class", "link")
+					.attr("d", "m 1,-3 c 0,2 0,4 0,6 0,0 0,0 0,0 0,2 2,3 4,3 2,0 4,-1 4,-3 0,-2 0,-4 0,-6");
+	
+				symbol.attr("transform", "translate(-" + (that.radius() - 15) / 5 + ",-" + (that.radius() - 15) / 100 + ")");
+	
+				that.postDrawActions();
+			};
+		};
+		o.prototype = Object.create(SetOperatorNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var RoundNode = __webpack_require__(11);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			RoundNode.apply(this, arguments);
+	
+			this.attributes(["rdf"])
+				.type("rdfs:Class");
+		};
+		o.prototype = Object.create(RoundNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var DatatypeNode = __webpack_require__(31);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			DatatypeNode.apply(this, arguments);
+	
+			this.attributes(["datatype"])
+				.type("rdfs:Datatype");
+		};
+		o.prototype = Object.create(DatatypeNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var RectangularNode = __webpack_require__(32);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			RectangularNode.apply(this, arguments);
+		};
+		o.prototype = Object.create(RectangularNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseNode = __webpack_require__(12);
+	var drawTools = __webpack_require__(17)();
+	var rectangularElementTools = __webpack_require__(33)();
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseNode.apply(this, arguments);
+	
+			var that = this,
+				height = 20,
+				width = 60,
+				smallestRadius = height / 2;
+	
+	
+			// Properties
+			this.height = function (p) {
+				if (!arguments.length) return height;
+				height = p;
+				return this;
+			};
+	
+			this.width = function (p) {
+				if (!arguments.length) return width;
+				width = p;
+				return this;
+			};
+	
+	
+			// Functions
+			// for compatibility reasons // TODO resolve
+			this.actualRadius = function () {
+				return smallestRadius;
+			};
+	
+			this.distanceToBorder = function (dx, dy) {
+				return rectangularElementTools.distanceToBorder(that, dx, dy);
+			};
+	
+			this.setHoverHighlighting = function (enable) {
+				that.nodeElement().selectAll("rect").classed("hovered", enable);
+			};
+	
+			this.textWidth = function () {
+				return this.width();
+			};
+	
+			this.toggleFocus = function () {
+				that.focused(!that.focused());
+				that.nodeElement().select("rect").classed("focused", that.focused());
+			};
+	
+			/**
+			 * Draws the rectangular node.
+			 * @param parentElement the element to which this node will be appended
+			 * @param [additionalCssClasses] additional css classes
+			 */
+			this.draw = function (parentElement, additionalCssClasses) {
+				var textBlock,
+					cssClasses = that.collectCssClasses();
+	
+				that.nodeElement(parentElement);
+	
+				if (additionalCssClasses instanceof Array) {
+					cssClasses = cssClasses.concat(additionalCssClasses);
+				}
+				drawTools.appendRectangularClass(parentElement, that.width(), that.height(), cssClasses, that.labelForCurrentLanguage());
+	
+				textBlock = __webpack_require__(18)(parentElement);
+				textBlock.addText(that.labelForCurrentLanguage());
+	
+				that.addMouseListeners();
+			};
+		};
+		o.prototype = Object.create(BaseNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 33 */
+/***/ function(module, exports) {
+
+	var tools = {};
+	module.exports = function () {
+		return tools;
+	};
+	
+	tools.distanceToBorder = function (rect, dx, dy) {
+		var width = rect.width(),
+			height = rect.height();
+	
+		var innerDistance,
+			m_link = Math.abs(dy / dx),
+			m_rect = height / width;
+	
+		if (m_link <= m_rect) {
+			var timesX = dx / (width / 2),
+				rectY = dy / timesX;
+			innerDistance = Math.sqrt(Math.pow(width / 2, 2) + Math.pow(rectY, 2));
+		} else {
+			var timesY = dy / (height / 2),
+				rectX = dx / timesY;
+			innerDistance = Math.sqrt(Math.pow(height / 2, 2) + Math.pow(rectX, 2));
+		}
+	
+		return innerDistance;
+	};
+
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var DatatypeNode = __webpack_require__(31);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			DatatypeNode.apply(this, arguments);
+	
+			var superDrawFunction = this.draw,
+				superLabelFunction = this.label;
+	
+			this.attributes(["datatype"])
+				.label("Literal")
+				.styleClass("literal")
+				.type("rdfs:Literal")
+				.iri("http://www.w3.org/2000/01/rdf-schema#Literal");
+	
+			this.draw = function (element) {
+				superDrawFunction(element, ["special"]);
+			};
+	
+			this.label = function (p) {
+				if (!arguments.length) return superLabelFunction();
+				return this;
+			};
+		};
+		o.prototype = Object.create(DatatypeNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var RoundNode = __webpack_require__(11);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			RoundNode.apply(this, arguments);
+	
+			var superDrawFunction = this.draw;
+	
+			this.attributes(["rdf"])
+				.label("Resource")
+				.radius(30)
+				.styleClass("rdfsresource")
+				.type("rdfs:Resource");
+	
+			this.draw = function (element) {
+				superDrawFunction(element, ["rdf", "special"]);
+			};
+		};
+		o.prototype = Object.create(RoundNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var ImageNode = __webpack_require__(37);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			ImageNode.apply(this, arguments);
+	
+			var superDrawFunction = this.draw;
+	
+			this.attributes(["rdf"])
+				.label("Resource")
+				.radius(90)
+				.styleClass("rdfsresource")
+				.type("foaf:depiction");
+	
+			this.draw = function (element) {
+				superDrawFunction(element, ["rdf", "special"]);
+			};
+		};
+		o.prototype = Object.create(ImageNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {var BaseNode = __webpack_require__(12);
+	var drawTools = __webpack_require__(17)();
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseNode.apply(this, arguments);
+	
+			var that = this,
+				collapsible = false,
+				radius = 50,
+				collapsingGroupElement,
+				pinGroupElement,
+				textBlock;
+	
+	
+			// Properties
+			this.collapsible = function (p) {
+				if (!arguments.length) return collapsible;
+				collapsible = p;
+				return this;
+			};
+	
+			this.textBlock = function (p) {
+				if (!arguments.length) return textBlock;
+				textBlock = p;
+				return this;
+			};
+	
+			/**
+			 * This might not be equal to the actual radius, because the instance count is used for its calculation.
+			 * @param p
+			 * @returns {*}
+			 */
+			this.radius = function (p) {
+				if (!arguments.length) return radius;
+				radius = p;
+				return this;
+			};
+	
+	
+			// Functions
+			this.setHoverHighlighting = function (enable) {
+				that.nodeElement().selectAll("circle").classed("hovered", enable);
+			};
+	
+			this.textWidth = function () {
+				return this.actualRadius() * 2;
+			};
+	
+			this.toggleFocus = function () {
+				that.focused(!that.focused());
+				that.nodeElement().select("circle").classed("focused", that.focused());
+			};
+	
+			this.actualRadius = function () {
+				if (!graph.options().scaleNodesByIndividuals() || that.individuals().length <= 0) {
+					return that.radius();
+				} else {
+					// we could "listen" for radius and maxIndividualCount changes, but this is easier
+					var MULTIPLIER = 8,
+						additionalRadius = Math.log(that.individuals().length + 1) * MULTIPLIER + 5;
+	
+					return that.radius() + additionalRadius;
+				}
+			};
+	
+			this.distanceToBorder = function () {
+				return that.actualRadius();
+			};
+	
+			/**
+			 * Draws the pin on a round node on a position depending on its radius.
+			 */
+			this.drawPin = function () {
+				that.pinned(true);
+	
+				pinGroupElement = that.nodeElement()
+					.append("g")
+					.classed("hidden-in-export", true)
+					.attr("transform", function () {
+						var dx = (2 / 5) * that.actualRadius(),
+							dy = (-7 / 10) * that.actualRadius();
+						return "translate(" + dx + "," + dy + ")";
+					});
+	
+				pinGroupElement.append("circle")
+					.classed("class pin feature", true)
+					.attr("r", 12)
+					.on("click", function () {
+						that.removePin();
+						d3.event.stopPropagation();
+					});
+	
+				pinGroupElement.append("line")
+					.attr("x1", 0)
+					.attr("x2", 0)
+					.attr("y1", 12)
+					.attr("y2", 16);
+			};
+	
+			/**
+			 * Removes the pin and refreshs the graph to update the force layout.
+			 */
+			this.removePin = function () {
+				that.pinned(false);
+				if (pinGroupElement) {
+					pinGroupElement.remove();
+				}
+				graph.updateStyle();
+			};
+	
+			this.drawCollapsingButton = function () {
+	
+				collapsingGroupElement = that.nodeElement()
+					.append("g")
+					.classed("hidden-in-export", true)
+					.attr("transform", function () {
+						var dx = (-2 / 5) * that.actualRadius(),
+							dy = (1 / 2) * that.actualRadius();
+						return "translate(" + dx + "," + dy + ")";
+					});
+	
+				collapsingGroupElement.append("rect")
+					.classed("class pin feature", true)
+					.attr("x", 0)
+					.attr("y", 0)
+					.attr("width", 40)
+					.attr("height", 24);
+	
+				collapsingGroupElement.append("line")
+					.attr("x1", 13)
+					.attr("y1", 12)
+					.attr("x2", 27)
+					.attr("y2", 12);
+	
+				collapsingGroupElement.append("line")
+					.attr("x1", 20)
+					.attr("y1", 6)
+					.attr("x2", 20)
+					.attr("y2", 18);
+			};
+	
+			/**
+			 * Draws an image node.
+			 * @param parentElement the element to which this node will be appended
+			 * @param [additionalCssClasses] additional css classes
+			 */
+			this.draw = function (parentElement, additionalCssClasses) {
+				var cssClasses = that.collectCssClasses();
+	
+				that.nodeElement(parentElement);
+	
+				if (additionalCssClasses instanceof Array) {
+					cssClasses = cssClasses.concat(additionalCssClasses);
+				}
+				drawTools.appendImage(parentElement, that.actualRadius(), cssClasses, that.labelForCurrentLanguage(), that.imgUrl() );
+				that.postDrawActions(parentElement);
+			};
+	
+			/**
+			 * Common actions that should be invoked after drawing a node.
+			 */
+			this.postDrawActions = function () {
+				var textBlock = __webpack_require__(18)(that.nodeElement());
+				textBlock.addText(that.labelForCurrentLanguage());
+				if (!graph.options().compactNotation()) {
+					textBlock.addSubText(that.indicationString());
+				}
+				textBlock.addInstanceCount(that.individuals().length);
+				that.textBlock(textBlock);
+	
+				that.addMouseListeners();
+				if (that.pinned()) {
+					that.drawPin();
+				}
+				if (that.collapsible()) {
+					that.drawCollapsingButton();
+				}
+			};
+		};
+		o.prototype = Object.create(BaseNode.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {var properties = [];
+	properties.push(__webpack_require__(39));
+	properties.push(__webpack_require__(42));
+	properties.push(__webpack_require__(41));
+	properties.push(__webpack_require__(43));
+	properties.push(__webpack_require__(44));
+	properties.push(__webpack_require__(45));
+	properties.push(__webpack_require__(46));
+	properties.push(__webpack_require__(47));
+	properties.push(__webpack_require__(48));
+	properties.push(__webpack_require__(49));
+	properties.push(__webpack_require__(50));
+	properties.push(__webpack_require__(51));
+	
+	var map = d3.map(properties, function (Prototype) {
+		return new Prototype().type();
+	});
+	
+	module.exports = function () {
+		return map;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseProperty.apply(this, arguments);
+	
+			this.attributes(["datatype"])
+				.styleClass("datatypeproperty")
+				.type("owl:DatatypeProperty");
+		};
+		o.prototype = Object.create(BaseProperty.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseElement = __webpack_require__(13);
+	var rectangularElementTools = __webpack_require__(33)();
+	
+	module.exports = (function () {
+	
+		// Static variables
+		var labelHeight = 28,
+			labelWidth = 80,
+			smallestRadius = labelHeight / 2;
+	
+	
+		// Constructor, private variables and privileged methods
+		var Base = function (graph) {
+			BaseElement.apply(this, arguments);
+	
+			var that = this,
+			// Basic attributes
+				cardinality,
+				domain,
+				inverse,
+				link,
+				minCardinality,
+				maxCardinality,
+				range,
+				subproperties,
+				superproperties,
+			// Style attributes
+				linkType = "normal",
+				markerType = "normal",
+				labelVisible = true,
+			// Element containers
+				cardinalityElement,
+				labelElement,
+				linkGroup,
+				markerElement,
+			// Other
+				redundantProperties = [];
+	
+	
+			// Properties
+			this.cardinality = function (p) {
+				if (!arguments.length) return cardinality;
+				cardinality = p;
+				return this;
+			};
+	
+			this.cardinalityElement = function (p) {
+				if (!arguments.length) return cardinalityElement;
+				cardinalityElement = p;
+				return this;
+			};
+	
+			this.domain = function (p) {
+				if (!arguments.length) return domain;
+				domain = p;
+				return this;
+			};
+	
+			this.inverse = function (p) {
+				if (!arguments.length) return inverse;
+				inverse = p;
+				return this;
+			};
+	
+			this.labelElement = function (p) {
+				if (!arguments.length) return labelElement;
+				labelElement = p;
+				return this;
+			};
+	
+			this.labelVisible = function (p) {
+				if (!arguments.length) return labelVisible;
+				labelVisible = p;
+				return this;
+			};
+	
+			this.link = function (p) {
+				if (!arguments.length) return link;
+				link = p;
+				return this;
+			};
+	
+			this.linkGroup = function (p) {
+				if (!arguments.length) return linkGroup;
+				linkGroup = p;
+				return this;
+			};
+	
+			this.linkType = function (p) {
+				if (!arguments.length) return linkType;
+				linkType = p;
+				return this;
+			};
+	
+			this.markerElement = function (p) {
+				if (!arguments.length) return markerElement;
+				markerElement = p;
+				return this;
+			};
+	
+			this.markerType = function (p) {
+				if (!arguments.length) return markerType;
+				markerType = p;
+				return this;
+			};
+	
+			this.maxCardinality = function (p) {
+				if (!arguments.length) return maxCardinality;
+				maxCardinality = p;
+				return this;
+			};
+	
+			this.minCardinality = function (p) {
+				if (!arguments.length) return minCardinality;
+				minCardinality = p;
+				return this;
+			};
+	
+			this.range = function (p) {
+				if (!arguments.length) return range;
+				range = p;
+				return this;
+			};
+	
+			this.redundantProperties = function (p) {
+				if (!arguments.length) return redundantProperties;
+				redundantProperties = p;
+				return this;
+			};
+	
+			this.subproperties = function (p) {
+				if (!arguments.length) return subproperties;
+				subproperties = p;
+				return this;
+			};
+	
+			this.superproperties = function (p) {
+				if (!arguments.length) return superproperties;
+				superproperties = p;
+				return this;
+			};
+	
+	
+			// Functions
+			this.distanceToBorder = function (dx, dy) {
+				return rectangularElementTools.distanceToBorder(that, dx, dy);
+			};
+	
+			this.isSpecialLink = function () {
+				return linkType === "special";
+			};
+	
+			this.markerId = function () {
+				return "marker" + that.id();
+			};
+	
+			this.toggleFocus = function () {
+				that.focused(!that.focused());
+				labelElement.select("rect").classed("focused", that.focused());
+			};
+	
+	
+			// Reused functions TODO refactor
+			this.draw = function (labelGroup) {
+				function attachLabel(property) {
+					// Draw the label and its background
+					var label = labelGroup.append("g")
+						.datum(property)
+						.classed("label", true)
+						.attr("id", property.id());
+					property.addRect(label);
+	
+					// Attach the text and perhaps special elements
+					var textBox = __webpack_require__(18)(label);
+					if (property instanceof __webpack_require__(41)) {
+						property.addDisjointLabel(labelGroup, textBox);
+						return label;
+					} else {
+						textBox.addText(property.labelForCurrentLanguage());
+					}
+	
+					textBox.addSubText(property.indicationString());
+					property.addEquivalentsToLabel(textBox);
+	
+					return label;
+				}
+	
+				if (!that.labelVisible()) {
+					return undefined;
+				}
+	
+				that.labelElement(attachLabel(that));
+	
+				// Draw an inverse label and reposition both labels if necessary
+				if (that.inverse()) {
+					var yTransformation = (that.height() / 2) + 1 /* additional space */;
+					that.inverse()
+						.labelElement(attachLabel(that.inverse()));
+	
+					that.labelElement()
+						.attr("transform", "translate(" + 0 + ",-" + yTransformation + ")");
+					that.inverse()
+						.labelElement()
+						.attr("transform", "translate(" + 0 + "," + yTransformation + ")");
+				}
+	
+				return that.labelElement();
+			};
+	
+			this.addRect = function (groupTag) {
+				var rect = groupTag.append("rect")
+					.classed(that.styleClass(), true)
+					.classed("property", true)
+					.attr("x", -that.width() / 2)
+					.attr("y", -that.height() / 2)
+					.attr("width", that.width())
+					.attr("height", that.height())
+					.on("mouseover", function () {
+						onMouseOver();
+					})
+					.on("mouseout", function () {
+						onMouseOut();
+					});
+	
+				rect.append("title")
+					.text(that.labelForCurrentLanguage());
+	
+				if (that.visualAttribute()) {
+					rect.classed(that.visualAttribute(), true);
+				}
+			};
+			this.addDisjointLabel = function (groupTag, textTag) {
+				groupTag.append("circle")
+					.classed("symbol", true)
+					.classed("fineline", true)
+					.classed("embedded", true)
+					.attr("cx", -12.5)
+					.attr("r", 10);
+	
+				groupTag.append("circle")
+					.classed("symbol", true)
+					.classed("fineline", true)
+					.classed("embedded", true)
+					.attr("cx", 12.5)
+					.attr("r", 10);
+	
+				if (!graph.options().compactNotation()) {
+					textTag.addSubText("disjoint");
+				}
+				textTag.setTranslation(0, 20);
+			};
+			this.addEquivalentsToLabel = function (textBox) {
+				if (that.equivalents()) {
+					var equivalentLabels,
+						equivalentString;
+	
+					equivalentLabels = that.equivalents().map(function (property) {
+						return property.labelForCurrentLanguage();
+					});
+					equivalentString = equivalentLabels.join(", ");
+	
+					textBox.addEquivalents(equivalentString);
+				}
+			};
+			this.drawCardinality = function (cardinalityGroup) {
+				if (that.minCardinality() === undefined &&
+					that.maxCardinality() === undefined &&
+					that.cardinality() === undefined) {
+					return undefined;
+				}
+	
+				// Drawing cardinality groups
+				that.cardinalityElement(cardinalityGroup.classed("cardinality", true));
+	
+				var cardText = cardinalityGroup.append("text")
+					.classed("cardinality", true)
+					.attr("text-anchor", "middle")
+					.attr("dy", "0.5ex");
+	
+				if (that.minCardinality() !== undefined) {
+					var cardString = that.minCardinality() + "..";
+					cardString += that.maxCardinality() !== undefined ? that.maxCardinality() : "*";
+	
+					cardText.text(cardString);
+				} else if (that.maxCardinality() !== undefined) {
+					cardText.text("*.." + that.maxCardinality());
+				} else if (that.cardinality() !== undefined) {
+					cardText.text(that.cardinality());
+				}
+	
+				return that.cardinalityElement();
+			};
+			function onMouseOver() {
+				if (that.mouseEntered()) {
+					return;
+				}
+				that.mouseEntered(true);
+	
+				setHighlighting(true);
+	
+				that.foreground();
+				foregroundSubAndSuperProperties();
+			}
+	
+			function setHighlighting(enable) {
+				that.labelElement().select("rect").classed("hovered", enable);
+				that.linkGroup().selectAll("path, text").classed("hovered", enable);
+				that.markerElement().select("path").classed("hovered", enable);
+				if (that.cardinalityElement()) {
+					that.cardinalityElement().classed("hovered", enable);
+				}
+	
+				var subAndSuperProperties = getSubAndSuperProperties();
+				subAndSuperProperties.forEach(function (property) {
+					property.labelElement().select("rect")
+						.classed("indirectHighlighting", enable);
+				});
+			}
+	
+			/**
+			 * Combines the sub- and superproperties into a single array, because
+			 * they're often used equivalently.
+			 * @returns {Array}
+			 */
+			function getSubAndSuperProperties() {
+				var properties = [];
+	
+				if (that.subproperties()) {
+					properties = properties.concat(that.subproperties());
+				}
+				if (that.superproperties()) {
+					properties = properties.concat(that.superproperties());
+				}
+	
+				return properties;
+			}
+	
+			/**
+			 * Foregrounds the property, its inverse and the link.
+			 */
+			this.foreground = function () {
+				var selectedLabelGroup = that.labelElement().node().parentNode,
+					labelContainer = selectedLabelGroup.parentNode,
+					selectedLinkGroup = that.linkGroup().node(),
+					linkContainer = that.linkGroup().node().parentNode;
+	
+				// Append hovered element as last child to the container list.
+				labelContainer.appendChild(selectedLabelGroup);
+				linkContainer.appendChild(selectedLinkGroup);
+			};
+	
+			/**
+			 * Foregrounds the sub- and superproperties of this property.
+			 * This is separated from the foreground-function to prevent endless loops.
+			 */
+			function foregroundSubAndSuperProperties() {
+				var subAndSuperProperties = getSubAndSuperProperties();
+	
+				subAndSuperProperties.forEach(function (property) {
+					property.foreground();
+				});
+			}
+	
+			function onMouseOut() {
+				that.mouseEntered(false);
+	
+				setHighlighting(false);
+			}
+	
+		};
+	
+		Base.prototype = Object.create(BaseElement.prototype);
+		Base.prototype.constructor = Base;
+	
+		Base.prototype.height = function () {
+			return labelHeight;
+		};
+	
+		Base.prototype.width = function () {
+			return labelWidth;
+		};
+	
+		Base.prototype.actualRadius = function() {
+			return smallestRadius;
+		};
+	
+		Base.prototype.textWidth = Base.prototype.width;
+	
+	
+		return Base;
+	}());
+
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseProperty.apply(this, arguments);
+	
+			var label = "Disjoint With";
+			// Disallow overwriting the label
+			this.label = function (p) {
+				if (!arguments.length) return label;
+				return this;
+			};
+	
+			this.markerType("special")
+				.linkType("special")
+				.styleClass("disjointwith")
+				.type("owl:disjointWith");
+		};
+		o.prototype = Object.create(BaseProperty.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 42 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseProperty.apply(this, arguments);
+	
+			this.attributes(["deprecated"])
+				.styleClass("deprecatedproperty")
+				.type("owl:DeprecatedProperty");
+		};
+		o.prototype = Object.create(BaseProperty.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseProperty.apply(this, arguments);
+	
+			this.styleClass("equivalentproperty")
+				.type("owl:equivalentProperty");
+		};
+		o.prototype = Object.create(BaseProperty.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 44 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseProperty.apply(this, arguments);
+	
+			this.attributes(["functional"])
+				.styleClass("functionalproperty")
+				.type("owl:FunctionalProperty");
+		};
+		o.prototype = Object.create(BaseProperty.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseProperty.apply(this, arguments);
+	
+			this.attributes(["inverse functional"])
+				.styleClass("inversefunctionalproperty")
+				.type("owl:InverseFunctionalProperty");
+		};
+		o.prototype = Object.create(BaseProperty.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseProperty.apply(this, arguments);
+	
+			this.attributes(["object"])
+				.styleClass("objectproperty")
+				.type("owl:ObjectProperty");
+		};
+		o.prototype = Object.create(BaseProperty.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+	
+	
+
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseProperty.apply(this, arguments);
+	
+			this.attributes(["symmetric"])
+				.styleClass("symmetricproperty")
+				.type("owl:SymmetricProperty");
+		};
+		o.prototype = Object.create(BaseProperty.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 48 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseProperty.apply(this, arguments);
+	
+			this.attributes(["transitive"])
+				.styleClass("transitiveproperty")
+				.type("owl:TransitiveProperty");
+		};
+		o.prototype = Object.create(BaseProperty.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 49 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseProperty.apply(this, arguments);
+	
+			this.attributes(["rdf"])
+				.styleClass("rdfproperty")
+				.type("rdf:Property");
+		};
+		o.prototype = Object.create(BaseProperty.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseProperty.apply(this, arguments);
+	
+			var that = this,
+				superDrawFunction = that.draw,
+				label = "Subclass of";
+	
+			this.draw = function (labelGroup) {
+				that.labelVisible(!graph.options().compactNotation());
+				return superDrawFunction(labelGroup);
+			};
+	
+			// Disallow overwriting the label
+			this.label = function (p) {
+				if (!arguments.length) return label;
+				return this;
+			};
+	
+			this.linkType("dotted")
+				.markerType("dotted")
+				.styleClass("subclass")
+				.type("rdfs:subClassOf");
+		};
+		o.prototype = Object.create(BaseProperty.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 51 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	
+	module.exports = (function () {
+	
+		var o = function (graph) {
+			BaseProperty.apply(this, arguments);
+	
+			this.markerType("special")
+				.labelVisible(false)
+				.linkType("special")
+				.styleClass("setoperatorproperty")
+				.type("setOperatorProperty");
+		};
+		o.prototype = Object.create(BaseProperty.prototype);
+		o.prototype.constructor = o;
+	
+		return o;
+	}());
+
+
+/***/ },
+/* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {var math = __webpack_require__(53)();
+	var linkCreator = __webpack_require__(54)();
+	var elementTools = __webpack_require__(59)();
+	
+	
+	module.exports = function (graphContainerSelector) {
+		var graph = {},
+			CARDINALITY_HDISTANCE = 20,
+			CARDINALITY_VDISTANCE = 10,
+			curveFunction = d3.svg.line()
+				.x(function (d) {
+					return d.x;
+				})
+				.y(function (d) {
+					return d.y;
+				})
+				.interpolate("cardinal"),
+			options = __webpack_require__(60)(),
+			parser = __webpack_require__(61)(graph),
+			language = "default",
+		// Container for visual elements
+			graphContainer,
+			nodeContainer,
+			labelContainer,
+			cardinalityContainer,
+			linkContainer,
+		// Visual elements
+			nodeElements,
+			labelGroupElements,
+			linkGroups,
+			linkPathElements,
+			cardinalityElements,
+		// Internal data
+			classNodes,
+			labelNodes,
+			links,
+			properties,
+			unfilteredNodes,
+			unfilteredProperties,
+		// Graph behaviour
+			force,
+			dragBehaviour,
+			zoom;
+	
+		/**
+		 * Recalculates the positions of nodes, links, ... and updates them.
+		 */
+		function recalculatePositions() {
+			// Set node positions
+			nodeElements.attr("transform", function (node) {
+				return "translate(" + node.x + "," + node.y + ")";
+			});
+	
+			// Set label group positions
+			labelGroupElements.attr("transform", function (label) {
+				var position;
+	
+				// force centered positions on single-layered links
+				var link = label.link();
+				if (link.layers().length === 1 && !link.loops()) {
+					var linkDomainIntersection = math.calculateIntersection(link.range(), link.domain(), 0);
+					var linkRangeIntersection = math.calculateIntersection(link.domain(), link.range(), 0);
+					position = math.calculateCenter(linkDomainIntersection, linkRangeIntersection);
+					label.x = position.x;
+					label.y = position.y;
+				} else {
+					position = label;
+				}
+	
+				return "translate(" + position.x + "," + position.y + ")";
+			});
+	
+			// Set link paths and calculate additional informations
+			linkPathElements.attr("d", function (l) {
+				if (l.isLoop()) {
+					return math.calculateLoopPath(l);
+				}
+	
+				var curvePoint = l.label();
+				var pathStart = math.calculateIntersection(curvePoint, l.domain(), 1);
+				var pathEnd = math.calculateIntersection(curvePoint, l.range(), 1);
+	
+				return curveFunction([pathStart, curvePoint, pathEnd]);
+			});
+	
+			// Set cardinality positions
+			cardinalityElements.attr("transform", function (property) {
+				var label = property.link().label(),
+					pos = math.calculateIntersection(label, property.range(), CARDINALITY_HDISTANCE),
+					normalV = math.calculateNormalVector(label, property.domain(), CARDINALITY_VDISTANCE);
+	
+				return "translate(" + (pos.x + normalV.x) + "," + (pos.y + normalV.y) + ")";
+			});
+		}
+	
+		/**
+		 * Adjusts the containers current scale and position.
+		 */
+		function zoomed() {
+			graphContainer.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+		}
+	
+		/**
+		 * Initializes the graph.
+		 */
+		function initializeGraph() {
+			options.graphContainerSelector(graphContainerSelector);
+	
+			force = d3.layout.force()
+				.on("tick", recalculatePositions);
+	
+			dragBehaviour = d3.behavior.drag()
+				.origin(function (d) {
+					return d;
+				})
+				.on("dragstart", function (d) {
+					d3.event.sourceEvent.stopPropagation(); // Prevent panning
+					d.locked(true);
+				})
+				.on("drag", function (d) {
+					d.px = d3.event.x;
+					d.py = d3.event.y;
+					force.resume();
+				})
+				.on("dragend", function (d) {
+					d.locked(false);
+				});
+	
+			// Apply the zooming factor.
+			zoom = d3.behavior.zoom()
+				.duration(150)
+				.scaleExtent([options.minMagnification(), options.maxMagnification()])
+				.on("zoom", zoomed);
+	
+		}
+	
+		initializeGraph();
+	
+		/**
+		 * Returns the graph options of this graph (readonly).
+		 * @returns {webvowl.options} a graph options object
+		 */
+		graph.graphOptions = function () {
+			return options;
+		};
+	
+		/**
+		 * Loads all settings, removes the old graph (if it exists) and draws a new one.
+		 */
+		graph.start = function () {
+			force.stop();
+			loadGraphData();
+			redrawGraph();
+			graph.update();
+		};
+	
+		/**
+		 * Updates only the style of the graph.
+		 */
+		graph.updateStyle = function () {
+			refreshGraphStyle();
+			force.start();
+		};
+	
+		graph.reload = function () {
+			loadGraphData();
+			this.update();
+		};
+	
+		/**
+		 * Updates the graphs displayed data and style.
+		 */
+		graph.update = function () {
+			refreshGraphData();
+			refreshGraphStyle();
+			force.start();
+			redrawContent();
+		};
+	
+		/**
+		 * Stops the influence of the force directed layout on all nodes. They are still manually movable.
+		 */
+		graph.freeze = function () {
+			force.nodes().forEach(function (n) {
+				n.frozen(true);
+			});
+		};
+	
+		/**
+		 * Allows the influence of the force directed layout on all nodes.
+		 */
+		graph.unfreeze = function () {
+			force.nodes().forEach(function (n) {
+				n.frozen(false);
+			});
+			force.resume();
+		};
+	
+		/**
+		 * Resets visual settings like zoom or panning.
+		 */
+		graph.reset = function () {
+			zoom.translate([0, 0])
+				.scale(1);
+		};
+	
+		/**
+		 * Calculate the link distance of a single link part.
+		 * The visible link distance does not contain e.g. radii of round nodes.
+		 * @param linkPart the link
+		 * @returns {*}
+		 */
+		function calculateLinkPartDistance(linkPart) {
+			var link = linkPart.link();
+	
+			if (link.isLoop()) {
+				return options.loopDistance();
+			}
+	
+			var completeLinkDistance = getVisibleLinkDistance(link);
+			completeLinkDistance += link.domain().actualRadius();
+			completeLinkDistance += link.range().actualRadius();
+			// divide by 2 to receive the length of a single link part
+			return completeLinkDistance / 2;
+		}
+	
+		function getVisibleLinkDistance(link) {
+			if (elementTools.isDatatype(link.domain()) || elementTools.isDatatype(link.range())) {
+				return options.datatypeDistance();
+			} else {
+				return options.classDistance();
+			}
+		}
+	
+		/**
+		 * Empties the last graph container and draws a new one with respect to the
+		 * value the graph container selector has.
+		 */
+		function redrawGraph() {
+			remove();
+	
+			graphContainer = d3.selectAll(options.graphContainerSelector())
+				.append("svg")
+				.classed("vowlGraph", true)
+				.attr("width", options.width())
+				.attr("height", options.height())
+				.call(zoom)
+				.append("g");
+		}
+	
+		/**
+		 * Redraws all elements like nodes, links, ...
+		 */
+		function redrawContent() {
+			var markerContainer;
+	
+			if (!graphContainer) {
+				return;
+			}
+	
+			// Empty the graph container
+			graphContainer.selectAll("*").remove();
+	
+			// Last container -> elements of this container overlap others
+			linkContainer = graphContainer.append("g").classed("linkContainer", true);
+			cardinalityContainer = graphContainer.append("g").classed("cardinalityContainer", true);
+			labelContainer = graphContainer.append("g").classed("labelContainer", true);
+			nodeContainer = graphContainer.append("g").classed("nodeContainer", true);
+	
+			// Add an extra container for all markers
+			markerContainer = linkContainer.append("defs");
+	
+			// Draw nodes
+			nodeElements = nodeContainer.selectAll(".node")
+				.data(classNodes).enter()
+				.append("g")
+				.classed("node", true)
+				.attr("id", function (d) {
+					return d.id();
+				})
+				.call(dragBehaviour);
+	
+			nodeElements.each(function (node) {
+				node.draw(d3.select(this));
+			});
+	
+			// Draw label groups (property + inverse)
+			labelGroupElements = labelContainer.selectAll(".labelGroup")
+				.data(labelNodes).enter()
+				.append("g")
+				.classed("labelGroup", true)
+				.call(dragBehaviour);
+	
+			labelGroupElements.each(function (label) {
+				var success = label.draw(d3.select(this));
+				// Remove empty groups without a label.
+				if (!success) {
+					d3.select(this).remove();
+				}
+			});
+	
+			// Place subclass label groups on the bottom of all labels
+			labelGroupElements.each(function (label) {
+				// the label might be hidden e.g. in compact notation
+				if (!this.parentNode) {
+					return;
+				}
+	
+				if (elementTools.isRdfsSubClassOf(label.property())) {
+					var parentNode = this.parentNode;
+					parentNode.insertBefore(this, parentNode.firstChild);
+				}
+			});
+	
+			// Draw cardinalities
+			cardinalityElements = cardinalityContainer.selectAll(".cardinality")
+				.data(properties).enter()
+				.append("g")
+				.classed("cardinality", true);
+	
+			cardinalityElements.each(function (property) {
+				var success = property.drawCardinality(d3.select(this));
+	
+				// Remove empty groups without a label.
+				if (!success) {
+					d3.select(this).remove();
+				}
+			});
+	
+			// Draw links
+			linkGroups = linkContainer.selectAll(".link")
+				.data(links).enter()
+				.append("g")
+				.classed("link", true);
+	
+			linkGroups.each(function (link) {
+				link.draw(d3.select(this), markerContainer);
+			});
+	
+			// Select the path for direct access to receive a better performance
+			linkPathElements = linkGroups.selectAll("path");
+	
+			addClickEvents();
+		}
+	
+		/**
+		 * Applies click listeneres to nodes and properties.
+		 */
+		function addClickEvents() {
+			function executeModules(selectedElement) {
+				options.selectionModules().forEach(function (module) {
+					module.handle(selectedElement);
+				});
+			}
+	
+			nodeElements.on("click", function (clickedNode) {
+				executeModules(clickedNode);
+			});
+	
+			labelGroupElements.selectAll(".label").on("click", function (clickedProperty) {
+				executeModules(clickedProperty);
+			});
+		}
+	
+		function loadGraphData() {
+			parser.parse(options.data());
+	
+			unfilteredNodes = parser.nodes();
+			unfilteredProperties = parser.properties();
+		}
+	
+		/**
+		 * Applies the data of the graph options object and parses it. The graph is not redrawn.
+		 */
+		function refreshGraphData() {
+			var preprocessedNodes = unfilteredNodes,
+				preprocessedProperties = unfilteredProperties;
+	
+			// Filter the data
+			options.filterModules().forEach(function (module) {
+				links = linkCreator.createLinks(preprocessedProperties);
+				storeLinksOnNodes(preprocessedNodes, links);
+	
+				module.filter(preprocessedNodes, preprocessedProperties);
+				preprocessedNodes = module.filteredNodes();
+				preprocessedProperties = module.filteredProperties();
+			});
+	
+			classNodes = preprocessedNodes;
+			properties = preprocessedProperties;
+			links = linkCreator.createLinks(properties);
+			labelNodes = links.map(function (link) {
+				return link.label();
+			});
+			storeLinksOnNodes(classNodes, links);
+	
+			setForceLayoutData(classNodes, labelNodes, links);
+		}
+	
+		function storeLinksOnNodes(nodes, links) {
+			for (var i = 0, nodesLength = nodes.length; i < nodesLength; i++) {
+				var node = nodes[i],
+					connectedLinks = [];
+	
+				// look for properties where this node is the domain or range
+				for (var j = 0, linksLength = links.length; j < linksLength; j++) {
+					var link = links[j];
+	
+					if (link.domain() === node || link.range() === node) {
+						connectedLinks.push(link);
+					}
+				}
+	
+				node.links(connectedLinks);
+			}
+		}
+	
+		function setForceLayoutData(classNodes, labelNodes, links) {
+			var d3Links = [];
+			links.forEach(function (link) {
+				d3Links = d3Links.concat(link.linkParts());
+			});
+	
+			var d3Nodes = [].concat(classNodes).concat(labelNodes);
+			setPositionOfOldLabelsOnNewLabels(force.nodes(), labelNodes);
+	
+			force.nodes(d3Nodes)
+				.links(d3Links);
+		}
+	
+		/**
+		 * The label nodes are positioned randomly, because they are created from scratch if the data changes and lose
+		 * their position information. With this hack the position of old labels is copied to the new labels.
+		 */
+		function setPositionOfOldLabelsOnNewLabels(oldLabelNodes, labelNodes) {
+			labelNodes.forEach(function (labelNode) {
+				for (var i = 0; i < oldLabelNodes.length; i++) {
+					var oldNode = oldLabelNodes[i];
+					if (oldNode.equals(labelNode)) {
+						labelNode.x = oldNode.x;
+						labelNode.y = oldNode.y;
+						break;
+					}
+				}
+			});
+		}
+	
+	
+		/**
+		 * Applies all options that don't change the graph data.
+		 */
+		function refreshGraphStyle() {
+			zoom = zoom.scaleExtent([options.minMagnification(), options.maxMagnification()]);
+			if (graphContainer) {
+				zoom.event(graphContainer);
+			}
+	
+			force.charge(function (element) {
+					var charge = options.charge();
+					if (elementTools.isLabel(element)) {
+						charge *= 0.8;
+					}
+					return charge;
+				})
+				.size([options.width(), options.height()])
+				.linkDistance(calculateLinkPartDistance)
+				.gravity(options.gravity())
+				.linkStrength(options.linkStrength()); // Flexibility of links
+		}
+	
+		/**
+		 * Removes all elements from the graph container.
+		 */
+		function remove() {
+			if (graphContainer) {
+				// Select the parent element because the graph container is a group (e.g. for zooming)
+				d3.select(graphContainer.node().parentNode).remove();
+			}
+		}
+	
+		graph.options = function () {
+			return options;
+		};
+	
+		graph.language = function (newLanguage) {
+			if (!arguments.length) return language;
+	
+			// Just update if the language changes
+			if (language !== newLanguage) {
+				language = newLanguage || "default";
+				redrawContent();
+				recalculatePositions();
+			}
+			return graph;
+		};
+	
+	
+		return graph;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 53 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {/**
+	 * Contains a collection of mathematical functions with some additional data
+	 * used for WebVOWL.
+	 */
+	module.exports = (function () {
+	
+		var math = {},
+			loopFunction = d3.svg.line()
+				.x(function (d) {
+					return d.x;
+				})
+				.y(function (d) {
+					return d.y;
+				})
+				.interpolate("cardinal")
+				.tension(-1);
+	
+	
+		/**
+		 * Calculates the normal vector of the path between the two nodes.
+		 * @param source the first node
+		 * @param target the second node
+		 * @param length the length of the calculated normal vector
+		 * @returns {{x: number, y: number}}
+		 */
+		math.calculateNormalVector = function (source, target, length) {
+			var dx = target.x - source.x,
+				dy = target.y - source.y;
+	
+			var nx = -dy,
+				ny = dx;
+	
+			var vlength = Math.sqrt(nx * nx + ny * ny);
+	
+			var ratio = vlength !== 0 ? length / vlength : 0;
+	
+			return {"x": nx * ratio, "y": ny * ratio};
+		};
+	
+		/**
+		 * Calculates the path for a link, if it is a loop. Currently only working for circlular nodes.
+		 * @param link the link
+		 * @returns {*}
+		 */
+		math.calculateLoopPath = function (link) {
+			var node = link.domain(),
+				label = link.label();
+	
+			var fairShareLoopAngle = 360 / link.loops().length,
+				fairShareLoopAngleWithMargin = fairShareLoopAngle * 0.8,
+				loopAngle = Math.min(60, fairShareLoopAngleWithMargin);
+	
+			var dx = label.x - node.x,
+				dy = label.y - node.y,
+				labelRadian = Math.atan2(dy, dx),
+				labelAngle = calculateAngle(labelRadian);
+	
+			var startAngle = labelAngle - loopAngle / 2,
+				endAngle = labelAngle + loopAngle / 2;
+	
+			var arcFrom = calculateRadian(startAngle),
+				arcTo = calculateRadian(endAngle),
+	
+				x1 = Math.cos(arcFrom) * node.actualRadius(),
+				y1 = Math.sin(arcFrom) * node.actualRadius(),
+	
+				x2 = Math.cos(arcTo) * node.actualRadius(),
+				y2 = Math.sin(arcTo) * node.actualRadius(),
+	
+				fixPoint1 = {"x": node.x + x1, "y": node.y + y1},
+				fixPoint2 = {"x": node.x + x2, "y": node.y + y2};
+	
+			return loopFunction([fixPoint1, link.label(), fixPoint2]);
+		};
+	
+		/**
+		 * @param angle
+		 * @returns {number} the radian of the angle
+		 */
+		function calculateRadian(angle) {
+			angle = angle % 360;
+			if (angle < 0) {
+				angle = angle + 360;
+			}
+			return (Math.PI * angle) / 180;
+		}
+	
+		/**
+		 * @param radian
+		 * @returns {number} the angle of the radian
+		 */
+		function calculateAngle(radian) {
+			return radian * (180 / Math.PI);
+		}
+	
+		/**
+		 * Calculates the point where the link between the source and target node
+		 * intersects the border of the target node.
+		 * @param source the source node
+		 * @param target the target node
+		 * @param additionalDistance additional distance the
+		 * @returns {{x: number, y: number}}
+		 */
+		math.calculateIntersection = function (source, target, additionalDistance) {
+			var dx = target.x - source.x,
+				dy = target.y - source.y,
+				length = Math.sqrt(dx * dx + dy * dy);
+	
+			if (length === 0) {
+				return {x: source.x, y: source.y};
+			}
+	
+			var innerDistance = target.distanceToBorder(dx, dy);
+	
+			var ratio = (length - (innerDistance + additionalDistance)) / length,
+				x = dx * ratio + source.x,
+				y = dy * ratio + source.y;
+	
+			return {x: x, y: y};
+		};
+	
+		/**
+		 * Calculates the position between the two points.
+		 * @param firstPoint
+		 * @param secondPoint
+		 * @returns {{x: number, y: number}}
+		 */
+		math.calculateCenter = function (firstPoint, secondPoint) {
+			return {
+				x: (firstPoint.x + secondPoint.x) / 2,
+				y: (firstPoint.y + secondPoint.y) / 2
+			};
+		};
+	
+	
+		return function () {
+			/* Use a function here to keep a consistent style like webvowl.path.to.module()
+			 * despite having just a single math object. */
+			return math;
+		};
+	})();
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 54 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Stores the passed properties in links.
+	 * @returns {Function}
+	 */
+	module.exports = (function () {
+		var linkCreator = {};
+	
+		/**
+		 * Creates links from the passed properties.
+		 * @param properties
+		 */
+		linkCreator.createLinks = function (properties) {
+			var links = groupPropertiesToLinks(properties);
+	
+			for (var i = 0, l = links.length; i < l; i++) {
+				var link = links[i];
+	
+				countAndSetLayers(link, links);
+				countAndSetLoops(link, links);
+			}
+	
+			return links;
+		};
+	
+		/**
+		 * Creates links of properties and - if existing - their inverses.
+		 * @param properties the properties
+		 * @returns {Array}
+		 */
+		function groupPropertiesToLinks(properties) {
+			var links = [],
+				property,
+				addedProperties = __webpack_require__(55)();
+	
+			for (var i = 0, l = properties.length; i < l; i++) {
+				property = properties[i];
+	
+				if (!addedProperties.has(property)) {
+					var link = __webpack_require__(56)(property.domain(), property.range(), property);
+	
+					property.link(link);
+					if (property.inverse()) {
+						property.inverse().link(link);
+					}
+	
+					links.push(link);
+	
+					addedProperties.add(property);
+					if (property.inverse()) {
+						addedProperties.add(property.inverse());
+					}
+				}
+			}
+	
+			return links;
+		}
+	
+		function countAndSetLayers(link, allLinks) {
+			var layer,
+				layers,
+				i, l;
+	
+			if (typeof link.layers() === "undefined") {
+				layers = [];
+	
+				// Search for other links that are another layer
+				for (i = 0, l = allLinks.length; i < l; i++) {
+					var otherLink = allLinks[i];
+					if (link.domain() === otherLink.domain() && link.range() === otherLink.range() ||
+						link.domain() === otherLink.range() && link.range() === otherLink.domain()) {
+						layers.push(otherLink);
+					}
+				}
+	
+				// Set the results on each of the layers
+				for (i = 0, l = layers.length; i < l; ++i) {
+					layer = layers[i];
+	
+					layer.layerIndex(i);
+					layer.layers(layers);
+				}
+			}
+		}
+	
+		function countAndSetLoops(link, allLinks) {
+			var loop,
+				loops,
+				i, l;
+	
+			if (typeof link.loops() === "undefined") {
+				loops = [];
+	
+				// Search for other links that are also loops of the same node
+				for (i = 0, l = allLinks.length; i < l; i++) {
+					var otherLink = allLinks[i];
+					if (link.domain() === otherLink.domain() && link.domain() === otherLink.range()) {
+						loops.push(otherLink);
+					}
+				}
+	
+				// Set the results on each of the loops
+				for (i = 0, l = loops.length; i < l; ++i) {
+					loop = loops[i];
+	
+					loop.loopIndex(i);
+					loop.loops(loops);
+				}
+			}
+		}
+	
+	
+		return function () {
+			// Return a function to keep module interfaces consistent
+			return linkCreator;
+		};
+	})();
+
+
+/***/ },
+/* 55 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {/**
+	 * A simple incomplete encapsulation of the d3 set, which is able to store webvowl
+	 * elements by using their id.
+	 */
+	module.exports = function (array) {
+	
+		var set = {},
+			d3Set = d3.set(array);
+	
+		set.has = function (webvowlElement) {
+			return d3Set.has(webvowlElement.id());
+		};
+	
+		set.add = function (webvowlElement) {
+			return d3Set.add(webvowlElement.id());
+		};
+	
+		set.remove = function (webvowlElement) {
+			return d3Set.remove(webvowlElement.id());
+		};
+	
+		set.empty = function () {
+			return d3Set.empty();
+		};
+	
+		set.size = function () {
+			return d3Set.size();
+		};
+	
+		return set;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 56 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Label = __webpack_require__(57);
+	
+	/**
+	 * A link connects at least two VOWL nodes.
+	 * The properties connecting the VOWL nodes are stored separately into the label.
+	 * @param _domain
+	 * @param _range
+	 * @param _property
+	 * @returns {{}}
+	 */
+	module.exports = function (_domain, _range, _property) {
+		var link = {},
+			domain = _domain,
+			layers,
+			layerIndex,
+			loops,
+			loopIndex,
+			label = new Label(_property, link),
+			range = _range;
+	
+		var backPart = __webpack_require__(58)(domain, label, link),
+			frontPart = __webpack_require__(58)(label, range, link);
+	
+	
+		link.layers = function (p) {
+			if (!arguments.length) return layers;
+			layers = p;
+			return link;
+		};
+	
+		link.layerIndex = function (p) {
+			if (!arguments.length) return layerIndex;
+			layerIndex = p;
+			return link;
+		};
+	
+		link.loops = function (p) {
+			if (!arguments.length) return loops;
+			loops = p;
+			return link;
+		};
+	
+		link.loopIndex = function (p) {
+			if (!arguments.length) return loopIndex;
+			loopIndex = p;
+			return link;
+		};
+	
+	
+		link.domain = function () {
+			return domain;
+		};
+	
+		link.inverse = function () {
+			return label.inverse();
+		};
+	
+		link.isLoop = function() {
+			return domain === range;
+		};
+	
+		link.label = function () {
+			return label;
+		};
+	
+		link.linkParts = function () {
+			return [frontPart, backPart];
+		};
+	
+		link.property = function () {
+			return label.property();
+		};
+	
+		link.range = function () {
+			return range;
+		};
+	
+	
+		link.draw = function (linkGroup, markerContainer) {
+			var property = label.property();
+			var inverse = label.inverse();
+	
+			property.linkGroup(linkGroup);
+			if (inverse) {
+				inverse.linkGroup(linkGroup);
+			}
+	
+			// Marker for this property
+			property.markerElement(markerContainer.append("marker")
+				.datum(property)
+				.attr("id", property.markerId())
+				.attr("viewBox", "0 -8 14 16")
+				.attr("refX", 12)
+				.attr("refY", 0)
+				.attr("markerWidth", 12)  // ArrowSize
+				.attr("markerHeight", 12)
+				.attr("markerUnits", "userSpaceOnUse")
+				.attr("orient", "auto")  // Orientation of Arrow
+				.attr("class", property.markerType() + "Marker"));
+			property.markerElement()
+				.append("path")
+				.attr("d", "M0,-8L12,0L0,8Z");
+	
+			// Marker for the inverse property
+			if (inverse) {
+				inverse.markerElement(markerContainer.append("marker")
+					.datum(inverse)
+					.attr("id", inverse.markerId())
+					.attr("viewBox", "0 -8 14 16")
+					.attr("refX", 0)
+					.attr("refY", 0)
+					.attr("markerWidth", 12)  // ArrowSize
+					.attr("markerHeight", 12)
+					.attr("markerUnits", "userSpaceOnUse")
+					.attr("orient", "auto")  // Orientation of Arrow
+					.attr("class", inverse.markerType() + "Marker"));
+				inverse.markerElement().append("path")
+					.attr("d", "M12,-8L0,0L12,8Z");
+			}
+	
+			// Draw the link
+			linkGroup.append("path")
+				.classed("link-path", true)
+				.classed(domain.cssClassOfNode(), true)
+				.classed(range.cssClassOfNode(), true)
+				.classed(property.linkType(), true)
+				.attr("marker-end", function (l) {
+					if (!l.label().property().isSpecialLink()) {
+						return "url(#" + l.label().property().markerId() + ")";
+					}
+					return "";
+				})
+				.attr("marker-start", function (l) {
+					var inverse = l.label().inverse();
+					if (inverse && !inverse.isSpecialLink()) {
+						return "url(#" + inverse.markerId() + ")";
+					}
+					return "";
+				});
+		};
+	
+	
+		return link;
+	};
+
+
+/***/ },
+/* 57 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var forceLayoutNodeFunctions = __webpack_require__(16)();
+	
+	
+	module.exports = Label;
+	
+	/**
+	 * A label represents the element(s) which further describe a link.
+	 * It encapsulates the property and its inverse property.
+	 * @param property the property; the inverse is inferred
+	 * @param link the link this label belongs to
+	 */
+	function Label(property, link) {
+		forceLayoutNodeFunctions.addTo(this);
+	
+		this.link = function () {
+			return link;
+		};
+	
+		this.property = function () {
+			return property;
+		};
+	}
+	
+	Label.prototype.actualRadius = function () {
+		return this.property().actualRadius();
+	};
+	
+	Label.prototype.draw = function (container) {
+		return this.property().draw(container);
+	};
+	
+	Label.prototype.inverse = function () {
+		return this.property().inverse();
+	};
+	
+	Label.prototype.equals = function (other) {
+		if (!other) {
+			return false;
+		}
+	
+		var instance = other instanceof Label;
+		var equalProperty = this.property().equals(other.property());
+	
+		var equalInverse = false;
+		if (this.inverse()) {
+			equalInverse = this.inverse().equals(other.inverse());
+		} else if (!other.inverse()) {
+			equalInverse = true;
+		}
+	
+		return instance && equalProperty && equalInverse;
+	};
+
+
+/***/ },
+/* 58 */
+/***/ function(module, exports) {
+
+	/**
+	 * A linkPart connects two force layout nodes.
+	 * It reprents a link which can be used in d3's force layout.
+	 * @param _domain
+	 * @param _range
+	 * @param _link
+	 */
+	module.exports = function (_domain, _range, _link) {
+		var linkPart = {},
+			domain = _domain,
+			link = _link,
+			range = _range;
+	
+		// Define d3 properties
+		Object.defineProperties(linkPart, {
+			"source": {value: domain, writable: true},
+			"target": {value: range, writable: true}
+		});
+	
+	
+		linkPart.domain = function () {
+			return domain;
+		};
+	
+		linkPart.link = function () {
+			return link;
+		};
+	
+		linkPart.range = function () {
+			return range;
+		};
+	
+	
+		return linkPart;
+	};
+
+
+/***/ },
+/* 59 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var BaseProperty = __webpack_require__(40);
+	var BaseNode = __webpack_require__(12);
+	var DatatypeNode = __webpack_require__(31);
+	var ObjectProperty = __webpack_require__(46);
+	var DatatypeProperty = __webpack_require__(39);
+	var RdfsSubClassOf = __webpack_require__(50);
+	var Label = __webpack_require__(57);
+	
+	module.exports = (function () {
+		var tools = {};
+	
+		tools.isLabel = function (element) {
+			return element instanceof Label;
+		};
+	
+		tools.isNode = function (element) {
+			return element instanceof BaseNode;
+		};
+	
+		tools.isDatatype = function (node) {
+			return node instanceof DatatypeNode;
+		};
+	
+		tools.isProperty = function(element) {
+			return element instanceof BaseProperty;
+		};
+	
+		tools.isObjectProperty = function (element) {
+			return element instanceof ObjectProperty;
+		};
+	
+		tools.isDatatypeProperty = function (element) {
+			return element instanceof DatatypeProperty;
+		};
+	
+		tools.isRdfsSubClassOf = function (property) {
+			return property instanceof RdfsSubClassOf;
+		};
+	
+		return function () {
+			return tools;
+		};
+	})();
+
+
+/***/ },
+/* 60 */
+/***/ function(module, exports) {
+
+	module.exports = function () {
+		/**
+		 * @constructor
+		 */
+		var options = {},
+			data,
+			graphContainerSelector,
+			classDistance = 200,
+			datatypeDistance = 120,
+			loopDistance = 100,
+			charge = -500,
+			gravity = 0.025,
+			linkStrength = 1,
+			height = 600,
+			width = 800,
+			selectionModules = [],
+			filterModules = [],
+			minMagnification = 0.1,
+			maxMagnification = 4,
+			compactNotation = false,
+			scaleNodesByIndividuals = false;
+	
+	
+		options.charge = function (p) {
+			if (!arguments.length) return charge;
+			charge = +p;
+			return options;
+		};
+	
+		options.classDistance = function (p) {
+			if (!arguments.length) return classDistance;
+			classDistance = +p;
+			return options;
+		};
+	
+		options.compactNotation = function (p) {
+			if (!arguments.length) return compactNotation;
+			compactNotation = p;
+			return options;
+		};
+	
+		options.data = function (p) {
+			if (!arguments.length) return data;
+			data = p;
+			return options;
+		};
+	
+		options.datatypeDistance = function (p) {
+			if (!arguments.length) return datatypeDistance;
+			datatypeDistance = +p;
+			return options;
+		};
+	
+		options.filterModules = function (p) {
+			if (!arguments.length) return filterModules;
+			filterModules = p;
+			return options;
+		};
+	
+		options.graphContainerSelector = function (p) {
+			if (!arguments.length) return graphContainerSelector;
+			graphContainerSelector = p;
+			return options;
+		};
+	
+		options.gravity = function (p) {
+			if (!arguments.length) return gravity;
+			gravity = +p;
+			return options;
+		};
+	
+		options.height = function (p) {
+			if (!arguments.length) return height;
+			height = +p;
+			return options;
+		};
+	
+		options.linkStrength = function (p) {
+			if (!arguments.length) return linkStrength;
+			linkStrength = +p;
+			return options;
+		};
+	
+		options.loopDistance = function (p) {
+			if (!arguments.length) return loopDistance;
+			loopDistance = p;
+			return options;
+		};
+	
+		options.minMagnification = function (p) {
+			if (!arguments.length) return minMagnification;
+			minMagnification = +p;
+			return options;
+		};
+	
+		options.maxMagnification = function (p) {
+			if (!arguments.length) return maxMagnification;
+			maxMagnification = +p;
+			return options;
+		};
+	
+		options.scaleNodesByIndividuals = function (p) {
+			if (!arguments.length) return scaleNodesByIndividuals;
+			scaleNodesByIndividuals = p;
+			return options;
+		};
+	
+		options.selectionModules = function (p) {
+			if (!arguments.length) return selectionModules;
+			selectionModules = p;
+			return options;
+		};
+	
+		options.width = function (p) {
+			if (!arguments.length) return width;
+			width = +p;
+			return options;
+		};
+	
+		return options;
+	};
+
+
+/***/ },
+/* 61 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {var OwlThing = __webpack_require__(27);
+	var RdfsLiteral = __webpack_require__(34);
+	var OwlDisjointWith = __webpack_require__(41);
+	var attributeParser = __webpack_require__(62)();
+	var elementTools = __webpack_require__(59)();
+	var nodePrototypeMap = __webpack_require__(8)();
+	var propertyPrototypeMap = __webpack_require__(38)();
+	
+	/**
+	 * Encapsulates the parsing and preparation logic of the input data.
+	 * @param graph the graph object that will be passed to the elements
+	 * @returns {{}}
+	 */
+	module.exports = function (graph) {
+		var parser = {},
+			nodes,
+			properties,
+			classMap,
+			propertyMap;
+	
+		/**
+		 * Parses the ontology data and preprocesses it (e.g. connecting inverse properties and so on).
+		 * @param ontologyData the loaded ontology json file
+		 */
+		parser.parse = function (ontologyData) {
+			if (!ontologyData) {
+				nodes = [];
+				properties = [];
+				return;
+			}
+	
+			var classes = combineClasses(ontologyData.class, ontologyData.classAttribute),
+				datatypes = combineClasses(ontologyData.datatype, ontologyData.datatypeAttribute),
+				combinedClassesAndDatatypes = classes.concat(datatypes),
+				combinedProperties;
+	
+			// Inject properties for unions, intersections, ...
+			addSetOperatorProperties(combinedClassesAndDatatypes, ontologyData.property);
+	
+			combinedProperties = combineProperties(ontologyData.property, ontologyData.propertyAttribute);
+	
+			classMap = mapElements(combinedClassesAndDatatypes);
+			propertyMap = mapElements(combinedProperties);
+	
+			mergeRangesOfEquivalentProperties(combinedProperties, combinedClassesAndDatatypes);
+	
+			// Process the graph data
+			convertTypesToIris(combinedClassesAndDatatypes, ontologyData.namespace);
+			convertTypesToIris(combinedProperties, ontologyData.namespace);
+	
+			nodes = createNodeStructure(combinedClassesAndDatatypes, classMap);
+			properties = createPropertyStructure(combinedProperties, classMap, propertyMap);
+		};
+	
+		/**
+		 * @return {Array} the preprocessed nodes
+		 */
+		parser.nodes = function () {
+			return nodes;
+		};
+	
+		/**
+		 * @returns {Array} the preprocessed properties
+		 */
+		parser.properties = function () {
+			return properties;
+		};
+	
+		/**
+		 * Combines the passed objects with its attributes and prototypes. This also applies
+		 * attributes defined in the base of the prototype.
+		 */
+		function combineClasses(baseObjects, attributes) {
+			var combinations = [];
+			var prototypeMap = createLowerCasePrototypeMap(nodePrototypeMap);
+	
+			if (baseObjects) {
+				baseObjects.forEach(function (element) {
+					var matchingAttribute;
+	
+					if (attributes) {
+						// Look for an attribute with the same id and merge them
+						for (var i = 0; i < attributes.length; i++) {
+							var attribute = attributes[i];
+							if (element.id === attribute.id) {
+								matchingAttribute = attribute;
+								break;
+							}
+						}
+						addAdditionalAttributes(element, matchingAttribute);
+					}
+	
+					// Then look for a prototype to add its properties
+					var Prototype = prototypeMap.get(element.type.toLowerCase());
+	
+					if (Prototype) {
+						addAdditionalAttributes(element, Prototype); // TODO might be unnecessary
+	
+						var node = new Prototype(graph);
+						node.annotations(element.annotations)
+							.comment(element.comment)
+							.complement(element.complement)
+							.description(element.description)
+							.equivalents(element.equivalent)
+							.id(element.id)
+							.imgUrl(element.imgUrl)
+							.intersection(element.intersection)
+							.label(element.label)
+							// .type(element.type) Ignore, because we predefined it
+							.union(element.union)
+							.iri(element.iri);
+	
+						// Create node objects for all individuals
+						if (element.individuals) {
+							element.individuals.forEach(function (individual) {
+								var individualNode = new Prototype(graph);
+								individualNode.label(individual.labels)
+									.iri(individual.iri);
+	
+								node.individuals().push(individualNode);
+							});
+						}
+	
+						if (element.attributes) {
+							var deduplicatedAttributes = d3.set(element.attributes.concat(node.attributes()));
+							node.attributes(deduplicatedAttributes.values());
+						}
+	
+						combinations.push(node);
+					} else {
+						console.error("Unknown element type: " + element.type);
+					}
+				});
+			}
+	
+			return combinations;
+		}
+	
+		function combineProperties(baseObjects, attributes) {
+			var combinations = [];
+			var prototypeMap = createLowerCasePrototypeMap(propertyPrototypeMap);
+	
+			if (baseObjects) {
+				baseObjects.forEach(function (element) {
+					var matchingAttribute;
+	
+					if (attributes) {
+						// Look for an attribute with the same id and merge them
+						for (var i = 0; i < attributes.length; i++) {
+							var attribute = attributes[i];
+							if (element.id === attribute.id) {
+								matchingAttribute = attribute;
+								break;
+							}
+						}
+						addAdditionalAttributes(element, matchingAttribute);
+					}
+	
+					// Then look for a prototype to add its properties
+					var Prototype = prototypeMap.get(element.type.toLowerCase());
+	
+					if (Prototype) {
+						// Create the matching object and set the properties
+						var property = new Prototype(graph);
+						property.annotations(element.annotations)
+							.cardinality(element.cardinality)
+							.comment(element.comment)
+							.domain(element.domain)
+							.description(element.description)
+							.equivalents(element.equivalent)
+							.id(element.id)
+							.inverse(element.inverse)
+							.label(element.label)
+							.minCardinality(element.minCardinality)
+							.maxCardinality(element.maxCardinality)
+							.range(element.range)
+							.subproperties(element.subproperty)
+							.superproperties(element.superproperty)
+							// .type(element.type) Ignore, because we predefined it
+							.iri(element.iri);
+	
+						if (element.attributes) {
+							var deduplicatedAttributes = d3.set(element.attributes.concat(property.attributes()));
+							property.attributes(deduplicatedAttributes.values());
+						}
+	
+						combinations.push(property);
+					} else {
+						console.error("Unknown element type: " + element.type);
+					}
+	
+				});
+			}
+	
+			return combinations;
+		}
+	
+		function createLowerCasePrototypeMap(prototypeMap) {
+			return d3.map(prototypeMap.values(), function (Prototype) {
+				return new Prototype().type().toLowerCase();
+			});
+		}
+	
+		/**
+		 * Really dirty implementation of the range merging of equivalent Ids,
+		 * but this will be moved to the converter.
+		 * @param properties
+		 * @param nodes
+		 */
+		function mergeRangesOfEquivalentProperties(properties, nodes) {
+			var backedUpNodes = nodes.slice(),
+				hiddenNodeIds = d3.set(),
+				i, l, j, k,
+				prefix = "GENERATED-MERGED_RANGE-";
+	
+			// clear the original array
+			nodes.length = 0;
+	
+			for (i = 0, l = properties.length; i < l; i++) {
+				var property = properties[i],
+					equivalents = property.equivalents();
+	
+				if (equivalents.length === 0) {
+					continue;
+				}
+	
+				// quickfix, because all equivalent properties have the equivalent attribute
+				if (property.range().indexOf(prefix) === 0) {
+					continue;
+				}
+	
+				var mergedRange;
+				if (elementTools.isDatatypeProperty(property)) {
+					mergedRange = new RdfsLiteral(graph);
+				} else {
+					mergedRange = new OwlThing(graph);
+				}
+				mergedRange.id(prefix + property.id());
+				nodes.push(mergedRange);
+	
+				var hiddenNodeId = property.range();
+				property.range(mergedRange.id());
+	
+				for (j = 0, k = equivalents.length; j < k; j++) {
+					var equivalentId = equivalents[j],
+						equivProperty = propertyMap[equivalentId];
+	
+					var oldRange = equivProperty.range();
+					equivProperty.range(mergedRange.id());
+					if (!isDomainOrRangeOfOtherProperty(oldRange, properties)) {
+						hiddenNodeIds.add(oldRange);
+					}
+				}
+	
+				// only merge if this property was the only connected one
+				if (!isDomainOrRangeOfOtherProperty(hiddenNodeId, properties)) {
+					hiddenNodeIds.add(hiddenNodeId);
+				}
+			}
+	
+			for (i = 0, l = backedUpNodes.length; i < l; i++) {
+				var node = backedUpNodes[i];
+	
+				if (!hiddenNodeIds.has(node.id())) {
+					nodes.push(node);
+				}
+			}
+	
+			// Create a map again
+			classMap = mapElements(nodes);
+		}
+	
+		function isDomainOrRangeOfOtherProperty(nodeId, properties) {
+			var i, l;
+	
+			for (i = 0, l = properties.length; i < l; i++) {
+				var property = properties[i];
+				if (property.domain() === nodeId || property.range() === nodeId) {
+					return true;
+				}
+			}
+	
+			return false;
+		}
+	
+		/**
+		 * Checks all attributes which have to be rewritten.
+		 * For example:
+		 * <b>equivalent</b> is filled with only ID's of the corresponding nodes. It would be better to used the
+		 * object instead of the ID so we swap the ID's with the correct object reference and can delete it from drawing
+		 * because it is not necessary.
+		 */
+		function createNodeStructure(rawNodes, classMap) {
+			var nodes = [];
+	
+			// Set the default values
+			var maxIndividualCount = 0;
+			rawNodes.forEach(function (node) {
+				maxIndividualCount = Math.max(maxIndividualCount, node.individuals().length);
+				node.visible(true);
+			});
+	
+			rawNodes.forEach(function (node) {
+				// Merge and connect the equivalent nodes
+				processEquivalentIds(node, classMap);
+	
+				attributeParser.parseClassAttributes(node);
+	
+				node.maxIndividualCount(maxIndividualCount);
+			});
+	
+			// Collect all nodes that should be displayed
+			rawNodes.forEach(function (node) {
+				if (node.visible()) {
+					nodes.push(node);
+				}
+			});
+	
+			return nodes;
+		}
+	
+		/**
+		 * Sets the disjoint attribute of the nodes if a disjoint label is found.
+		 * @param property
+		 */
+		function processDisjoints(property) {
+			if (property instanceof OwlDisjointWith === false) {
+				return;
+			}
+	
+			var domain = property.domain(),
+				range = property.range();
+	
+			// Check the domain.
+			if (!domain.disjointWith()) {
+				domain.disjointWith([]);
+			}
+	
+			// Check the range.
+			if (!range.disjointWith()) {
+				range.disjointWith([]);
+			}
+	
+			domain.disjointWith().push(property.range());
+			range.disjointWith().push(property.domain());
+		}
+	
+		/**
+		 * Connect all properties and also their sub- and superproperties.
+		 * We iterate over the rawProperties array because it is way faster than iterating
+		 * over an object and its attributes.
+		 *
+		 * @param rawProperties the properties
+		 * @param classMap a map of all classes
+		 * @param propertyMap the properties in a map
+		 */
+		function createPropertyStructure(rawProperties, classMap, propertyMap) {
+			var properties = [];
+	
+			// Set default values
+			rawProperties.forEach(function (property) {
+				property.visible(true);
+			});
+	
+			// Connect properties
+			rawProperties.forEach(function (property) {
+				var domain,
+					range,
+					domainObject,
+					rangeObject,
+					inverse;
+	
+				/* Skip properties that have no information about their domain and range, like
+				 inverse properties with optional inverse and optional domain and range attributes */
+				if ((property.domain() && property.range()) || property.inverse()) {
+	
+					var inversePropertyId = findId(property.inverse());
+					// Look if an inverse property exists
+					if (inversePropertyId) {
+						inverse = propertyMap[inversePropertyId];
+						if (!inverse) {
+							console.warn("No inverse property was found for id: " + inversePropertyId);
+						}
+					}
+	
+					// Either domain and range are set on this property or at the inverse
+					if (typeof property.domain() !== "undefined" && typeof property.range() !== "undefined") {
+						domain = findId(property.domain());
+						range = findId(property.range());
+	
+						domainObject = classMap[domain];
+						rangeObject = classMap[range];
+					} else if (inverse) {
+						// Domain and range need to be switched
+						domain = findId(inverse.range());
+						range = findId(inverse.domain());
+	
+						domainObject = classMap[domain];
+						rangeObject = classMap[range];
+					} else {
+						console.warn("Domain and range not found for property: " + property.id());
+					}
+	
+					// Set the references on this property
+					property.domain(domainObject);
+					property.range(rangeObject);
+	
+					// Also set the attributes of the inverse property
+					if (inverse) {
+						property.inverse(inverse);
+						inverse.inverse(property);
+	
+						// Switch domain and range
+						inverse.domain(rangeObject);
+						inverse.range(domainObject);
+					}
+				}
+	
+				// Reference sub- and superproperties
+				referenceSubOrSuperProperties(property.subproperties());
+				referenceSubOrSuperProperties(property.superproperties());
+			});
+	
+			// Merge equivalent properties and process disjoints.
+			rawProperties.forEach(function (property) {
+				processEquivalentIds(property, propertyMap);
+				processDisjoints(property);
+	
+				attributeParser.parsePropertyAttributes(property);
+			});
+	
+			// Add additional information to the properties
+			rawProperties.forEach(function (property) {
+	
+				// Properties of merged classes should point to/from the visible equivalent class
+				var propertyWasRerouted = false;
+				if (wasNodeMerged(property.domain())) {
+					property.domain(property.domain().equivalentBase());
+					propertyWasRerouted = true;
+				}
+				if (wasNodeMerged(property.range())) {
+					property.range(property.range().equivalentBase());
+					propertyWasRerouted = true;
+				}
+	
+				// But there should not be two equal properties between the same domain and range
+				var equalProperty = getOtherEqualProperty(rawProperties, property);
+				if (propertyWasRerouted && equalProperty) {
+					property.visible(false);
+	
+					equalProperty.redundantProperties().push(property);
+				}
+	
+				// Hide property if source or target node is hidden
+				if (!property.domain().visible() || !property.range().visible()) {
+					property.visible(false);
+				}
+	
+				// Collect all properties that should be displayed
+				if (property.visible()) {
+					properties.push(property);
+				}
+			});
+	
+			return properties;
+		}
+	
+		function referenceSubOrSuperProperties(subOrSuperPropertiesArray) {
+			var i, l;
+	
+			if (!subOrSuperPropertiesArray) {
+				return;
+			}
+	
+			for (i = 0, l = subOrSuperPropertiesArray.length; i < l; ++i) {
+				var subOrSuperPropertyId = findId(subOrSuperPropertiesArray[i]);
+				var subOrSuperProperty = propertyMap[subOrSuperPropertyId];
+	
+				if (subOrSuperProperty) {
+					// Replace id with object
+					subOrSuperPropertiesArray[i] = subOrSuperProperty;
+				} else {
+					console.warn("No sub-/superproperty was found for id: " + subOrSuperPropertyId);
+				}
+			}
+		}
+	
+		function wasNodeMerged(node) {
+			return !node.visible() && node.equivalentBase();
+		}
+	
+		function getOtherEqualProperty(properties, referenceProperty) {
+			var i, l, property;
+	
+			for (i = 0, l = properties.length; i < l; i++) {
+				property = properties[i];
+	
+				if (referenceProperty === property) {
+					continue;
+				}
+				if (referenceProperty.domain() !== property.domain() ||
+					referenceProperty.range() !== property.range()) {
+					continue;
+				}
+	
+				// Check for an equal IRI, if non existent compare label and type
+				if (referenceProperty.iri() && property.iri()) {
+					if (referenceProperty.iri() === property.iri()) {
+						return property;
+					}
+				} else if (referenceProperty.type() === property.type() &&
+					referenceProperty.defaultLabel() === property.defaultLabel()) {
+					return property;
+				}
+			}
+	
+			return undefined;
+		}
+	
+		/**
+		 * Generates and adds properties for links to set operators.
+		 * @param classes unprocessed classes
+		 * @param properties unprocessed properties
+		 */
+		function addSetOperatorProperties(classes, properties) {
+			function addProperties(domainId, rangeIds, operatorType) {
+				if (!rangeIds) {
+					return;
+				}
+	
+				rangeIds.forEach(function (rangeId, index) {
+					var property = {
+						id: "GENERATED-" + operatorType + "-" + domainId + "-" + rangeId + "-" + index,
+						type: "setOperatorProperty",
+						domain: domainId,
+						range: rangeId
+					};
+	
+					properties.push(property);
+				});
+			}
+	
+			classes.forEach(function (clss) {
+				addProperties(clss.id(), clss.complement(), "COMPLEMENT");
+				addProperties(clss.id(), clss.intersection(), "INTERSECTION");
+				addProperties(clss.id(), clss.union(), "UNION");
+			});
+		}
+	
+		/**
+		 * Replaces the ids of equivalent nodes/properties with the matching objects, cross references them
+		 * and tags them as processed.
+		 * @param element a node or a property
+		 * @param elementMap a map where nodes/properties can be looked up
+		 */
+		function processEquivalentIds(element, elementMap) {
+			var eqIds = element.equivalents();
+	
+			if (!eqIds || element.equivalentBase()) {
+				return;
+			}
+	
+			// Replace ids with the corresponding objects
+			for (var i = 0, l = eqIds.length; i < l; ++i) {
+				var eqId = findId(eqIds[i]);
+				var eqObject = elementMap[eqId];
+	
+				if (eqObject) {
+					// Cross reference both objects
+					eqObject.equivalents(eqObject.equivalents());
+					eqObject.equivalents().push(element);
+					eqObject.equivalentBase(element);
+					eqIds[i] = eqObject;
+	
+					// Hide other equivalent nodes
+					eqObject.visible(false);
+				} else {
+					console.warn("No class/property was found for equivalent id: " + eqId);
+				}
+			}
+		}
+	
+		/**
+		 * Tries to convert the type to an iri and sets it.
+		 * @param elements classes or properties
+		 * @param namespaces an array of namespaces
+		 */
+		function convertTypesToIris(elements, namespaces) {
+			elements.forEach(function (element) {
+				if (typeof element.iri() === "string") {
+					element.iri(replaceNamespace(element.iri(), namespaces));
+				}
+			});
+		}
+	
+		/**
+		 * Creates a map by mapping the array with the passed function.
+		 * @param array the array
+		 * @returns {{}}
+		 */
+		function mapElements(array) {
+			var map = {};
+			for (var i = 0, length = array.length; i < length; i++) {
+				var element = array[i];
+				map[element.id()] = element;
+			}
+			return map;
+		}
+	
+		/**
+		 * Adds the attributes of the additional object to the base object, but doesn't
+		 * overwrite existing ones.
+		 *
+		 * @param base the base object
+		 * @param addition the object with additional data
+		 * @returns the combination is also returned
+		 */
+		function addAdditionalAttributes(base, addition) {
+			// Check for an undefined value
+			addition = addition || {};
+	
+			for (var addAttribute in addition) {
+				// Add the attribute if it doesn't exist
+				if (!(addAttribute in base) && addition.hasOwnProperty(addAttribute)) {
+					base[addAttribute] = addition[addAttribute];
+				}
+			}
+			return base;
+		}
+	
+		/**
+		 * Replaces the namespace (and the separator) if one exists and returns the new value.
+		 * @param address the address with a namespace in it
+		 * @param namespaces an array of namespaces
+		 * @returns {string} the processed address with the (possibly) replaced namespace
+		 */
+		function replaceNamespace(address, namespaces) {
+			var separatorIndex = address.indexOf(":");
+			if (separatorIndex === -1) {
+				return address;
+			}
+	
+			var namespaceName = address.substring(0, separatorIndex);
+	
+			for (var i = 0, length = namespaces.length; i < length; ++i) {
+				var namespace = namespaces[i];
+				if (namespaceName === namespace.name) {
+					return namespace.iri + address.substring(separatorIndex + 1);
+				}
+			}
+	
+			return address;
+		}
+	
+		/**
+		 * Looks whether the passed object is already the id or if it was replaced
+		 * with the object that belongs to the id.
+		 * @param object an id, a class or a property
+		 * @returns {string} the id of the passed object or undefined
+		 */
+		function findId(object) {
+			if (!object) {
+				return undefined;
+			} else if (typeof object === "string") {
+				return object;
+			} else if ("id" in object) {
+				return object.id();
+			} else {
+				console.warn("No Id was found for this object: " + object);
+				return undefined;
+			}
+		}
+	
+		return parser;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 62 */
+/***/ function(module, exports) {
+
+	/**
+	 * Parses the attributes an element has and sets the corresponding attributes.
+	 * @returns {Function}
+	 */
+	module.exports = (function () {
+		var attributeParser = {},
+		// Style
+			DEPRECATED = "deprecated",
+			EXTERNAL = "external",
+			DATATYPE = "datatype",
+			OBJECT = "object",
+			RDF = "rdf",
+		// Representations
+			FUNCTIONAL = "functional",
+			INVERSE_FUNCTIONAL = "inverse functional",
+			TRANSITIVE = "transitive",
+			SYMMETRIC = "symmetric";
+	
+		/**
+		 * Parses and sets the attributes of a class.
+		 * @param clazz
+		 */
+		attributeParser.parseClassAttributes = function (clazz) {
+			if (!(clazz.attributes() instanceof Array)) {
+				return;
+			}
+	
+			parseVisualAttributes(clazz);
+			parseClassIndications(clazz);
+		};
+	
+		function parseVisualAttributes(element) {
+			var orderedAttributes = [DEPRECATED, EXTERNAL, DATATYPE, OBJECT, RDF],
+				i, l, attribute;
+	
+			for (i = 0, l = orderedAttributes.length; i < l; i++) {
+				attribute = orderedAttributes[i];
+				if (element.attributes().indexOf(attribute) >= 0) {
+					element.visualAttribute(attribute);
+	
+					// Just a single attribute is possible
+					break;
+				}
+			}
+		}
+	
+		function parseClassIndications(clazz) {
+			var indications = [DEPRECATED, EXTERNAL],
+				i, l, indication;
+	
+			for (i = 0, l = indications.length; i < l; i++) {
+				indication = indications[i];
+	
+				if (clazz.attributes().indexOf(indication) >= 0) {
+					clazz.indications().push(indication);
+				}
+			}
+		}
+	
+		/**
+		 * Parses and sets the attributes of a property.
+		 * @param property
+		 */
+		attributeParser.parsePropertyAttributes = function (property) {
+			if (!(property.attributes() instanceof Array)) {
+				return;
+			}
+	
+			parseVisualAttributes(property);
+			parsePropertyIndications(property);
+		};
+	
+		function parsePropertyIndications(property) {
+			var indications = [FUNCTIONAL, INVERSE_FUNCTIONAL, SYMMETRIC, TRANSITIVE],
+				i, l, indication;
+	
+			for (i = 0, l = indications.length; i < l; i++) {
+				indication = indications[i];
+	
+				if (property.attributes().indexOf(indication) >= 0) {
+					property.indications().push(indication);
+				}
+			}
+		}
+	
+	
+		return function () {
+			// Return a function to keep module interfaces consistent
+			return attributeParser;
+		};
+	})();
+
+
+/***/ },
+/* 63 */
+/***/ function(module, exports) {
+
+	/**
+	 * This module abuses the filter function a bit like the statistics module. Nothing is filtered.
+	 *
+	 * @returns {{}}
+	 */
+	module.exports = function (graph) {
+	
+		var DEFAULT_STATE = false;
+	
+		var filter = {},
+			nodes,
+			properties,
+			enabled = DEFAULT_STATE,
+			filteredNodes,
+			filteredProperties;
+	
+	
+		/**
+		 * If enabled, redundant details won't be drawn anymore.
+		 * @param untouchedNodes
+		 * @param untouchedProperties
+		 */
+		filter.filter = function (untouchedNodes, untouchedProperties) {
+			nodes = untouchedNodes;
+			properties = untouchedProperties;
+	
+			graph.options().compactNotation(enabled);
+	
+			filteredNodes = nodes;
+			filteredProperties = properties;
+		};
+	
+		filter.enabled = function (p) {
+			if (!arguments.length) return enabled;
+			enabled = p;
+			return filter;
+		};
+	
+		filter.reset = function () {
+			enabled = DEFAULT_STATE;
+		};
+	
+	
+		// Functions a filter must have
+		filter.filteredNodes = function () {
+			return filteredNodes;
+		};
+	
+		filter.filteredProperties = function () {
+			return filteredProperties;
+		};
+	
+	
+		return filter;
+	};
+
+
+/***/ },
+/* 64 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var elementTools = __webpack_require__(59)();
+	var filterTools = __webpack_require__(65)();
+	
+	module.exports = function () {
+	
+		var filter = {},
+			nodes,
+			properties,
+			enabled = false,
+			filteredNodes,
+			filteredProperties;
+	
+	
+		/**
+		 * If enabled, all datatypes and literals including connected properties are filtered.
+		 * @param untouchedNodes
+		 * @param untouchedProperties
+		 */
+		filter.filter = function (untouchedNodes, untouchedProperties) {
+			nodes = untouchedNodes;
+			properties = untouchedProperties;
+	
+			if (this.enabled()) {
+				removeDatatypesAndLiterals();
+			}
+	
+			filteredNodes = nodes;
+			filteredProperties = properties;
+		};
+	
+		function removeDatatypesAndLiterals() {
+			var filteredData = filterTools.filterNodesAndTidy(nodes, properties, isNoDatatypeOrLiteral);
+	
+			nodes = filteredData.nodes;
+			properties = filteredData.properties;
+		}
+	
+		function isNoDatatypeOrLiteral(node) {
+			return !elementTools.isDatatype(node);
+		}
+	
+		filter.enabled = function (p) {
+			if (!arguments.length) return enabled;
+			enabled = p;
+			return filter;
+		};
+	
+	
+		// Functions a filter must have
+		filter.filteredNodes = function () {
+			return filteredNodes;
+		};
+	
+		filter.filteredProperties = function () {
+			return filteredProperties;
+		};
+	
+	
+		return filter;
+	};
+
+
+/***/ },
+/* 65 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var elementTools = __webpack_require__(59)();
+	
+	module.exports = (function () {
+	
+		var tools = {};
+	
+		/**
+		 * Filters the passed nodes and removes dangling properties.
+		 * @param nodes
+		 * @param properties
+		 * @param shouldKeepNode function that returns true if the node should be kept
+		 * @returns {{nodes: Array, properties: Array}} the filtered nodes and properties
+		 */
+		tools.filterNodesAndTidy = function (nodes, properties, shouldKeepNode) {
+			var removedNodes = __webpack_require__(55)(),
+				cleanedNodes = [],
+				cleanedProperties = [];
+	
+			nodes.forEach(function (node) {
+				if (shouldKeepNode(node)) {
+					cleanedNodes.push(node);
+				} else {
+					removedNodes.add(node);
+				}
+			});
+	
+			properties.forEach(function (property) {
+				if (propertyHasVisibleNodes(removedNodes, property)) {
+					cleanedProperties.push(property);
+				} else if (elementTools.isDatatypeProperty(property)) {
+					// Remove floating datatypes/literals, because they belong to their datatype property
+					var index = cleanedNodes.indexOf(property.range());
+					if (index >= 0) {
+						cleanedNodes.splice(index, 1);
+					}
+				}
+			});
+	
+			return {
+				nodes: cleanedNodes,
+				properties: cleanedProperties
+			};
+		};
+	
+		/**
+		 * Returns true, if the domain and the range of this property have not been removed.
+		 * @param removedNodes
+		 * @param property
+		 * @returns {boolean} true if property isn't dangling
+		 */
+		function propertyHasVisibleNodes(removedNodes, property) {
+			return !removedNodes.has(property.domain()) && !removedNodes.has(property.range());
+		}
+	
+	
+		return function () {
+			return tools;
+		};
+	})();
+
+
+/***/ },
+/* 66 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var OwlDisjointWith = __webpack_require__(41);
+	
+	module.exports = function () {
+	
+		var filter = {},
+			nodes,
+			properties,
+		// According to the specification enabled by default
+			enabled = true,
+			filteredNodes,
+			filteredProperties;
+	
+	
+		/**
+		 * If enabled, all disjoint with properties are filtered.
+		 * @param untouchedNodes
+		 * @param untouchedProperties
+		 */
+		filter.filter = function (untouchedNodes, untouchedProperties) {
+			nodes = untouchedNodes;
+			properties = untouchedProperties;
+	
+			if (this.enabled()) {
+				removeDisjointWithProperties();
+			}
+	
+			filteredNodes = nodes;
+			filteredProperties = properties;
+		};
+	
+		function removeDisjointWithProperties() {
+			var cleanedProperties = [],
+				i, l, property;
+	
+			for (i = 0, l = properties.length; i < l; i++) {
+				property = properties[i];
+	
+				if (!(property instanceof OwlDisjointWith)) {
+					cleanedProperties.push(property);
+				}
+			}
+	
+			properties = cleanedProperties;
+		}
+	
+		filter.enabled = function (p) {
+			if (!arguments.length) return enabled;
+			enabled = p;
+			return filter;
+		};
+	
+	
+		// Functions a filter must have
+		filter.filteredNodes = function () {
+			return filteredNodes;
+		};
+	
+		filter.filteredProperties = function () {
+			return filteredProperties;
+		};
+	
+	
+		return filter;
+	};
+
+
+/***/ },
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {module.exports = function () {
+		var focuser = {},
+			focusedElement;
+	
+		focuser.handle = function (selectedElement) {
+			// Don't display details on a drag event, which will be prevented
+			if (d3.event.defaultPrevented) {
+				return;
+			}
+	
+			if (focusedElement !== undefined) {
+				focusedElement.toggleFocus();
+			}
+	
+			if (focusedElement !== selectedElement) {
+				selectedElement.toggleFocus();
+				focusedElement = selectedElement;
+			} else {
+				focusedElement = undefined;
+			}
+		};
+	
+		/**
+		 * Removes the focus if an element is focussed.
+		 */
+		focuser.reset = function () {
+			if (focusedElement) {
+				focusedElement.toggleFocus();
+				focusedElement = undefined;
+			}
+		};
+	
+		return focuser;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var elementTools = __webpack_require__(59)();
+	var filterTools = __webpack_require__(65)();
+	
+	module.exports = function () {
+	
+		var filter = {},
+			nodes,
+			properties,
+			enabled = true,
+			filteredNodes,
+			filteredProperties,
+			maxDegreeSetter,
+			degreeQueryFunction;
+	
+	
+		/**
+		 * If enabled, all nodes are filter by their node degree.
+		 * @param untouchedNodes
+		 * @param untouchedProperties
+		 */
+		filter.filter = function (untouchedNodes, untouchedProperties) {
+			nodes = untouchedNodes;
+			properties = untouchedProperties;
+	
+			setMaxLinkCount();
+	
+			if (this.enabled()) {
+				if (degreeQueryFunction instanceof Function) {
+					filterByNodeDegree(degreeQueryFunction());
+				} else {
+					console.error("No degree query function set.");
+				}
+			}
+	
+			filteredNodes = nodes;
+			filteredProperties = properties;
+		};
+	
+		function setMaxLinkCount() {
+			var maxLinkCount = 0;
+			for (var i = 0, l = nodes.length; i < l; i++) {
+				var linksWithoutDatatypes = filterOutDatatypes(nodes[i].links());
+	
+				maxLinkCount = Math.max(maxLinkCount, linksWithoutDatatypes.length);
+			}
+	
+			if (maxDegreeSetter instanceof Function) {
+				maxDegreeSetter(maxLinkCount);
+			}
+		}
+	
+		function filterOutDatatypes(links) {
+			return links.filter(function (link) {
+				return !elementTools.isDatatypeProperty(link.property());
+			});
+		}
+	
+		function filterByNodeDegree(minDegree) {
+			var filteredData = filterTools.filterNodesAndTidy(nodes, properties, hasRequiredDegree(minDegree));
+	
+			nodes = filteredData.nodes;
+			properties = filteredData.properties;
+		}
+	
+		function hasRequiredDegree(minDegree) {
+			return function (node) {
+				return filterOutDatatypes(node.links()).length >= minDegree;
+			};
+		}
+	
+		filter.setMaxDegreeSetter = function (maxNodeDegreeSetter) {
+			maxDegreeSetter = maxNodeDegreeSetter;
+		};
+	
+		filter.setDegreeQueryFunction = function (nodeDegreeQueryFunction) {
+			degreeQueryFunction = nodeDegreeQueryFunction;
+		};
+	
+		filter.enabled = function (p) {
+			if (!arguments.length) return enabled;
+			enabled = p;
+			return filter;
+		};
+	
+	
+		// Functions a filter must have
+		filter.filteredNodes = function () {
+			return filteredNodes;
+		};
+	
+		filter.filteredProperties = function () {
+			return filteredProperties;
+		};
+	
+	
+		return filter;
+	};
+
+
+/***/ },
+/* 69 */
+/***/ function(module, exports) {
+
+	/**
+	 * This module abuses the filter function a bit like the statistics module. Nothing is filtered.
+	 *
+	 * @returns {{}}
+	 */
+	module.exports = function (graph) {
+	
+		var DEFAULT_STATE = true;
+	
+		var filter = {},
+			nodes,
+			properties,
+			enabled = DEFAULT_STATE,
+			filteredNodes,
+			filteredProperties;
+	
+	
+		/**
+		 * If enabled, the scaling of nodes according to individuals will be enabled.
+		 * @param untouchedNodes
+		 * @param untouchedProperties
+		 */
+		filter.filter = function (untouchedNodes, untouchedProperties) {
+			nodes = untouchedNodes;
+			properties = untouchedProperties;
+	
+			graph.options().scaleNodesByIndividuals(enabled);
+	
+			filteredNodes = nodes;
+			filteredProperties = properties;
+		};
+	
+		filter.enabled = function (p) {
+			if (!arguments.length) return enabled;
+			enabled = p;
+			return filter;
+		};
+	
+		filter.reset = function () {
+			enabled = DEFAULT_STATE;
+		};
+	
+	
+		// Functions a filter must have
+		filter.filteredNodes = function () {
+			return filteredNodes;
+		};
+	
+		filter.filteredProperties = function () {
+			return filteredProperties;
+		};
+	
+	
+		return filter;
+	};
+
+
+/***/ },
+/* 70 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var elementTools = __webpack_require__(59)();
+	
+	module.exports = function () {
+		var pap = {},
+			enabled = false,
+			pinnedNodes = [];
+	
+		pap.handle = function (selectedElement) {
+			if (!enabled) {
+				return;
+			}
+	
+			if (!elementTools.isDatatype(selectedElement) && !selectedElement.pinned()) {
+				selectedElement.drawPin();
+				pinnedNodes.push(selectedElement);
+			}
+		};
+	
+		pap.enabled = function (p) {
+			if (!arguments.length) return enabled;
+			enabled = p;
+			return pap;
+		};
+	
+		pap.reset = function () {
+			var i = 0, l = pinnedNodes.length;
+			for (; i < l; i++) {
+				pinnedNodes[i].removePin();
+			}
+			// Clear the array of stored nodes
+			pinnedNodes.length = 0;
+		};
+	
+		return pap;
+	};
+
+
+/***/ },
+/* 71 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {module.exports = function (handlerFunction) {
+		var viewer = {},
+			lastSelectedElement;
+	
+		viewer.handle = function (selectedElement) {
+			// Don't display details on a drag event, which will be prevented
+			if (d3.event.defaultPrevented) {
+				return;
+			}
+	
+			var isSelection = true;
+	
+			// Deselection of the focused element
+			if (lastSelectedElement === selectedElement) {
+				isSelection = false;
+			}
+	
+			if (handlerFunction instanceof Function) {
+				if (isSelection) {
+					handlerFunction(selectedElement);
+				} else {
+					handlerFunction(undefined);
+				}
+			}
+	
+			if (isSelection) {
+				lastSelectedElement = selectedElement;
+			} else {
+				lastSelectedElement = undefined;
+			}
+		};
+	
+		/**
+		 * Resets the displayed information to its default.
+		 */
+		viewer.reset = function () {
+			if (lastSelectedElement) {
+				handlerFunction(undefined);
+				lastSelectedElement = undefined;
+			}
+		};
+	
+		return viewer;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 72 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var SetOperatorNode = __webpack_require__(22);
+	
+	module.exports = function () {
+	
+		var filter = {},
+			nodes,
+			properties,
+			enabled = false,
+			filteredNodes,
+			filteredProperties,
+			filterTools = __webpack_require__(65)();
+	
+	
+		/**
+		 * If enabled, all set operators including connected properties are filtered.
+		 * @param untouchedNodes
+		 * @param untouchedProperties
+		 */
+		filter.filter = function (untouchedNodes, untouchedProperties) {
+			nodes = untouchedNodes;
+			properties = untouchedProperties;
+	
+			if (this.enabled()) {
+				removeSetOperators();
+			}
+	
+			filteredNodes = nodes;
+			filteredProperties = properties;
+		};
+	
+		function removeSetOperators() {
+			var filteredData = filterTools.filterNodesAndTidy(nodes, properties, isNoSetOperator);
+	
+			nodes = filteredData.nodes;
+			properties = filteredData.properties;
+		}
+	
+		function isNoSetOperator(node) {
+			return !(node instanceof SetOperatorNode);
+		}
+	
+		filter.enabled = function (p) {
+			if (!arguments.length) return enabled;
+			enabled = p;
+			return filter;
+		};
+	
+	
+		// Functions a filter must have
+		filter.filteredNodes = function () {
+			return filteredNodes;
+		};
+	
+		filter.filteredProperties = function () {
+			return filteredProperties;
+		};
+	
+	
+		return filter;
+	};
+
+
+/***/ },
+/* 73 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(d3) {var SetOperatorNode = __webpack_require__(22);
+	var OwlThing = __webpack_require__(27);
+	var OwlNothing = __webpack_require__(26);
+	var elementTools = __webpack_require__(59)();
+	
+	module.exports = function () {
+	
+		var statistics = {},
+			nodeCount,
+			occurencesOfClassAndDatatypeTypes = {},
+			edgeCount,
+			occurencesOfPropertyTypes = {},
+			classCount,
+			datatypeCount,
+			datatypePropertyCount,
+			objectPropertyCount,
+			propertyCount,
+			totalIndividualCount,
+			filteredNodes,
+			filteredProperties;
+	
+	
+		statistics.filter = function (classesAndDatatypes, properties) {
+			resetStoredData();
+	
+			storeTotalCounts(classesAndDatatypes, properties);
+			storeClassAndDatatypeCount(classesAndDatatypes);
+			storePropertyCount(properties);
+	
+			storeOccurencesOfTypes(classesAndDatatypes, occurencesOfClassAndDatatypeTypes);
+			storeOccurencesOfTypes(properties, occurencesOfPropertyTypes);
+	
+			storeTotalIndividualCount(classesAndDatatypes);
+	
+			filteredNodes = classesAndDatatypes;
+			filteredProperties = properties;
+		};
+	
+		function resetStoredData() {
+			nodeCount = 0;
+			edgeCount = 0;
+			classCount = 0;
+			datatypeCount = 0;
+			datatypePropertyCount = 0;
+			objectPropertyCount = 0;
+			propertyCount = 0;
+			totalIndividualCount = 0;
+		}
+	
+		function storeTotalCounts(classesAndDatatypes, properties) {
+			nodeCount = classesAndDatatypes.length;
+	
+			var seenProperties = __webpack_require__(55)(), i, l, property;
+			for (i = 0, l = properties.length; i < l; i++) {
+				property = properties[i];
+				if (!seenProperties.has(property)) {
+					edgeCount += 1;
+				}
+	
+				seenProperties.add(property);
+				if (property.inverse()) {
+					seenProperties.add(property.inverse());
+				}
+			}
+		}
+	
+		function storeClassAndDatatypeCount(classesAndDatatypes) {
+			// Each datatype should be counted just a single time
+			var datatypeSet = d3.set(),
+				hasThing = false,
+				hasNothing = false;
+	
+			classesAndDatatypes.forEach(function (node) {
+				if (elementTools.isDatatype(node)) {
+					datatypeSet.add(node.defaultLabel());
+				} else if (!(node instanceof SetOperatorNode)) {
+					if (node instanceof OwlThing) {
+						hasThing = true;
+					} else if (node instanceof OwlNothing) {
+						hasNothing = true;
+					} else {
+						classCount += 1;
+						classCount += countElementArray(node.equivalents());
+					}
+				}
+			});
+	
+			// count things and nothings just a single time
+			classCount += hasThing ? 1 : 0;
+			classCount += hasNothing ? 1 : 0;
+	
+			datatypeCount = datatypeSet.size();
+		}
+	
+		function storePropertyCount(properties) {
+			for (var i = 0, l = properties.length; i < l; i++) {
+				var property = properties[i];
+	
+				if (elementTools.isObjectProperty(property)) {
+					objectPropertyCount += getExtendedPropertyCount(property);
+				} else if (elementTools.isDatatypeProperty(properties)) {
+					datatypePropertyCount += getExtendedPropertyCount(property);
+				}
+			}
+			propertyCount = objectPropertyCount + datatypePropertyCount;
+		}
+	
+		function getExtendedPropertyCount(property) {
+			// count the property itself
+			var count = 1;
+	
+			// and count properties this property represents
+			count += countElementArray(property.equivalents());
+			count += countElementArray(property.redundantProperties());
+	
+			return count;
+		}
+	
+		function countElementArray(properties) {
+			if (properties) {
+				return properties.length;
+			}
+			return 0;
+		}
+	
+		function storeOccurencesOfTypes(elements, storage) {
+			elements.forEach(function (element) {
+				var type = element.type(),
+					typeCount = storage[type];
+	
+				if (typeof typeCount === "undefined") {
+					typeCount = 0;
+				} else {
+					typeCount += 1;
+				}
+				storage[type] = typeCount;
+			});
+		}
+	
+		function storeTotalIndividualCount(nodes) {
+			var totalCount = 0;
+			for (var i = 0, l = nodes.length; i < l; i++) {
+				totalCount += nodes[i].individuals().length || 0;
+			}
+			totalIndividualCount = totalCount;
+		}
+	
+	
+		statistics.nodeCount = function () {
+			return nodeCount;
+		};
+	
+		statistics.occurencesOfClassAndDatatypeTypes = function () {
+			return occurencesOfClassAndDatatypeTypes;
+		};
+	
+		statistics.edgeCount = function () {
+			return edgeCount;
+		};
+	
+		statistics.occurencesOfPropertyTypes = function () {
+			return occurencesOfPropertyTypes;
+		};
+	
+		statistics.classCount = function () {
+			return classCount;
+		};
+	
+		statistics.datatypeCount = function () {
+			return datatypeCount;
+		};
+	
+		statistics.datatypePropertyCount = function () {
+			return datatypePropertyCount;
+		};
+	
+		statistics.objectPropertyCount = function () {
+			return objectPropertyCount;
+		};
+	
+		statistics.propertyCount = function () {
+			return propertyCount;
+		};
+	
+		statistics.totalIndividualCount = function () {
+			return totalIndividualCount;
+		};
+	
+	
+		// Functions a filter must have
+		statistics.filteredNodes = function () {
+			return filteredNodes;
+		};
+	
+		statistics.filteredProperties = function () {
+			return filteredProperties;
+		};
+	
+	
+		return statistics;
+	};
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ },
+/* 74 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var elementTools = __webpack_require__(59)();
+	
+	module.exports = function () {
+	
+		var filter = {},
+			nodes,
+			properties,
+			enabled = false,
+			filteredNodes,
+			filteredProperties;
+	
+	
+		/**
+		 * If enabled subclasses that have only subclass properties are filtered.
+		 * @param untouchedNodes
+		 * @param untouchedProperties
+		 */
+		filter.filter = function (untouchedNodes, untouchedProperties) {
+			nodes = untouchedNodes;
+			properties = untouchedProperties;
+	
+			if (this.enabled()) {
+				hideSubclassesWithoutOwnProperties();
+			}
+	
+			filteredNodes = nodes;
+			filteredProperties = properties;
+		};
+	
+		function hideSubclassesWithoutOwnProperties() {
+			var unneededProperties = [],
+				unneededClasses = [],
+				subclasses = [],
+				connectedProperties,
+				subclass,
+				property,
+				i, // index,
+				l; // length
+	
+	
+			for (i = 0, l = properties.length; i < l; i++) {
+				property = properties[i];
+				if (elementTools.isRdfsSubClassOf(property)) {
+					subclasses.push(property.domain());
+				}
+			}
+	
+			for (i = 0, l = subclasses.length; i < l; i++) {
+				subclass = subclasses[i];
+				connectedProperties = findRelevantConnectedProperties(subclass, properties);
+	
+				// Only remove the node and its properties, if they're all subclassOf properties
+				if (areOnlySubclassProperties(connectedProperties) &&
+					doesNotInheritFromMultipleClasses(subclass, connectedProperties)) {
+	
+					unneededProperties = unneededProperties.concat(connectedProperties);
+					unneededClasses.push(subclass);
+				}
+			}
+	
+			nodes = removeUnneededElements(nodes, unneededClasses);
+			properties = removeUnneededElements(properties, unneededProperties);
+		}
+	
+		/**
+		 * Looks recursively for connected properties. Because just subclasses are relevant,
+		 * we just look recursively for their properties.
+		 *
+		 * @param node
+		 * @param allProperties
+		 * @param visitedNodes a visited nodes which is used on recursive invocation
+		 * @returns {Array}
+		 */
+		function findRelevantConnectedProperties(node, allProperties, visitedNodes) {
+			var connectedProperties = [],
+				property,
+				i,
+				l;
+	
+			for (i = 0, l = allProperties.length; i < l; i++) {
+				property = allProperties[i];
+				if (property.domain() === node ||
+					property.range() === node) {
+	
+					connectedProperties.push(property);
+	
+	
+					/* Special case: SuperClass <-(1) Subclass <-(2) Subclass ->(3) e.g. Datatype
+					 * We need to find the last property recursively. Otherwise, we would remove the subClassOf
+					 * property (1) because we didn't see the datatype property (3).
+					 */
+	
+					// Look only for subclass properties, because these are the relevant properties
+					if (elementTools.isRdfsSubClassOf(property)) {
+						var domain = property.domain();
+						visitedNodes = visitedNodes || __webpack_require__(55)();
+	
+						// If we have the range, there might be a nested property on the domain
+						if (node === property.range() && !visitedNodes.has(domain)) {
+							visitedNodes.add(domain);
+							var nestedConnectedProperties = findRelevantConnectedProperties(domain, allProperties, visitedNodes);
+							connectedProperties = connectedProperties.concat(nestedConnectedProperties);
+						}
+					}
+				}
+			}
+	
+			return connectedProperties;
+		}
+	
+		function areOnlySubclassProperties(connectedProperties) {
+			var onlySubclassProperties = true,
+				property,
+				i,
+				l;
+	
+			for (i = 0, l = connectedProperties.length; i < l; i++) {
+				property = connectedProperties[i];
+	
+				if (!elementTools.isRdfsSubClassOf(property)) {
+					onlySubclassProperties = false;
+					break;
+				}
+			}
+	
+			return onlySubclassProperties;
+		}
+	
+		function doesNotInheritFromMultipleClasses(subclass, connectedProperties) {
+			var superClassCount = 0;
+	
+			for (var i = 0, l = connectedProperties.length; i < l; i++) {
+				var property = connectedProperties[i];
+	
+				if (property.domain() === subclass) {
+					superClassCount += 1;
+				}
+	
+				if (superClassCount > 1) {
+					return false;
+				}
+			}
+	
+			return true;
+		}
+	
+		function removeUnneededElements(array, removableElements) {
+			var disjoint = [],
+				element,
+				i,
+				l;
+	
+			for (i = 0, l = array.length; i < l; i++) {
+				element = array[i];
+				if (removableElements.indexOf(element) === -1) {
+					disjoint.push(element);
+				}
+			}
+			return disjoint;
+		}
+	
+		filter.enabled = function (p) {
+			if (!arguments.length) return enabled;
+			enabled = p;
+			return filter;
+		};
+	
+	
+		// Functions a filter must have
+		filter.filteredNodes = function () {
+			return filteredNodes;
+		};
+	
+		filter.filteredProperties = function () {
+			return filteredProperties;
+		};
+	
+	
+		return filter;
+	};
+
+
+/***/ }
+/******/ ]);
+//# sourceMappingURL=webvowl.js.map
