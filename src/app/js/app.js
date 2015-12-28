@@ -53,7 +53,6 @@ module.exports = function () {
 		importMenu = require("./menu/importMenu")(loadWvoJson);
 
 
-		console.log(turtledVersion);
 		d3.select(window).on("resize", adjustSize);
 
 		// setup all bottom bar modules
@@ -145,7 +144,6 @@ module.exports = function () {
         From turtle, there is always a new predicate created
      */
     function addPredicate(template, sId, p, oId){
-        //console.log(sId,oId);
 
         var id = newId();
         template.property.push(

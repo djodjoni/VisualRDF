@@ -155,7 +155,6 @@ module.exports = (function () {
 				cssClasses = cssClasses.concat(additionalCssClasses);
 			}
 			drawTools.appendImage(parentElement, that.actualRadius(), cssClasses, that.labelForCurrentLanguage(), that.imgUrl() );
-			console.log(that);
 			that.postDrawActions(parentElement);
 		};
 
